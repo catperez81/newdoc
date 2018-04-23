@@ -139,6 +139,10 @@ input {
   color: white;
 }
 
+.card-content {
+  background: white;
+}
+
 /* profile styling */
 
 #doc-profile {
