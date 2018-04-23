@@ -55,9 +55,7 @@ submitForm();
 
 /* render search results */
 function doctorList() {
-  $("#doc-results").html(
-    buildTemplate(testList.results)
-  );
+  $("#doc-results").html(buildTemplate(testList.results);
 }
 
 /* template to pass through each question from the object */
