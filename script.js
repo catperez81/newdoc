@@ -1,3 +1,43 @@
+// const BETTERDOCTOR_SEARCH_URL = 'https://api.betterdoctor.com/2016-03-01/doctors?location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=38a5e05a1ba6c75134d6d9a0497c51c0';
+
+
+// function getDataFromApi(term, callback) {
+//   const settings = {
+//     url: BETTERDOCTOR_SEARCH_URL,
+//     data: [
+//     {
+//       [
+//         "visit_address": {
+//           "city": "",
+//           "state_long": "",
+//           "street": "",
+//           "zip": ""
+//         },
+//       ]
+//     },
+//       "meta": {
+//         "data_type": "array",
+//         "item_type": "Doctor",
+//         "count": ,
+//         "limit": 
+//       },
+//     dataType: 'json',
+//     type: 'GET',
+//     success: callback
+//   };
+
+//   $.ajax(settings);
+// }
+
+// function renderResult(result) {
+//   console.log(result);
+// }
+
+// function displayBetterDoctorSearchData(data) {
+//   const results = data.items.map((item, index) => renderResult(item));
+//   $('.results').html(results);
+// }
+
 /* submit doctor search form */
 function submitForm() {
   $(".start-header").on("click", ".start-cta", function() {
@@ -5,37 +45,19 @@ function submitForm() {
     $("#doc-search-form").hide();
     $("#doc-results").show("slow");
     doctorList();
+    // let zipCode = $('#zip');
+    // let term = zipCode.val();
+    // getDataFromApi(term, displayBetterDoctorSearchData);
   });
 }
 
-/* template to pass through each question from the object */
-function buildTemplate(question) {
-  $("#question-text").text(question.questionText);
-  let answers = question.questionOptions.map((currentQuestion, index) => {
-    return `
-    <label id="label-${index}">
-      <input type="radio" name="badass-woman" class="question-input" value="${index}" required>
-      ${currentQuestion}
-    </label>
-    <br>`;
-  });
-
-  $("#answer-group").html(answers);
-}
-
-/* render new question */
-function renderNewQuestion() {
-  $(".current-question").text(state.currentQuestionIndex + 1);
-  $(".question-list").html(
-    buildTemplate(storeQuestions.questions[state.currentQuestionIndex])
-  );
-  $(".question-input").click(checkAnswer);
-  $("#quiz-question, #quiz-tracking").show("slow");
-}
+submitForm();
 
 /* render search results */
 function doctorList() {
-
+  $("#doc-results").html(
+    buildTemplate(testList.results)
+  );
 }
 
 /* render doctor profile */
@@ -50,6 +72,4 @@ function newDoctorSearch() {
 }
 
 /* call the functions */
-$(function() {
-  submitForm();
-});
+ 
