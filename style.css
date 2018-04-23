@@ -115,14 +115,19 @@ input {
   width: 80%;
 }
 
-.start-over {
+.results-overview {
   width: 80%;
 }
 
-.data-string, .start-over-button {
+.data-string {
   text-align: left;
   width: 50%;
   margin: 0 auto;
+}
+
+.new-search-button{
+  float: left;
+  width: 50%;
 }
 
 .new-search {
