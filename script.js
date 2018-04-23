@@ -51,10 +51,10 @@ function submitForm() {
 
 submitForm();
 
-let results = results.doctorResult;
 
 /* Pass through test results array */
 function renderDoc(result) {
+  let results = results.doctorResult;
   $(".doctor-list").html( `
     <div>
       <h3>${doctorResult.doctorName}</h3>
