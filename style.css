@@ -67,7 +67,7 @@ input {
   position: relative;
 }
 
-.start-cta, .start-over {
+.start-cta {
   padding: 20px 40px 20px 40px;
   font-size: 120%;
   font-weight: bolder;
@@ -105,6 +105,11 @@ input {
 .doctor-list {
   width: 80%;
   background: grey;
+}
+
+.data-string {
+  text-align: left;
+  width: 50%;
 }
 
 /* profile styling */
