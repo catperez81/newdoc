@@ -35,8 +35,8 @@ h1 {
   background-color:#feecec;
   height: 50px;
   text-align: center;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /* Form Styling */
@@ -132,6 +132,7 @@ input {
   border-radius: 3px;
   border: none;
   background-color: #14537d;
+  color: white;
 }
 
 /* profile styling */
