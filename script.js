@@ -71,9 +71,9 @@ submitForm();
 /* restart the search */
 function newDoctorSearch() {
   $("#doc-results").on("click", ".new-search", function() {
-    $("#doc-results").show();
     $("#doc-search-form").hide();
-  });
+    $("#doc-results").show();
+  }
 }
 
 newDoctorSearch();
