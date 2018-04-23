@@ -60,6 +60,12 @@ function doctorList() {
   );
 }
 
+/* template to pass through each question from the object */
+function buildTemplate(result) {
+  $(".doctor-list").text(results.doctorName);
+  $("#doc-results").html(results);
+}
+
 /* render doctor profile */
 function doctorProfile() {
 }
