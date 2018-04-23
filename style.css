@@ -111,7 +111,7 @@ input {
   width: 80%;
 }
 
-.data-string {
+.data-string, .start-over-button {
   text-align: left;
   width: 50%;
   margin: 0 auto;
