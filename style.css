@@ -109,6 +109,7 @@ input {
 #doc-results {
   display: none;
   text-align: center;
+  background: #FFECEC;
 }
 
 .doctor-list {
