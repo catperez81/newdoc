@@ -157,6 +157,10 @@ input {
   padding: 20px;
 }
 
+.info-section {
+  text-align: left;
+}
+
 .doctor-info {
   text-align: left;
 }
@@ -167,6 +171,7 @@ input {
   display: none;
   text-align: center;
   background: #FFECEC;
+  padding-bottom: 200px;
 }
 
 /* Mobile Responsive */
