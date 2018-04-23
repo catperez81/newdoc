@@ -71,13 +71,12 @@ submitForm();
 /* restart the search */
 function newDoctorSearch() {
   $("#doc-results").on("click", ".new-search", function() {
-    console.log('test');
-    $("#doc-search-form").hide();
     $("#doc-results").show();
+    $("#doc-search-form").hide();
   });
 }
 
-newDoctorSearch()
+newDoctorSearch();
 
 
 /* render doctor profile */
