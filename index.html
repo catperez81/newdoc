@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Quiz App</title>
-  <link href="https://fonts.googleapis.com/css?family=Hind+Vadodara" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Amiri" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Padauk" rel="stylesheet">
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -13,13 +14,12 @@
     
     <section role = "region" id="doc-search-form">
       <div class="start-header">
-        <h1>Looking for a new doctor? Find a new doctor nearby who takes your insurance plan in just a few clicks!</h1>
+        <h1>Find a new doctor nearby who takes your insurance plan in just a few clicks!</h1>
         <form>
           <fieldset>
-<!--             <legend>Find a new doctor</legend> -->
               <div class="field">
                 <label>Zip code</label><br>
-                <input type="text" name="zip_code">
+                <input type="text" name="zip_code" required>
               </div>
               <div class="field">
                 <label>Distance</label><br>
@@ -49,7 +49,10 @@
     </section>
 
     <section role = "region" id="doc-results">
-      <div class="row">
+      <div class="map">
+        <img src="http://i68.tinypic.com/34fnx4h.png" border="0" alt="map-placeholder">
+      </div>
+      <div class="doctor-list">
       </div>
     </section>
 
