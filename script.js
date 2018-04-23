@@ -81,6 +81,7 @@ newDoctorSearch()
 /* render doctor profile */
 function doctorProfile() {
   $(".doctor-profile").on("click", function() {
+    $("#doc-results").hide();
     $("#doc-profile").show();
   });
 }
