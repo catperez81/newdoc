@@ -165,6 +165,8 @@ input {
 
 #doc-profile {
   display: none;
+  text-align: center;
+  background: #FFECEC;
 }
 
 /* Mobile Responsive */
