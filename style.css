@@ -113,6 +113,8 @@ input {
 
 .map {
   padding-bottom: 30px;
+  width: 100%;
+  height: auto;
 }
 
 .doctor-list {
