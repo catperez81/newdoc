@@ -43,23 +43,16 @@ function submitForm() {
   $(".start-header").on("click", ".start-cta", function() {
     event.preventDefault();
     $("#doc-search-form").hide();
-    $("#doc-results").show("slow");
-    doctorList();
+    $("#doc-results").html(list(testList.results);
     // getDataFromApi(term, displayBetterDoctorSearchData);
   });
 }
 
 submitForm();
 
-/* render search results */
-function doctorList() {
-  $("#doc-results").html(buildTemplate(testList.results);
-}
-
-/* template to pass through each question from the object */
-function buildTemplate(result) {
-  $(".doctor-list").text(results.doctorName);
-  $("#doc-results").html(results);
+/* template to pass through test results array */
+function list(result) {
+  $(".doctor-list").text(results.doctorName, results.address, results.distance);
 }
 
 /* render doctor profile */
