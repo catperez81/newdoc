@@ -159,15 +159,6 @@ input {
   margin-bottom: 40px;
 }
 
-.info-section {
-  text-align: left;
-  width: 80%;
-  border: 1px solid grey;
-  margin: 0 auto;
-  padding: 20px;
-  background: white;
-}
-
 .doctor-image {
   float: left;
   width: 20%;
@@ -178,6 +169,19 @@ input {
 }
 
 /* profile styling */
+
+.doctor-profile-view {
+  width: 80%;
+}
+
+.info-section {
+  text-align: left;
+  width: 50%;
+  border: 1px solid grey;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+}
 
 #doc-profile {
   display: none;
