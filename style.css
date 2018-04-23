@@ -34,6 +34,7 @@ h1 {
 .logo-section{
   background-color:#feecec;
   height: 50px;
+  text-align: center;
 }
 
 /* Form Styling */
@@ -81,6 +82,7 @@ input {
   border: none;
   margin-top: 30px;
   background-color: #14537d;
+  color: white;
 }
 
 .dropdown{
@@ -138,19 +140,5 @@ input {
 
 /* Mobile Responsive */
 @media only screen and (max-width: 768px) {
-  #myModal {
-    margin: 10px;
-    text-align: left;
-  }
 
-  .modal-header {
-    padding-bottom: 14px;
-  }
-}
 
-.green {
-  color: green;
-}
-.red {
-  color: red;
-}
