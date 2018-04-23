@@ -202,7 +202,7 @@ input {
     width: 100%;
   }
 
-  #doc-results {
+  .card-content, .info-section {
     width: 100%;
   }
 
