@@ -149,7 +149,7 @@ input {
   color: white;
 }
 
-.card-content, .info-section {
+.card-content {
   background: white;
   display: inline-block;
   width: 80%;
@@ -159,13 +159,15 @@ input {
   margin-bottom: 40px;
 }
 
-/*.info-section {
+.info-section {
   text-align: left;
   width: 80%;
+  border: 1px solid grey;
   margin: 0 auto;
+  padding: 20px;
   background: white;
 }
-*/
+
 .doctor-image {
   float: left;
   width: 20%;
