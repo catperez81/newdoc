@@ -73,7 +73,7 @@ function newDoctorSearch() {
   $("#doc-results").on("click", ".new-search", function() {
     $("#doc-search-form").hide();
     $("#doc-results").show();
-  }
+  });
 }
 
 newDoctorSearch();
