@@ -73,11 +73,10 @@ function doctorProfile() {
 
 /* restart the search */
 function newDoctorSearch() {
-  $("#doc-results").on("click", ".new-search", function() {
+  $(".new-search-results").on("click", ".new-search", function() {
     $("#doc-search-form").show();
   });
 }
-
 
 newDoctorSearch()
 
