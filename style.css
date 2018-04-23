@@ -142,9 +142,9 @@ input {
 
 .card-content {
   background: white;
+  display: inline-block;
   width: 80%;
-  height: 80px;
-  border-color: grey;
+  border: 1px solid grey;
 }
 
 /* profile styling */
