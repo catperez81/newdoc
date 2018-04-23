@@ -111,8 +111,13 @@ input {
   background: #FFECEC;
 }
 
+.map {
+  padding-bottom: 30px;
+}
+
 .doctor-list {
   width: 80%;
+  padding-top: 100px;
 }
 
 .results-overview {
