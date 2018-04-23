@@ -121,17 +121,17 @@ input {
 }
 
 .data-string {
-  text-align: left;
+  float: left;
   width: 50%;
   margin: 0 auto;
 }
 
 .new-search-button {
-  float: left;
+  float: right;
   width: 50%;
 }
 
-.new-search, .doctor-profile{
+.new-search, .doctor-profile {
   padding: 10px 14px 10px 14px;
   font-size: 100%;
   border-radius: 3px;
