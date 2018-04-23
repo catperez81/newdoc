@@ -35,6 +35,8 @@ h1 {
   background-color:#feecec;
   height: 50px;
   text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 /* Form Styling */
