@@ -43,6 +43,7 @@ function submitForm() {
   $(".start-header").on("click", ".start-cta", function() {
     event.preventDefault();
     $("#doc-search-form").hide();
+    $("#doc-results").show();
     // var docs = list.map(doc=>renderDoc())
     // $("#doc-results").html(docs);
     // getDataFromApi(term, displayBetterDoctorSearchData);
