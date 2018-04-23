@@ -38,11 +38,11 @@ h1 {
 
 /* Form Styling */
 #doc-search-form {
-  background: black;
+  background: #FFECEC;
   padding-top: 100px;
   padding-bottom: 100px;
   text-align: center;
-  color: white;
+  color: black;
   margin: 0 auto;
 }
 
@@ -59,7 +59,7 @@ fieldset {
 
 label {
   padding-bottom: 10px;
-  color: white;
+  color: black;
   font-size: 16px;
   cursor: pointer;
 }
@@ -90,7 +90,7 @@ input {
    padding-left: 4px;
    height: 33px;
    width: 50%;
-   color: white;
+   color: black;
 }
 
 .dropdown select {
@@ -98,7 +98,7 @@ input {
    font-size: 16px;
    height: 34px;
    width: 268px;
-   color: white;
+   color: black;
 }
 
 /* results styling */
@@ -110,7 +110,6 @@ input {
 
 .doctor-list {
   width: 80%;
-  background: grey;
 }
 
 .start-over {
