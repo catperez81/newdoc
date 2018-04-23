@@ -161,6 +161,11 @@ input {
   text-align: left;
 }
 
+.doctor-image {
+  float: left;
+  width: 20%;
+}
+
 .doctor-info {
   text-align: left;
 }
