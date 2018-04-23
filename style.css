@@ -118,6 +118,7 @@ input {
 .doctor-list {
   width: 80%;
   padding-top: 100px;
+  margin: 0 auto;
 }
 
 .results-overview {
@@ -151,6 +152,7 @@ input {
   display: inline-block;
   width: 80%;
   border: 1px solid grey;
+  padding: 20px;
 }
 
 .doctor-info {
