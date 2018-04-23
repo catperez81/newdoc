@@ -75,7 +75,6 @@ input {
   border: none;
   margin-top: 30px;
   background-color: #44d8ec;
-  margin-top: 30px;
 }
 
 .dropdown{
@@ -111,6 +110,16 @@ input {
 .data-string {
   text-align: left;
   width: 50%;
+  margin: 0 auto;
+}
+
+.new-search {
+  padding: 20px 40px 20px 40px;
+  font-size: 120%;
+  font-weight: bolder;
+  border-radius: 3px;
+  border: none;
+  background-color: #44d8ec;
 }
 
 /* profile styling */
