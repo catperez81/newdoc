@@ -43,14 +43,14 @@ function submitForm() {
   $(".start-header").on("click", ".start-cta", function() {
     event.preventDefault();
     $("#doc-search-form").hide();
-    $("#doc-results").html(list(testList.results);
+    $(".doctor-list").text(list(testList.results);
     // getDataFromApi(term, displayBetterDoctorSearchData);
   });
 }
 
 submitForm();
 
-/* template to pass through test results array */
+/* Pass through test results array */
 function list(result) {
   $(".doctor-list").text(results.doctorName, results.address, results.distance);
 }
