@@ -71,7 +71,7 @@ submitForm();
 /* restart the search */
 function newDoctorSearch() {
   $(".new-search").on("click", function() {
-    $("#doc-search-form").show();
+    $("#doc-results").show();
   });
 }
 
@@ -82,6 +82,7 @@ newDoctorSearch()
 function doctorProfile() {
   $(".doctor-profile").on("click", function() {
     $("#doc-results").hide();
+    $("#doc-search-form").hide();
     $("#doc-profile").show();
   });
 }
