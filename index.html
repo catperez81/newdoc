@@ -12,8 +12,38 @@
   <main role = "main">
     
     <section role = "region" id="doc-search-form">
-      <div class="row">
-        <p>Find a new doctor</p>
+      <div class="start-header">
+        <h1>Looking for a new doctor? Find a new doctor nearby who takes your insurance plan in just a few clicks!</h1>
+        <form>
+          <fieldset>
+<!--             <legend>Find a new doctor</legend> -->
+              <div class="field">
+                <label>Zip code</label><br>
+                <input type="text" name="zip_code">
+              </div>
+              <div class="field">
+                <label>Distance</label><br>
+                <select class="dropdown">
+                  <option>Within 5 miles</option>
+                  <option>Within 10 miles</option>
+                  <option>Within 25 miles</option>
+                  <option>No preference</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Health insurance plan</label><br>
+                <select class="dropdown">
+                  <option>Use insurance_uids</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Doctor specialty</label><br>
+                <select class="dropdown">
+                  <option>Use specialties</option>
+                </select>
+              </div>
+          </fieldset>
+        </form>
         <button class="btn btn-default start-cta" type="submit">Submit</button>
       </div>
     </section>
