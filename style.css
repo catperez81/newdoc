@@ -141,6 +141,8 @@ input {
 
 .card-content {
   background: white;
+  width: 80%;
+  height: 80px
 }
 
 /* profile styling */
