@@ -194,7 +194,11 @@ input {
 /* Mobile Responsive */
 @media only screen and (max-width: 768px) {
 
-  input {
+  input, .dropdown {
+    width: 100%;
+  }
+
+  .start-cta {
     width: 100%;
   }
 
