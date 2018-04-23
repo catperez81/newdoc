@@ -70,7 +70,7 @@ submitForm();
 
 /* restart the search */
 function newDoctorSearch() {
-  $(".new-search").on("click", function() {
+  $("#doc-results").on("click", ".new-search", function() {
     $("#doc-search-form").hide();
     $("#doc-results").show();
   });
