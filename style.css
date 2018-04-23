@@ -107,6 +107,10 @@ input {
   background: grey;
 }
 
+.start-over {
+  width: 80%;
+}
+
 .data-string {
   text-align: left;
   width: 50%;
@@ -114,9 +118,8 @@ input {
 }
 
 .new-search {
-  padding: 20px 40px 20px 40px;
-  font-size: 120%;
-  font-weight: bolder;
+  padding: 10px 14px 10px 14px;
+  font-size: 100%;
   border-radius: 3px;
   border: none;
   background-color: #44d8ec;
