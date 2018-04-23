@@ -202,9 +202,8 @@ input {
     width: 100%;
   }
 
-  .doctor-list {
+  #doc-results {
     width: 100%;
-    padding-top: 20px;
   }
 
 }
