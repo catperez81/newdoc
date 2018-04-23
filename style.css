@@ -67,7 +67,7 @@ input {
   position: relative;
 }
 
-.start-cta {
+.start-cta, .start-over {
   padding: 20px 40px 20px 40px;
   font-size: 120%;
   font-weight: bolder;
@@ -96,13 +96,18 @@ input {
    color: white;
 }
 
-/* Results styling */
+/* results styling */
 
 #doc-results {
   display: none;
 }
 
-/* Results styling */
+.doctor-list {
+  width: 80%;
+  background: grey;
+}
+
+/* profile styling */
 
 #doc-profile {
   display: none;

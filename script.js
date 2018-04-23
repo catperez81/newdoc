@@ -43,8 +43,8 @@ function submitForm() {
   $(".start-header").on("click", ".start-cta", function() {
     event.preventDefault();
     $("#doc-search-form").hide();
-    var docs = list.map(doc=>renderDoc())
-    $("#doc-results").html(docs);
+    // var docs = list.map(doc=>renderDoc())
+    // $("#doc-results").html(docs);
     // getDataFromApi(term, displayBetterDoctorSearchData);
   });
 }
@@ -53,17 +53,17 @@ submitForm();
 
 
 /* Pass through test results array */
-function renderDoc(result) {
-  let results = results.doctorResult;
-  $(".doctor-list").html( `
-    <div>
-      <h3>${doctorResult.doctorName}</h3>
-      <p>${doctorResult.address}<p>
-      <p>${doctorResult.distance}<p>
-    </div>
-    <br>`
-  );
-}
+// function renderDoc(result) {
+//   let results = results.doctorResult;
+//   $(".doctor-list").html( `
+//     <div>
+//       <h3>${doctorResult.doctorName}</h3>
+//       <p>${doctorResult.address}<p>
+//       <p>${doctorResult.distance}<p>
+//     </div>
+//     <br>`
+//   );
+// }
 
 /* render doctor profile */
 function doctorProfile() {
