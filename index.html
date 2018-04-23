@@ -1,29 +1,110 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
-    <link href="index.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <header role='banner'>
-      <div class="heading">Search for a YouTube video</div>
-    </header>
-    <section role='region'>
-      <div class="form">
-        <form id="js-form">
-          <input type="text" name="term-entry" id="term-entry" placeholder="e.g. puppies">
-          <button type="submit">Submit</button>
-        </form>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Hind+Vadodara" rel="stylesheet">
+  <link href="index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <main role = "main">
+    <section role = "region" id="start-quiz">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-12">
+          <h1>Badass women in tech you should know</h1>
+          <p>Did you know that in 2017, only 17% of startups have female founders? Did you also know that only 7% of senior investing partners at the top 100 firms are women? Things are changing for women in tech and there are some trailblazers leading the way across founders, investors, and Diversity & Inclusion advocacy.</p><br>
+          <p>Take the quiz & test your knowledge on these badass women in tech.</p>
+          <button class="btn btn-default start-cta" type="submit">Start Quiz</button>
+        </div>
       </div>
     </section>
-    <section role='region'>
-      <div class="results">
-        <p class="result-count"><p>
+
+    <section role = "region" id="quiz-tracking">
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4">
+          <p class="quiz-status">Question <span class="current-question"> </span> of <span>10</span></p>
+        </div>
+        <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-4">
+          <p class="quiz-score">None right so far</p>
+        </div>
       </div>
-    </section> 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="index.js"></script>
-  </body>
+    </section>
+
+    <section role = "region" id="quiz-question">
+      <div class="row">
+        <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-8">
+          <ul class= "question-list">
+
+            <li>
+              <form id="question-form">
+                <h3 id="question-text">QUESTION_TEXT_HERE</h3>
+                <div aria-labelledby="question-text" id="answer-group">
+                  QUESTION_ANSWERS_HERE
+                </div>
+                <div class="wrong-answer">
+                </div>
+                <button name="button" type="submit" class="submit-cta">Submit</button>
+              </form>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 hidden-xs">
+          <div class="splash-image">
+            <img src="images/raised-women-hands.png" width="400" align="right" alt="Raised Women's Hands">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section role = "region" id="myModal" class="modal">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-xs-12 modal-content">
+          <h3 class="modal-header">Headline</h3>
+          <button type="button" class="btn btn-default close-modal" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </section>
+
+    <section role = "region" id="good-results">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="emoji-image">
+            <img src="images/Hugging-Face-Emoji.png" width="100" alt="Hugging-Face-Emoji">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h1>You are a badass! Your final score is <span class="final-score"></span> </h1>
+          <button class="btn btn-default take-quiz-cta" type="submit" target="_blank">Take the quiz again</button>
+        </div>
+      </div>
+    </section>
+
+    <section role = "region" id="bad-results">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="emoji-image">
+            <img src="images/Sad-Face-Emoji.png" width="100" alt="Sad-Face-Emoji">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Good effort! Your final score is <span class="final-score"></span> </h1>
+          <button class="btn btn-default take-quiz-cta" type="submit" target="_blank">Take the quiz again</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="question-list.js"></script>
+  <script src="index.js"></script>
+</body>
 </html>

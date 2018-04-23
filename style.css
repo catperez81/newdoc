@@ -1,0 +1,177 @@
+/* Defaults for all elements */
+* {
+  font-family: "Hind Vadodara", sans-serif;
+  line-height: 2em;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+main {
+  background-size: cover;
+  height: 100%;
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+}
+
+/* Start Quiz Styling */
+#start-quiz {
+  background: linear-gradient(rgba(2, 2, 2, 0.8), rgba(2, 2, 2, 0.8)),
+    url(images/project-include.jpg) no-repeat 50% 50% fixed;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  padding: 200px 30px 200px 30px;
+  text-align: center;
+  color: white;
+  height: 100%;
+}
+
+.start-cta,
+.submit-cta,
+.take-quiz-cta {
+  padding: 20px 40px 20px 40px;
+  font-size: 120%;
+  font-weight: bolder;
+  border-radius: 3px;
+  border: none;
+  margin-top: 30px;
+}
+
+.start-cta {
+  background-color: #44d8ec;
+  margin-top: 30px;
+}
+
+/* Form Styling */
+label {
+  margin-left: 10px;
+  color: #3b3434;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.25s linear;
+}
+
+.wrong-answer {
+  background: blue;
+}
+
+.quiz-status,
+.quiz-score {
+  width: 50%;
+  display: inline-block;
+  float: left;
+}
+
+#quiz-question {
+  display: none;
+  margin-top: 30px;
+}
+
+.splash-image {
+  float: right;
+  max-width: 40%;
+}
+
+#quiz-tracking {
+  display: none;
+  background: #44d8ec;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.submit-cta {
+  background-color: #ee5c5c;
+  color: #1f1f1f;
+}
+
+ul {
+  list-style-type: none;
+  margin-bottom: 14px;
+}
+
+input {
+  color: #3b3434;
+  font-size: 20px;
+  position: relative;
+}
+
+p {
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 22px;
+  line-height: 1.5em;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  padding-top: 30px;
+}
+
+#myModal {
+  margin: 300px;
+  text-align: left;
+}
+
+.modal-header {
+  padding-bottom: 20px;
+  color: #1f1f1f;
+}
+
+.close-modal {
+  margin-bottom: 20px;
+}
+
+/* Results Styling */
+#good-results,
+#bad-results {
+  display: none;
+  color: white;
+  background: #44d8ec;
+  background-size: cover;
+  text-align: center;
+  padding-top: 100px;
+  height: 100%;
+  margin: auto;
+}
+
+.emoji-image {
+  margin: auto;
+  width: 50%;
+}
+
+.take-quiz-cta {
+  margin-top: 50px;
+  margin-bottom: 300px;
+}
+
+/* Mobile Responsive */
+@media only screen and (max-width: 768px) {
+  #myModal {
+    margin: 10px;
+    text-align: left;
+  }
+
+  .modal-header {
+    padding-bottom: 14px;
+  }
+}
+
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
