@@ -42,6 +42,7 @@
 function submitForm() {
   $(".start-header").on("click", ".start-cta", function() {
     event.preventDefault();
+    let zipInput = userInput.val();
     $("#doc-search-form").hide();
     $("#doc-results").show();
     // var docs = list.map(doc=>renderDoc())
@@ -74,8 +75,10 @@ function doctorProfile() {
 function newDoctorSearch() {
   $("#doc-results").on("click", ".new-search", function() {
     $("#doc-search-form").show();
+
   });
 }
+
 
 newDoctorSearch()
 
