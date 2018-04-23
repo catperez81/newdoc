@@ -147,6 +147,10 @@ input {
   border: 1px solid grey;
 }
 
+.doctor-info {
+  text-align: left;
+}
+
 /* profile styling */
 
 #doc-profile {
