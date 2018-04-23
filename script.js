@@ -45,8 +45,6 @@ function submitForm() {
     $("#doc-search-form").hide();
     $("#doc-results").show("slow");
     doctorList();
-    // let zipCode = $('#zip');
-    // let term = zipCode.val();
     // getDataFromApi(term, displayBetterDoctorSearchData);
   });
 }
