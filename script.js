@@ -42,12 +42,13 @@
 function submitForm() {
   $(".start-header").on("click", ".start-cta", function() {
     event.preventDefault();
-    // let zipInput = userInput.val();
     $("#doc-search-form").hide();
     $("#doc-results").show();
     // var docs = list.map(doc=>renderDoc())
     // $("#doc-results").html(docs);
-    // getDataFromApi(term, displayBetterDoctorSearchData);
+    let nameInput = ${'#name'}.val();
+    console.log('This variable is', nameInput);
+    getDataFromApi(name, displayBetterDoctorSearchData);
   });
 }
 
