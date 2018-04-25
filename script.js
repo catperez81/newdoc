@@ -1,7 +1,7 @@
 // const BETTERDOCTOR_SEARCH_URL = 'https://api.betterdoctor.com/2016-03-01/doctors?location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=38a5e05a1ba6c75134d6d9a0497c51c0';
 
 
-// function getDataFromApi(zip, callback) {
+// function getDataFromApi(name, callback) {
 //   const settings = {
 //     url: BETTERDOCTOR_SEARCH_URL,
 //     data: [
@@ -47,9 +47,9 @@ function submitForm() {
     // var docs = list.map(doc=>renderDoc())
     // $("#doc-results").html(docs);
     debugger
-    // let nameInput = ${'#name'}.val();
+    let nameInput = $('#name').val();
     console.log('This variable is', nameInput);
-    getDataFromApi(name, displayBetterDoctorSearchData);
+    getDataFromApi(input, displayBetterDoctorSearchData);
   });
 }
 
