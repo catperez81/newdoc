@@ -47,7 +47,7 @@ function submitForm() {
     // var docs = list.map(doc=>renderDoc())
     // $("#doc-results").html(docs);
     debugger
-    let nameInput = ${'#name'}.val();
+    // let nameInput = ${'#name'}.val();
     console.log('This variable is', nameInput);
     getDataFromApi(name, displayBetterDoctorSearchData);
   });
