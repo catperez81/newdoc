@@ -33,6 +33,12 @@ function renderDoc(result) {
   console.log(result);
 }
 
+function logoClickable(){
+  $(".logo-section").on("click"), function(){
+    $('#doc-search-form').show();
+  }
+}
+
 // function displayBetterDoctorSearchData(data) {
 //   const results = data.items.map((item, index) => renderResult(item));
 //   $('#doc-results').html(results);
@@ -94,4 +100,5 @@ function doctorProfile() {
 }
 
 doctorProfile();
+logoClickable();
  
