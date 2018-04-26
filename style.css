@@ -194,7 +194,7 @@ input {
 /* Mobile Responsive */
 @media only screen and (max-width: 768px) {
 
-  input, .dropdown, .doctor-list, .results-overview {
+  input, .dropdown, .doctor-list, .results-overview, .doctor-image {
     width: 100%;
   }
 
