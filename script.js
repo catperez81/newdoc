@@ -36,6 +36,8 @@ function renderDoc(result) {
 function logoClickable(){
   $("#logo").on("click", function(){
     $('#doc-search-form').show();
+    $("#doc-results").hide();
+    $("#doc-profile").show();
   });
 }
 
@@ -56,7 +58,7 @@ function submitForm() {
     let specialty = $('#specialty-dropdown').val();
     $("#doc-search-form").hide();
     $("#doc-results").show();
-    var docs = list.map(doc=>renderDoc())
+    var docs = result.map(doc=>renderDoc())
     $("#doc-results").html(docs);
     // getDataFromApi(name, callback);
   });
