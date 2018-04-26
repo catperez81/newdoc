@@ -52,7 +52,7 @@ function submitForm() {
     event.preventDefault();
     let nameInput = $('#name').val();
     console.log('This variable is', nameInput);
-    let city = $('#city').val();
+    let zipCode = $('#zip').val();
     let healthPlan = $('#plan-dropdown').val();
     let specialty = $('#specialty-dropdown').val();
     $("#doc-search-form").hide();
