@@ -33,10 +33,10 @@
 //   console.log(result);
 // }
 
-// function displayBetterDoctorSearchData(data) {
-//   const results = data.items.map((item, index) => renderResult(item));
-//   $('.results').html(results);
-// }
+function displayBetterDoctorSearchData(data) {
+  const results = data.items.map((item, index) => renderResult(item));
+  $('#doc-results').html(results);
+}
 
 /* submit doctor search form */
 function submitForm() {
@@ -46,7 +46,6 @@ function submitForm() {
     $("#doc-results").show();
     // var docs = list.map(doc=>renderDoc())
     // $("#doc-results").html(docs);
-    debugger
     let nameInput = $('#name').val();
     console.log('This variable is', nameInput);
     getDataFromApi(input, displayBetterDoctorSearchData);
