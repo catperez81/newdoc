@@ -27,8 +27,14 @@
                 <input type="text" name="doc-name" id="name" required>
               </div>
               <div class="field">
-                <label>Zip code</label><br>
-                <input type="text" name="zip_code" id="zip" required>
+                <label>City</label><br>
+                <input type="text" name="city" id="city" required>
+              </div>
+              <div class="field">
+                <label>State</label><br>
+                <select id="state-dropdown">
+                  <option>Use location param</option>
+                </select>
               </div>
               <div class="field">
                 <label>Health insurance plan</label><br>
@@ -55,7 +61,7 @@
           <p>Zip code, distance, and any other info captured from the form</p>
         </div>
         <div class="new-search-button">
-          <button class="btn btn-default new-search" type="submit">New search</button>
+          <button class="btn btn-default  new-search" type="submit">New search</button>
         </div>
       </div>
       <div class="doctor-list">

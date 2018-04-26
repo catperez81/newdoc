@@ -215,7 +215,7 @@ ul {
     height: auto;
   }
 
-  #plan-dropdown, #specialty-dropdown {
+  #plan-dropdown, #specialty-dropdown, #state-dropdown {
     width: 100%; 
   }
 
