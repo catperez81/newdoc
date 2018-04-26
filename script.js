@@ -34,7 +34,7 @@ function renderDoc(result) {
 }
 
 function logoClickable(){
-  $(".logo-section").on("click"), function(){
+  $("#logo").on("click", function(){
     $('#doc-search-form').show();
   }
 }
