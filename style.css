@@ -184,6 +184,10 @@ input {
   background: white;
 }
 
+ul {
+  list-style-type: none;
+}
+
 #doc-profile {
   display: none;
   text-align: center;
