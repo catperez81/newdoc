@@ -38,6 +38,9 @@ function renderDoctor(doctor) {
     <div>
       <h3>${doctor.profile.first_name}</h3>
       <h3>${doctor.profile.last_name}</h3>
+      <p>${doctor.practices.distance}</p>
+      <p>${doctor.practices.visit_address}</p>
+      <p>${doctor.specialties.name}</p>
     </div>
     <br>`
 }
