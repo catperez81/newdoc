@@ -82,9 +82,9 @@ submitForm();
 
 /* restart the search */
 function newDoctorSearch() {
-  $("#doc-results").on("click", ".new-search", function() {
-    $("#doc-search-form").hide();
-    $("#doc-results").show();
+  $(".new-search").on("click", function() {
+    $("#doc-results").hide();
+    $("#doc-search-form").show();
   });
 }
 
