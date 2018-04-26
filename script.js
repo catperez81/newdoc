@@ -36,7 +36,7 @@ function renderDoc(result) {
 function logoClickable(){
   $("#logo").on("click", function(){
     $('#doc-search-form').show();
-  }
+  });
 }
 
 // function displayBetterDoctorSearchData(data) {
