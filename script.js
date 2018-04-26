@@ -48,17 +48,17 @@ function logoClickable(){
 
 /* submit doctor search form */
 function submitForm() {
-  $(".start-header").on("click", ".start-cta", function() {
+  $("#findadoc").on("submit", function() {
     event.preventDefault();
-    let nameInput = $('#name').val();
-    console.log('This variable is', nameInput);
-    let zipCode = $('#zip').val();
-    let healthPlan = $('#plan-dropdown').val();
-    let specialty = $('#specialty-dropdown').val();
+    // let nameInput = $('#name').val();
+    // console.log('This variable is', nameInput);
+    // let zipCode = $('#zip').val();
+    // let healthPlan = $('#plan-dropdown').val();
+    // let specialty = $('#specialty-dropdown').val();
     $("#doc-search-form").hide();
     $("#doc-results").show();
-    var docs = result.map(doc=>renderDoc())
-    $("#doc-results").html(docs);
+    // var docs = result.map(doc=>renderDoc())
+    // $("#doc-results").html(docs);
     // getDataFromApi(name, callback);
   });
 }
