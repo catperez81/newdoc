@@ -53,7 +53,6 @@ function submitForm() {
     let nameInput = $('#name').val();
     console.log('This variable is', nameInput);
     let zipCode = $('#zip').val();
-    let distance = $('#distance-dropdown').val();
     let healthPlan = $('#plan-dropdown').val();
     let specialty = $('#specialty-dropdown').val();
     $("#doc-search-form").hide();
