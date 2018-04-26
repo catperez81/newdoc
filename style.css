@@ -91,7 +91,7 @@ input {
    font-size: 16px;
    padding-left: 4px;
    height: 33px;
-   width: 100%;
+   width: 50%;
    color: #14537d;
 }
 
@@ -213,6 +213,10 @@ ul {
   .map {
     width: 100%;
     height: auto;
+  }
+
+  #plan-dropdown, #specialty-dropdown {
+    width: 100%; 
   }
 
 }
