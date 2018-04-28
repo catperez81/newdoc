@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>NewDoc</title>
-  <link href="https://fonts.googleapis.com/css?family=Amiri" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -13,7 +13,7 @@
 
     <nav role="navigation">
       <div class="logo-section">
-       <img src="http://i66.tinypic.com/16ie0d1.jpg" id="logo"height="36px" border="0" alt="newdoc logo">
+       <img src="http://i66.tinypic.com/16ie0d1.jpg" id="logo"height="30px" border="0" alt="newdoc logo">
       </div>
     </nav>
     
@@ -22,34 +22,46 @@
         <h1>Find a new doctor who takes your insurance plan!</h1>
         <form id="findadoc">
           <fieldset>
-              <div class="field">
-                <label>Zip code</label><br>
-                <input type="text" name="zip" id="zip" required>
+              <div class=row>
+                <div class="field">
+                  <label>Zip code</label><br>
+                  <input type="text" name="zip" id="zip" required>
+                </div>
+                <div class="field">
+                  <label>Health insurance plan</label><br>
+                  <select id="plan-dropdown">
+                    <option>Use insurance_uids</option>
+                  </select>
+                </div>
               </div>
-              </div>
-              <div class="field">
-                <label>Health insurance plan</label><br>
-                <select id="plan-dropdown">
-                  <option>Use insurance_uids</option>
-                </select>
-              </div>
-              <div class="field">
-                <label>Doctor specialty</label><br>
-                <select id="specialty-dropdown">
-                  <option>Use specialties</option>
-                </select>
+              <div class=row>
+                <div class="field">
+                  <label>Doctor specialty</label><br>
+                  <select id="specialty-dropdown">
+                    <option>Use specialties</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Gender</label><br>
+                  <select id="gender-dropdown">
+                    <option>Female</option>
+                    <option>Male</option>
+                  </select>
+                </div>
               </div>
           </fieldset>
-          <button class="btn btn-default start-cta" type="submit">Submit</button>
+          <div class=cta-row>
+            <button class="btn btn-default start-cta" type="submit">Submit</button>
+          </div>
         </form>
       </div>
     </section>
 
     <section role="region" id="doc-results">
-      <img src="http://i68.tinypic.com/34fnx4h.png" border="0" alt="map-placeholder" class="map">
+      <div class="map">
+      </div>
       <div class="results-overview">
-        <div class="data-string">
-          <p>Zip code, distance, and any other info captured from the form</p>
+        <div class="results-count">
         </div>
         <div class="new-search-button">
           <button class="btn btn-default  new-search" type="submit">New search</button>
@@ -57,16 +69,7 @@
       </div>
       <div class="doctor-list">
         <div class="card-content">
-          <div class="doctor-image">
-            <img src="http://i67.tinypic.com/psrog.jpg" height="140px" text-align="left" border="0" alt="Doctor photo"> 
-          </div>
           <div class="doctor-info">
-            <h3>Cat Perez, ObGyn</h3>
-            <p>123 Sylvan Ave, Newark, NJ 07071</p>
-            <p>.05 miles away</p>
-          </div>
-          <div class="doctor-profile-button">
-            <button class="btn btn-default doctor-profile" type="submit">View details</button>
           </div>
         </div>
       </div>

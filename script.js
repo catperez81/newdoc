@@ -1,8 +1,15 @@
 // const BETTERDOCTOR_SEARCH_URL = 'https://api.betterdoctor.com/2016-03-01/doctors?location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=38a5e05a1ba6c75134d6d9a0497c51c0';
 const BETTERDOCTOR_SEARCH_URL = 'https://api.betterdoctor.com/2016-03-01/doctors'
-
+const GOOGLE_MAPS_URL = 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDgtJKYyrzY5_6OL13gObxN43d4lgNhOKc'
 
 function getDataFromApi(lat,lng) {
+  const maps ={
+    url: GOOGLE_MAPS_URL,
+    data: {
+      location: `${lat}, ${lng}`,
+      accuracy: 100
+    }
+  }
   const settings = {
     url: BETTERDOCTOR_SEARCH_URL,
     data: { 
@@ -21,7 +28,7 @@ function getDataFromApi(lat,lng) {
     }
   };
 
-  $.ajax(settings);
+  $.ajax(settings, maps);
 }
 
 /* Pass through all results */
@@ -32,16 +39,24 @@ function results(doctors){
   console.log(doctors);
 }
 
+function renderMap(map){
+  
+}
+
 /* Pass through each single result */
 function renderDoctor(doctor) {
   return `
-    <div>
-      <h3>${doctor.profile.first_name}</h3>
-      <h3>${doctor.profile.last_name}</h3>
-      <p>${doctor.practices.distance}</p>
-      <p>${doctor.practices.visit_address}</p>
-      <p>${doctor.specialties.name}</p>
+  <div class="card-content">
+    <div class="doctor-info">
+      <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
+      <p>${doctor.profile.gender}</p>
+      <p>${doctor.practices.website}</p>
+      <p>${doctor.specialties.specialty_uid}</p>
     </div>
+    <div class="doctor-profile-button">
+    <button class="btn btn-default doctor-profile" type="submit">View details</button>
+    </div>
+  </div>
     <br>`
 }
 
@@ -60,12 +75,11 @@ function submitForm() {
     console.log('test');
     let zipCode = $('#zip').val();
     $('#zip').val('');
+    let gender = $('#gender-dropdown').val();
     // let healthPlan = $('#plan-dropdown').val();
     // let specialty = $('#specialty-dropdown').val();
     $("#doc-search-form").hide();
     $("#doc-results").show();
-    // var docs = result.map(doc=>renderDoc())
-    // $("#doc-results").html(docs);
     getLatLong(zipCode);
   });
 }

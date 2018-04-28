@@ -1,6 +1,6 @@
 /* Defaults for all elements */
 * {
-  font-family: 'Amiri', serif;
+  font-family: 'Oxygen', sans-serif;
   line-height: 1.7em;
   margin: 0;
   padding: 0;
@@ -30,21 +30,22 @@ h1 {
 
 /* navigation */
 .logo-section{
-  background-color:#feecec;
+  background-color:#fdf3f3;
   height: 50px;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 10px;
 }
 
 /* Form Styling */
 #doc-search-form {
-  background: #FFECEC;
+  background: #fdf3f3;
   padding-top: 100px;
   padding-bottom: 100px;
-  text-align: center;
+  text-align: left;
   color: #14537d;
   margin: 0 auto;
+  width: 100%;
 }
 
 fieldset { 
@@ -52,9 +53,15 @@ fieldset {
   font-size: 0; 
 }
 
-.field {
-  padding-bottom: 30px;
+.row {
+  display: inline-block;
   width: 100%;
+}
+
+.field {
+  width: 50%;
+  text-align: left;
+  padding-bottom: 30px;
   float: left;
 }
 
@@ -67,7 +74,7 @@ label {
 
 input {
   height: 33px;
-  width: 50%;
+  width: 85%;
   color: #3b3434;
   font-size: 20px;
   border-radius: 5px;
@@ -75,7 +82,7 @@ input {
 }
 
 .start-cta {
-  padding: 20px 40px 20px 40px;
+  padding: 14px 60px 14px 60px;
   font-size: 120%;
   font-weight: bolder;
   border-radius: 3px;
@@ -85,13 +92,13 @@ input {
   color: white;
 }
 
-#plan-dropdown, #specialty-dropdown {
+#plan-dropdown, #specialty-dropdown, #gender-dropdown {
   -webkit-appearance: none;
-   background: url(http://i67.tinypic.com/11qjmhl.png) no-repeat right center;
-   font-size: 16px;
-   padding-left: 4px;
+   background: url(http://i67.tinypic.com/mpyz7.png) no-repeat right center;
+   font-size: 14px;
+   padding-left: 10px;
    height: 33px;
-   width: 50%;
+   width: 85%;
    color: #14537d;
 }
 
@@ -103,12 +110,16 @@ input {
    color: #14537d;
 }
 
+.cta-row {
+  text-align: center;
+}
+
 /* results styling */
 
 #doc-results {
   display: none;
   text-align: center;
-  background: #FFECEC;
+  background: #fdf3f3;
 }
 
 .map {
@@ -149,11 +160,14 @@ input {
   color: white;
 }
 
+
+
 .card-content {
   background: white;
   display: inline-block;
   width: 80%;
   border: 1px solid grey;
+  border-radius: 5px;
   padding: 20px;
   margin-top: 40px;
   margin-bottom: 40px;
@@ -166,6 +180,8 @@ input {
 
 .doctor-info {
   text-align: left;
+  width: 80%;
+  margin: 0 auto;
 }
 
 /* profile styling */
@@ -202,7 +218,7 @@ ul {
     width: 100%;
   }
 
-  .start-cta {
+  .start-cta, .field, .input {
     width: 100%;
   }
 
@@ -215,7 +231,7 @@ ul {
     height: auto;
   }
 
-  #plan-dropdown, #specialty-dropdown {
+  #plan-dropdown, #specialty-dropdown, #gender-dropdown {
     width: 100%; 
   }
 
