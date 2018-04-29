@@ -39,22 +39,28 @@ function results(doctors){
   console.log(doctors);
 }
 
-function renderMap(map){
-  
-}
+// function renderMap(map){
+
+// }
 
 /* Pass through each single result */
 function renderDoctor(doctor) {
+  // let distance=Math.round(${doctor.practices[0].distance});
+  // console.log(distance);
   return `
   <div class="card-content">
+    <div class="doc-image">
+      <img src="${doctor.profile.image_url}" class="img-circle"> 
+    </div>
     <div class="doctor-info">
       <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
       <p>${doctor.profile.gender}</p>
-      <p>${doctor.practices.website}</p>
-      <p>${doctor.specialties.specialty_uid}</p>
+       <p>${doctor.practices[0].distance} miles away</p>
+      <p>${doctor.practices[0].visit_address.street}, ${doctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state_long}</p>
+      <p>${doctor.specialties[0].name}</p>
     </div>
     <div class="doctor-profile-button">
-    <button class="btn btn-default doctor-profile" type="submit">View details</button>
+      <button class="btn btn-default doctor-profile" type="button">View profile</button>
     </div>
   </div>
     <br>`
@@ -72,7 +78,6 @@ function logoClickable(){
 function submitForm() {
   $("#findadoc").submit(function(event) {
     event.preventDefault();
-    console.log('test');
     let zipCode = $('#zip').val();
     $('#zip').val('');
     let gender = $('#gender-dropdown').val();
@@ -84,16 +89,12 @@ function submitForm() {
   });
 }
 
-console.log('random');
-
 function getLatLong(zipCode) {
  // get lat lng from Google Maps // 
   getDataFromApi(37.755117, -122.457847);
 }
 
-submitForm();
-
-/* restart the search */
+/* new search */
 function newDoctorSearch() {
   $(".new-search").on("click", function() {
     $("#doc-results").hide();
@@ -101,18 +102,19 @@ function newDoctorSearch() {
   });
 }
 
-newDoctorSearch();
-
 
 /* render doctor profile */
 function doctorProfile() {
   $(".doctor-profile").on("click", function() {
+    console.log('test');
     $("#doc-results").hide();
     $("#doc-search-form").hide();
     $("#doc-profile").show();
   });
 }
 
+submitForm();
 doctorProfile();
 logoClickable();
+newDoctorSearch();
  
