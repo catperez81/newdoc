@@ -8,7 +8,8 @@ const GOOGLE_MAPS_URL =
 // CHANGE #1: CHECK THIS STATUS OBJECT.
 // starts with an empty array of obects.
 var state = {
-  doctors: []
+  doctors: [],
+  selectedDoctor: {}
 };
 
 function getDataFromApi(lat, lng) {
@@ -105,7 +106,7 @@ function renderResults() {
 }
 
 /* Pass through each single result */
-function renderDoctor(doctor) {
+function renderDoctor(doctor, index) {
   let distance = Math.round(doctor.practices[0].distance);
   return `
     <div class="results">
@@ -123,7 +124,7 @@ function renderDoctor(doctor) {
           <p>${doctor.specialties[0].name}</p>
         </div>
         <div class="doctor-profile-button">
-          <button class="btn btn-default doctor-profile type="button">View profile</button>
+          <button  data-index="${index}" class="btn btn-default doctor-profile type="button">View profile</button>
         </div>
       </div>
     </div>
@@ -134,11 +135,24 @@ function renderDoctor(doctor) {
 function viewProfile() {
   $("#doc-results").on("click", ".doctor-profile", function(event) {
     event.preventDefault();
+    // TODO #1. Which doctor was clicked?
+    // Get it from the button using
+    var index = $(this).attr("data-id");
+    // Now you have that in a var.
+    // Get the right doctor into the state.
+    state.selectedDoctor = state.doctors[index];
     $("#doc-results").hide();
     $("#doc-search-form").hide();
     $("#doc-profile").show();
+    renderProfile();
   });
-  // return `
+}
+
+function renderProfile() {
+  // TODO Instead of returning this. Pu the html in the right place in the PAGES
+  // TODO use the data from state.selectedDoctor to render it
+
+  // var html =  `
   //   <div class="card-content">
   //     <div class="doc-image">
   //       <img src="${doctor.profile.image_url}" class="img-circle">
@@ -158,6 +172,7 @@ function viewProfile() {
   //     </div>
   //   </div>
   //   <br>`
+  $(".doctor-profile-view").html(/* HTML GOES HERE */);
 }
 
 //////////////////////// SHOW / HIDE PAGES ////////////////////////
