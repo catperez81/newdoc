@@ -58,45 +58,41 @@
     </section>
 
     <section role="region" id="doc-results">
-      <div class="map"></div>
-      <div class="results-overview">
-      </div>
-      <div class="results">
-        <div class="card-content">
+      <div id="map"></div>
+      <div class="overview-container">
+        <div class="results-overview">
+          <a name="top"></a>
+          <span class="form-values"></span>
+          <div class="new-search">
+            <button class="btn btn-default new-search" type="submit">New search</button>
+          </div>
         </div>
+      <div class="results">
       </div>
-      <div class="back-to-top">
-        <button class="btn btn-default back-to-top" type="submit">Back to top</button>
+      <div class="top-button-container"></div>
+        <div class="back-to-top">
+          <a href="#top">Back to top</a>
+        </div>
       </div>
     </section>
 
     <section role="region" id="doc-profile">
       <div class="doctor-profile-view">
         <div class="card-content">
-        </div>
-        <div class="info-section">
-<<<<<<< HEAD
-=======
-          <h3>Female</h3>
-          <p>Obstetrics & Gynocology</p>
-          <p>Accepting new patients</p>
-        </div>
-        <div class="info-section">
-          <h3>Insurance taken</h3>
-            <ul>
-              <li>Insurance type 1</li>
-              <li>Insurance type 2</li>
-              <li>Insurance type 3</li>
-            </ul>
->>>>>>> 30bd5f79a459ef27e66e7267389197d1e092ae71
+          <div class="doc-image">
+          </div>
+          <div class="doctor-section">
+          </div>
+          <div class="info-section">
+          </div>
         </div>
       </div>
     </section>
 
   </main>
-
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz-b2oHF59bQHRL6n7WARMrt5tPQeF1i4&callback=initMap"
+  type="text/javascript"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--   <script src="doctor-list.js"></script> -->
   <script src="script.js"></script>
 </body>
 </html>

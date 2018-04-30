@@ -93,7 +93,7 @@ input {
 
 #plan-dropdown, #specialty-dropdown, #gender-dropdown {
   -webkit-appearance: none;
-   background-image: url("/images/dropdown.png") no-repeat right center;
+   background-image: url("http://i67.tinypic.com/mpyz7.jpg") no-repeat right center;
    font-size: 14px;
    padding-left: 10px;
    height: 33px;
@@ -122,10 +122,10 @@ input {
   margin: 0 auto;
 }
 
-.map {
-  padding-bottom: 30px;
+#map {
   width: 100%;
-  height: auto;
+  height: 400px;
+  background-color: grey;
 }
 
 .results {
@@ -135,17 +135,22 @@ input {
 
 .results-overview {
   width: 80%;
-  margin: 0 auto;
-  padding-bottom: 30px;
+  text-align: left;
+}
+
+.new-search {
+  padding: 4px;
+  font-size: 100%;
+  text-align: center;
+  border-radius: 3px;
+  border: none;
+  background-color: #14537d;
+  color: white;
+  float: left;
 }
 
 
-.new-search-button {
-  float: right;
-  width: 50%;
-}
-
-.new-search, .doctor-profile {
+.doctor-profile {
   padding: 10px 14px 10px 14px;
   font-size: 100%;
   border-radius: 3px;
@@ -187,7 +192,7 @@ p {
 
 /* profile styling */
 
-.doctor-profile-view {
+.doctor-profile-view, .overview-container {
   width: 80%;
   margin: 0 auto;
 }
