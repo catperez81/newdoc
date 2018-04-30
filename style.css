@@ -120,6 +120,7 @@ input {
   display: none;
   text-align: center;
   background: #fdf3f3;
+  margin: 0 auto;
 }
 
 .map {
@@ -128,7 +129,7 @@ input {
   height: auto;
 }
 
-.doctor-list {
+.results {
   width: 80%;
   padding-top: 100px;
   margin: 0 auto;
@@ -146,7 +147,7 @@ input {
   width: 50%;
 }
 
-.new-search, .doctor-profile {
+.new-search, #doctor-profile {
   padding: 10px 14px 10px 14px;
   font-size: 100%;
   border-radius: 3px;
@@ -227,6 +228,13 @@ ul {
 
   .card-content, .info-section {
     width: 100%;
+    margin: 20px;
+  }
+
+  .doctor-profile-button {
+    float: left;
+    padding-right: 30px;
+    margin-top: 10px;
   }
 
   .map {

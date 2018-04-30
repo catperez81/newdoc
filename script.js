@@ -33,7 +33,6 @@ function getDataFromApi(lat,lng) {
 
 /* Pass through all results */
 function results(doctors){
-  // map results here //
   const results = doctors.map((item, index) => renderDoctor(item));
   $('#doc-results').html(results);
   console.log(doctors);
@@ -45,8 +44,7 @@ function results(doctors){
 
 /* Pass through each single result */
 function renderDoctor(doctor) {
-  // let distance=Math.round(${doctor.practices[0].distance});
-  // console.log(distance);
+  let distance=Math.round(doctor.practices[0].distance);
   return `
   <div class="card-content">
     <div class="doc-image">
@@ -55,18 +53,50 @@ function renderDoctor(doctor) {
     <div class="doctor-info">
       <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
       <p>${doctor.profile.gender}</p>
-       <p>${doctor.practices[0].distance} miles away</p>
       <p>${doctor.practices[0].visit_address.street}, ${doctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state_long}</p>
+      <p>${distance} miles away</p>
       <p>${doctor.specialties[0].name}</p>
     </div>
     <div class="doctor-profile-button">
-      <button class="btn btn-default doctor-profile" type="button">View profile</button>
+      <button class="btn btn-default" id="doctor-profile" type="button">View profile</button>
     </div>
   </div>
-    <br>`
+  <br>`
 }
 
-function logoClickable(){
+/* render doctor profile */
+function viewProfile() {
+  $("#doctor-profile").on("click", function(){
+    console.log('test');
+    $("#doc-results").hide();
+    $("#doc-search-form").hide();
+    $("#doc-profile").show();
+  // return `
+  //   <div class="card-content">
+  //     <div class="doc-image">
+  //       <img src="${doctor.profile.image_url}" class="img-circle"> 
+  //     </div>
+  //     <div class="doctor-info">
+  //       <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
+  //       <p>${doctor.profile.gender}</p>
+  //       <p>${doctor.practices[0].distance} miles away</p>
+  //       <p>${doctor.practices[0].visit_address.street}, ${doctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state_long}</p>
+  //       <p>${doctor.specialties[0].name}</p>
+  //     </div>
+  //     <div class="info-section">
+  //       <p>${doctor.practices[0].accepts_new_patients}</p>
+  //       <p>${doctor.practices[0].languages}</p>
+  //       <p>${doctor.practices[0].office_hours}</p>
+  //       <p>${doctor.practices[0].phones}</p>
+  //     </div>
+  //   </div>
+  //   <br>`
+  });
+}
+
+viewProfile();
+
+function logoClickable() {
   $("#logo").on("click", function(){
     $("#doc-results").hide();
     $("#doc-profile").hide();
@@ -102,19 +132,7 @@ function newDoctorSearch() {
   });
 }
 
-
-/* render doctor profile */
-function doctorProfile() {
-  $(".doctor-profile").on("click", function() {
-    console.log('test');
-    $("#doc-results").hide();
-    $("#doc-search-form").hide();
-    $("#doc-profile").show();
-  });
-}
-
 submitForm();
-doctorProfile();
 logoClickable();
 newDoctorSearch();
  
