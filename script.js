@@ -37,7 +37,7 @@ function getDataFromApi(lat, lng) {
     success: function(response) {
       //CHANGE #2 SAVING ALL THE DOCTORS YOU GET IN state.doctors
       state.doctors = response.data;
-      viewDoctors();
+      showDoctors();
     },
     error: function(error) {
       console.log(error);
@@ -73,7 +73,7 @@ function getLatLong(zipCode) {
   //   }
   // }
 
-  // NOTE: GOOGLE MAPS DOESN'T USE AJAX.
+  // NOTE: CAN'T DO GOOGLE MAPS WITH AJAX
 
   getDataFromApi(37.755117, -122.457847);
 }
@@ -141,10 +141,7 @@ function viewProfile() {
     // Now you have that in a var.
     // Get the right doctor into the state.
     state.selectedDoctor = state.doctors[index];
-    $("#doc-results").hide();
-    $("#doc-search-form").hide();
-    $("#doc-profile").show();
-    renderProfile();
+    showProfile();
   });
 }
 
@@ -177,12 +174,18 @@ function renderProfile() {
 
 //////////////////////// SHOW / HIDE PAGES ////////////////////////
 
+function showProfile() {
+  $("#doc-results").hide();
+  $("#doc-search-form").hide();
+  $("#doc-profile").show();
+  renderProfile();
+}
 function showSearchForm() {
   $("#doc-results").hide();
   $("#doc-profile").hide();
   $("#doc-search-form").show();
 }
-function viewDoctors() {
+function showDoctors() {
   // moved this to a function since you might have to do it over and over.
   $("#doc-search-form").hide();
   $("#doc-results").show();
