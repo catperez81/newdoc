@@ -5,15 +5,13 @@ const BETTERDOCTOR_SPECIALTIES_URL =
 const GOOGLE_MAPS_URL =
   "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDgtJKYyrzY5_6OL13gObxN43d4lgNhOKc";
 
+// CHANGE #1: CHECK THIS STATUS OBJECT.
+// starts with an empty array of obects.
+var state = {
+  doctors: []
+};
+
 function getDataFromApi(lat, lng) {
-  // const maps ={
-  //   url: GOOGLE_MAPS_URL,
-  //   data: {
-  //     location: 'LatLng',
-  //     accuracy: 100,
-  //     maps_key: 'AIzaSyDgtJKYyrzY5_6OL13gObxN43d4lgNhOKc'
-  //   }
-  // }
   // const healthPlan = {
   //   url: BETTERDOCTOR_SPECIALTIES_URL,
   //   data: {
@@ -24,6 +22,7 @@ function getDataFromApi(lat, lng) {
   //   dataType: 'json',
   //   type: 'GET',
   // }
+
   const doctors = {
     url: BETTERDOCTOR_SEARCH_URL,
     data: {
@@ -35,7 +34,9 @@ function getDataFromApi(lat, lng) {
     dataType: "json",
     type: "GET",
     success: function(response) {
-      results(response.data);
+      //CHANGE #2 SAVING ALL THE DOCTORS YOU GET IN state.doctors
+      state.doctors = response.data;
+      viewDoctors();
     },
     error: function(error) {
       console.log(error);
@@ -55,14 +56,24 @@ function submitForm() {
     $("#gender-dropdown").val("");
     // let healthPlan = $('#plan-dropdown').val();
     // let specialty = $('#specialty-dropdown').val();
-    $("#doc-search-form").hide();
-    $("#doc-results").show();
     getLatLong(zipCode);
   });
 }
 
 function getLatLong(zipCode) {
-  // get lat lng from Google Maps //
+  // get lat lng from Google Maps
+
+  // const maps ={
+  //   url: GOOGLE_MAPS_URL,
+  //   data: {
+  //     location: 'LatLng',
+  //     accuracy: 100,
+  //     maps_key: 'AIzaSyDgtJKYyrzY5_6OL13gObxN43d4lgNhOKc'
+  //   }
+  // }
+
+  // NOTE: GOOGLE MAPS DOESN'T USE AJAX.
+
   getDataFromApi(37.755117, -122.457847);
 }
 
@@ -85,10 +96,12 @@ function getLatLong(zipCode) {
 // }
 
 /* Pass through all results */
-function results(doctors) {
-  const results = doctors.map((item, index) => renderDoctor(item));
+function renderResults() {
+  console.log(state.doctors);
+  // CHANGE #3: Instead of getting docs as an argument,
+  // now iterating over state.doctors
+  const results = state.doctors.map((item, index) => renderDoctor(item));
   $("#doc-results").html(results);
-  console.log(doctors);
 }
 
 /* Pass through each single result */
@@ -98,7 +111,7 @@ function renderDoctor(doctor) {
     <div class="results">
       <div class="card-content">
         <div class="doc-image">
-          <img src="${doctor.profile.image_url}" class="img-circle"> 
+          <img src="${doctor.profile.image_url}" class="img-circle">
         </div>
         <div class="doctor-info">
           <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
@@ -147,24 +160,44 @@ function viewProfile() {
   //   <br>`
 }
 
-viewProfile();
+//////////////////////// SHOW / HIDE PAGES ////////////////////////
+
+function showSearchForm() {
+  $("#doc-results").hide();
+  $("#doc-profile").hide();
+  $("#doc-search-form").show();
+}
+function viewDoctors() {
+  // moved this to a function since you might have to do it over and over.
+  $("#doc-search-form").hide();
+  $("#doc-results").show();
+  renderResults();
+}
+
+//////////////////////// SETUP EVENT LISTENERS ////////////////////////
 
 function logoClickable() {
   $("#logo").on("click", function() {
-    $("#doc-results").hide();
-    $("#doc-profile").hide();
-    $("#doc-search-form").show();
+    showSearchForm();
   });
 }
 
-/* new search */
 function newDoctorSearch() {
   $(".new-search").on("click", function() {
-    $("#doc-results").hide();
-    $("#doc-search-form").show();
+    showSearchForm(); // used this here as well as in logoClickable. So I put it in a function
   });
 }
 
-submitForm();
-logoClickable();
-newDoctorSearch();
+//////////////////////// INITIALIZE  ////////////////////////
+
+function initMaps() {
+  // INIT MAP STUFF HERE.
+  // Create map, pointers, we'll see later on.
+}
+$(function() {
+  // When the document is ready, do this.
+  viewProfile();
+  submitForm();
+  logoClickable();
+  newDoctorSearch();
+});
