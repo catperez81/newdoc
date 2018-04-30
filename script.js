@@ -113,37 +113,42 @@ function renderDoctor(doctor) {
   <br>`
 }
 
+function profile(doctor){
+  const profile = renderProfile(item);
+  $('#doc-profile').html(profile);
+  console.log(doctor);
+}
+
 /* render doctor profile */
-function viewProfile() {
+function renderProfile(doctor) {
   $("#doc-results").on('click', '.doctor-profile', function(event){
     event.preventDefault();
     $("#doc-results").hide();
     $("#doc-search-form").hide();
     $("#doc-profile").show();
+    return `
+    <div class="card-content">
+      <div class="doc-image">
+        <img src="${doctor.profile.image_url}" class="img-circle"> 
+      </div>
+      <div class="doctor-info">
+        <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
+        <p>${doctor.profile.gender}</p>
+        <p>${doctor.practices[0].distance} miles away</p>
+        <p>${doctor.practices[0].visit_address.street}, ${doctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state_long}</p>
+        <p>${doctor.specialties[0].name}</p>
+      </div>
+    </div>
+    <div class="info-section">
+      <p>${doctor.practices[0].accepts_new_patients}</p>
+      <p>${doctor.practices[0].languages}</p>
+      <p>${doctor.practices[0].office_hours}</p>
+      <p>${doctor.practices[0].phones}</p>
+    </div>`
     });
-  // return `
-  //   <div class="card-content">
-  //     <div class="doc-image">
-  //       <img src="${doctor.profile.image_url}" class="img-circle"> 
-  //     </div>
-  //     <div class="doctor-info">
-  //       <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
-  //       <p>${doctor.profile.gender}</p>
-  //       <p>${doctor.practices[0].distance} miles away</p>
-  //       <p>${doctor.practices[0].visit_address.street}, ${doctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state_long}</p>
-  //       <p>${doctor.specialties[0].name}</p>
-  //     </div>
-  //     <div class="info-section">
-  //       <p>${doctor.practices[0].accepts_new_patients}</p>
-  //       <p>${doctor.practices[0].languages}</p>
-  //       <p>${doctor.practices[0].office_hours}</p>
-  //       <p>${doctor.practices[0].phones}</p>
-  //     </div>
-  //   </div>
-  //   <br>`
   }
 
-viewProfile();
+renderProfile();
 
 function logoClickable() {
   $("#logo").on("click", function(){
