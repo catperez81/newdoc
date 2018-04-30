@@ -145,7 +145,7 @@ input {
   width: 50%;
 }
 
-.new-search, #doctor-profile {
+.new-search, .doctor-profile {
   padding: 10px 14px 10px 14px;
   font-size: 100%;
   border-radius: 3px;

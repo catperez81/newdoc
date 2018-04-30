@@ -42,55 +42,6 @@ function getDataFromApi(lat,lng) {
   $.ajax(doctors);
 }
 
-/* populate health plan dropdown */
-// function renderDropdowns(healthPlan){
-//   let dropdown = $('#plan-dropdown');
-//   dropdown.empty();
-
-//   // Populate dropdown with list of plans
-//   $.getJSON(url, function (data) {
-//     $.each(data, function (user_key, entry) {
-//       dropdown.append($('<option></option>').attr('value', input).text(input.name));
-//     })
-//   });
-// }
-
-// renderDropdowns();
-
-/* Pass through all results */
-function results(doctors){
-  const results = doctors.map((item, index) => renderDoctor(item));
-  $('#doc-results').html(results);
-  console.log(doctors);
-}
-
-// function renderMap(map){
-// }
-
-/* Pass through each single result */
-function renderDoctor(doctor) {
-  let distance=Math.round(doctor.practices[0].distance);
-  return `
-    <div class="results">
-      <div class="card-content">
-        <div class="doc-image">
-          <img src="${doctor.profile.image_url}" class="img-circle"> 
-        </div>
-        <div class="doctor-info">
-          <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
-          <p>${doctor.profile.gender}</p>
-          <p>${doctor.practices[0].visit_address.street}, ${doctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state_long}</p>
-          <p>${distance} miles away</p>
-          <p>${doctor.specialties[0].name}</p>
-        </div>
-        <div class="doctor-profile-button">
-          <button class="btn btn-default" id="doctor-profile" type="button">View profile</button>
-        </div>
-      </div>
-    </div>
-  <br>`
-}
-
 /* submit doctor search form */
 function submitForm() {
   $("#findadoc").submit(function(event) {
@@ -112,15 +63,64 @@ function getLatLong(zipCode) {
   getDataFromApi(37.755117, -122.457847);
 }
 
+/* populate health plan dropdown */
+// function renderDropdowns(healthPlan){
+//   let dropdown = $('#plan-dropdown');
+//   dropdown.empty();
+
+//   // Populate dropdown with list of plans
+//   $.getJSON(url, function (data) {
+//     $.each(data, function (user_key, entry) {
+//       dropdown.append($('<option></option>').attr('value', input).text(input.name));
+//     })
+//   });
+// }
+
+// renderDropdowns();
+
+// function renderMap(map){
+// }
+
+
+/* Pass through all results */
+function results(doctors){
+  const results = doctors.map((item, index) => renderDoctor(item));
+  $('#doc-results').html(results);
+  console.log(doctors);
+}
+
+/* Pass through each single result */
+function renderDoctor(doctor) {
+  let distance=Math.round(doctor.practices[0].distance);
+  return `
+    <div class="results">
+      <div class="card-content">
+        <div class="doc-image">
+          <img src="${doctor.profile.image_url}" class="img-circle"> 
+        </div>
+        <div class="doctor-info">
+          <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
+          <p>${doctor.profile.gender}</p>
+          <p>${doctor.practices[0].visit_address.street}, ${doctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state_long}</p>
+          <p>${distance} miles away</p>
+          <p>${doctor.specialties[0].name}</p>
+        </div>
+        <div class="doctor-profile-button">
+          <button class="btn btn-default doctor-profile type="button">View profile</button>
+        </div>
+      </div>
+    </div>
+  <br>`
+}
+
 /* render doctor profile */
 function viewProfile() {
-  $("#doctor-profile").on("click", function(){
-    console.log('test');
-      });
-  }
-    // $("#doc-results").hide();
-    // $("#doc-search-form").hide();
-    // $("#doc-profile").show();
+  $("#doc-results").on('click', '.doctor-profile', function(event){
+    event.preventDefault();
+    $("#doc-results").hide();
+    $("#doc-search-form").hide();
+    $("#doc-profile").show();
+    });
   // return `
   //   <div class="card-content">
   //     <div class="doc-image">
@@ -141,7 +141,7 @@ function viewProfile() {
   //     </div>
   //   </div>
   //   <br>`
-
+  }
 
 viewProfile();
 
