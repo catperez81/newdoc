@@ -13,7 +13,7 @@
 
     <nav role="navigation">
       <div class="logo-section">
-       <img src="http://i66.tinypic.com/16ie0d1.jpg" id="logo" height="30px" border="0" alt="newdoc logo">
+       <img src="images/newdoc-logo.png" id="logo" height="30px" border="0" alt="newdoc logo">
       </div>
     </nav>
     
@@ -27,12 +27,12 @@
                   <label>Zip code</label><br>
                   <input type="text" name="zip" id="zip" required>
                 </div>
-                <div class="field">
-                  <label>Health insurance plan</label><br>
-                  <select id="plan-dropdown">
-                    <option>Use insurance_uids</option>
-                  </select>
-                </div>
+              <div class="field">
+                <label>Health insurance plan</label><br>
+                <select id="plan-dropdown">
+                  <option>Select your health insurance plan</option>
+                </select>
+              </div>
               </div>
               <div class=row>
                 <div class="field">
@@ -59,10 +59,14 @@
 
     <section role="region" id="doc-results">
       <div class="map"></div>
-      <div class="results-overview"></div>
+      <div class="results-overview">
+      </div>
       <div class="results">
         <div class="card-content">
         </div>
+      </div>
+      <div class="back-to-top">
+        <button class="btn btn-default back-to-top" type="submit">Back to top</button>
       </div>
     </section>
 
