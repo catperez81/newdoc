@@ -1,8 +1,11 @@
-const BETTERDOCTOR_SEARCH_URL = 'https://api.betterdoctor.com/2016-03-01/doctors'
-const BETTERDOCTOR_SPECIALTIES_URL = 'https://api.betterdoctor.com/2016-03-01/specialties'
-const GOOGLE_MAPS_URL = 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDgtJKYyrzY5_6OL13gObxN43d4lgNhOKc'
+const BETTERDOCTOR_SEARCH_URL =
+  "https://api.betterdoctor.com/2016-03-01/doctors";
+const BETTERDOCTOR_SPECIALTIES_URL =
+  "https://api.betterdoctor.com/2016-03-01/specialties";
+const GOOGLE_MAPS_URL =
+  "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDgtJKYyrzY5_6OL13gObxN43d4lgNhOKc";
 
-function getDataFromApi(lat,lng) {
+function getDataFromApi(lat, lng) {
   // const maps ={
   //   url: GOOGLE_MAPS_URL,
   //   data: {
@@ -13,7 +16,7 @@ function getDataFromApi(lat,lng) {
   // }
   // const healthPlan = {
   //   url: BETTERDOCTOR_SPECIALTIES_URL,
-  //   data: { 
+  //   data: {
   //     skip: 0,
   //     limit: 100,
   //     user_key: '38a5e05a1ba6c75134d6d9a0497c51c0'
@@ -23,14 +26,14 @@ function getDataFromApi(lat,lng) {
   // }
   const doctors = {
     url: BETTERDOCTOR_SEARCH_URL,
-    data: { 
+    data: {
       location: `${lat}, ${lng}, 100`,
       skip: 0,
       limit: 25,
-      user_key: '38a5e05a1ba6c75134d6d9a0497c51c0'
+      user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
     },
-    dataType: 'json',
-    type: 'GET',
+    dataType: "json",
+    type: "GET",
     success: function(response) {
       results(response.data);
     },
@@ -46,10 +49,10 @@ function getDataFromApi(lat,lng) {
 function submitForm() {
   $("#findadoc").submit(function(event) {
     event.preventDefault();
-    let zipCode = $('#zip').val();
-    $('#zip').val('');
-    let gender = $('#gender-dropdown').val();
-    $('#gender-dropdown').val('');
+    let zipCode = $("#zip").val();
+    $("#zip").val("");
+    let gender = $("#gender-dropdown").val();
+    $("#gender-dropdown").val("");
     // let healthPlan = $('#plan-dropdown').val();
     // let specialty = $('#specialty-dropdown').val();
     $("#doc-search-form").hide();
@@ -59,7 +62,7 @@ function submitForm() {
 }
 
 function getLatLong(zipCode) {
- // get lat lng from Google Maps // 
+  // get lat lng from Google Maps //
   getDataFromApi(37.755117, -122.457847);
 }
 
@@ -81,17 +84,16 @@ function getLatLong(zipCode) {
 // function renderMap(map){
 // }
 
-
 /* Pass through all results */
-function results(doctors){
+function results(doctors) {
   const results = doctors.map((item, index) => renderDoctor(item));
-  $('#doc-results').html(results);
+  $("#doc-results").html(results);
   console.log(doctors);
 }
 
 /* Pass through each single result */
 function renderDoctor(doctor) {
-  let distance=Math.round(doctor.practices[0].distance);
+  let distance = Math.round(doctor.practices[0].distance);
   return `
     <div class="results">
       <div class="card-content">
@@ -101,7 +103,9 @@ function renderDoctor(doctor) {
         <div class="doctor-info">
           <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
           <p>${doctor.profile.gender}</p>
-          <p>${doctor.practices[0].visit_address.street}, ${doctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state_long}</p>
+          <p>${doctor.practices[0].visit_address.street}, ${
+    doctor.practices[0].visit_address.city
+  }, ${doctor.practices[0].visit_address.state_long}</p>
           <p>${distance} miles away</p>
           <p>${doctor.specialties[0].name}</p>
         </div>
@@ -110,21 +114,21 @@ function renderDoctor(doctor) {
         </div>
       </div>
     </div>
-  <br>`
+  <br>`;
 }
 
 /* render doctor profile */
 function viewProfile() {
-  $("#doc-results").on('click', '.doctor-profile', function(event){
+  $("#doc-results").on("click", ".doctor-profile", function(event) {
     event.preventDefault();
     $("#doc-results").hide();
     $("#doc-search-form").hide();
     $("#doc-profile").show();
-    });
+  });
   // return `
   //   <div class="card-content">
   //     <div class="doc-image">
-  //       <img src="${doctor.profile.image_url}" class="img-circle"> 
+  //       <img src="${doctor.profile.image_url}" class="img-circle">
   //     </div>
   //     <div class="doctor-info">
   //       <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
@@ -141,15 +145,15 @@ function viewProfile() {
   //     </div>
   //   </div>
   //   <br>`
-  }
+}
 
 viewProfile();
 
 function logoClickable() {
-  $("#logo").on("click", function(){
+  $("#logo").on("click", function() {
     $("#doc-results").hide();
     $("#doc-profile").hide();
-    $('#doc-search-form').show();
+    $("#doc-search-form").show();
   });
 }
 
@@ -164,4 +168,3 @@ function newDoctorSearch() {
 submitForm();
 logoClickable();
 newDoctorSearch();
- 
