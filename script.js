@@ -208,7 +208,7 @@ function newDoctorSearch() {
 
 //////////////////////// INITIALIZE  ////////////////////////
 
-function initMaps() {
+function initMap() {
   // INIT MAP STUFF HERE.
   // Create map, pointers, we'll see later on.
 }
