@@ -16,16 +16,6 @@ var map;
 var geocoder;
 
 function getDataFromApi(lat, lng) {
-  // const healthPlan = {
-  //   url: BETTERDOCTOR_SPECIALTIES_URL,
-  //   data: {
-  //     skip: 0,
-  //     limit: 100,
-  //     user_key: '38a5e05a1ba6c75134d6d9a0497c51c0'
-  //   },
-  //   dataType: 'json',
-  //   type: 'GET',
-  // }
 
   const doctors = {
     url: BETTERDOCTOR_SEARCH_URL,
@@ -47,6 +37,35 @@ function getDataFromApi(lat, lng) {
   };
 
   $.ajax(doctors);
+}
+
+function getHealthPlansFromApi() {
+
+    const healthPlan = {
+    url: BETTERDOCTOR_SPECIALTIES_URL,
+    data: {
+      skip: 0,
+      limit: 100,
+      user_key: '38a5e05a1ba6c75134d6d9a0497c51c0'
+    },
+    dataType: 'json',
+    type: 'GET',
+    success: function(response) {
+      let dropdown = $('#plan-dropdown');
+      dropdown.empty();
+      console.log(response);
+      // use below format / structure
+      // const plans = response.map((item, index) => renderPlanDropdown(item, index));
+      // $("#plan-dropdown").html(response);
+      map(data, function (user_key, entry) {
+        dropdown.append($('<option></option>').attr('value', input).text(input.name));
+      })
+
+    },
+    error: function(error) {
+      console.log(error);
+    }
+  }
 }
 
 /* submit doctor search form */
@@ -73,7 +92,6 @@ function getLatLong(zipCode) {
     if (status == google.maps.GeocoderStatus.OK) {
       lat = results[0].geometry.location.lat();
       lng = results[0].geometry.location.lng();
-      alert('Latitude: ' + lat + ' Logitude: ' + lng);
       getDataFromApi(lat, lng);
       map.setCenter(new google.maps.LatLng(lat,lng));
     } else {
@@ -82,12 +100,11 @@ function getLatLong(zipCode) {
     });
 }
 
-// populate health plan dropdown 
-// function renderDropdowns(healthPlan){
-//   let dropdown = $('#plan-dropdown');
-//   dropdown.empty();
+//populate health plan dropdown AJAX / need to pass the key, similar to doctors
 
-// Populate dropdown with list of plans  
+// function renderDropdowns(healthPlan){
+
+// //Populate dropdown with list of plans  
 //   $.getJSON(url, function (data) {
 //     $.each(data, function (user_key, entry) {
 //       dropdown.append($('<option></option>').attr('value', input).text(input.name));
@@ -99,8 +116,7 @@ function getLatLong(zipCode) {
 
 /* Pass through all results */
 function renderResults() {
-  console.log(state.doctors);
-  const results = state.doctors.map((item, index) => renderDoctor(item));
+  const results = state.doctors.map((item, index) => renderDoctor(item, index));
   $(".top-button-container").html(results);
 }
 
@@ -135,11 +151,10 @@ function viewProfile() {
     event.preventDefault();
     // TODO #1. Which doctor was clicked?
     // Get it from the button using
-    var index = $(this).attr("data-id");
+    var index = $(this).attr("data-index");
     // Now you have that in a var.
     // Get the right doctor into the state.
     state.selectedDoctor = state.doctors[index];
-    console.log(state.selectedDoctor);
     showProfile();
   });
 }
@@ -148,28 +163,29 @@ function renderProfile(index, data) {
   // TODO Instead of returning this. Put the html in the right place in the PAGES
   // TODO use the data from state.selectedDoctor to render it
   let selectedDoctor = state.selectedDoctor;
-  // var html =  `
-  //   <div class="card-content">
-  //     <div class="doc-image">
-  //       <img src="${selectedDoctor.profile.image_url}" class="img-circle">
-  //     </div>
-  //     <div class="doctor-info">
-  //       <h3>${selectedDoctor.profile.first_name} ${selectedDoctor.profile.last_name}</h3>
-  //       <p>${selectedDoctor.profile.gender}</p>
-  //       <p>${selectedDoctor.practices[0].distance} miles away</p>
-  //       <p>${selectedDoctor.practices[0].visit_address.street}, ${selectedDoctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state_long}</p>
-  //       <p>${selectedDoctor.specialties[0].name}</p>
-  //     </div>
-  //     <div class="info-section">
-  //       <p>${selectedDoctor.practices[0].accepts_new_patients}</p>
-  //       <p>${selectedDoctor.practices[0].languages}</p>
-  //       <p>${selectedDoctor.practices[0].office_hours}</p>
-  //       <p>${selectedDoctor.practices[0].phones}</p>
-  //     </div>
-  //   </div>
-  //   <br>`;
+  console.log(selectedDoctor);
+  var html =  `
+    <div class="card-content">
+      <div class="doc-image">
+        <img src="${selectedDoctor.profile.image_url}" class="img-circle">
+      </div>
+      <div class="doctor-info">
+        <h3>${selectedDoctor.profile.first_name} ${selectedDoctor.profile.last_name}</h3>
+        <p>${selectedDoctor.profile.gender}</p>
+        <p>${selectedDoctor.practices[0].distance} miles away</p>
+        <p>${selectedDoctor.practices[0].visit_address.street}, ${selectedDoctor.practices[0].visit_address.city}, ${selectedDoctor.practices[0].visit_address.state_long}</p>
+        <p>${selectedDoctor.specialties[0].name}</p>
+      </div>
+      <div class="info-section">
+        <p>${selectedDoctor.practices[0].accepts_new_patients}</p>
+        <p>${selectedDoctor.practices[0].languages[0].name}</p>
+        <p>${selectedDoctor.practices[0].office_hours}</p>
+        <p>${selectedDoctor.practices[0].phones}</p>
+      </div>
+    </div>
+    <br>`;
 
-  $("#doc-profile").html();
+  $("#doc-profile").html(html);
 }
 
 //////////////////////// SHOW / HIDE PAGES ////////////////////////
@@ -229,6 +245,7 @@ function initMap() {
 
 $(function() {
   // When the document is ready, do this.
+  getHealthPlansFromApi();
   viewProfile();
   submitForm();
   logoClickable();
