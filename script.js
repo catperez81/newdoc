@@ -14,6 +14,9 @@ var state = {
 var lat = '';
 var lng = '';
 
+var map;
+var geocoder;
+
 function getDataFromApi(lat, lng) {
   // const healthPlan = {
   //   url: BETTERDOCTOR_SPECIALTIES_URL,
@@ -77,12 +80,10 @@ function getLatLong(zipCode) {
     }
   }
 
-  var zipCode = ${'zipcode'};
-    geocoder.geocode( { 'zipcCode': zipcode}, function(results, status) {
+    geocoder.geocode({'zipCode': zipCode}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
          lat = results[0].geometry.location.lat();
          lng = results[0].geometry.location.lng();
-        });
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
@@ -112,7 +113,6 @@ function renderResults() {
   console.log(state.doctors);
   const results = state.doctors.map((item, index) => renderDoctor(item));
   $(".top-button-container").html(results);
-  // $(".overview-container").html(results);
 }
 
 /* Pass through each single result */
@@ -224,8 +224,9 @@ function presentValues() {
 
 function initMap() {
   $('#map').html();
+  geocoder = new google.maps.Geocoder();
   var uluru = {lat: 37.755117, lng: -122.457847};
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: uluru
   });
@@ -239,7 +240,6 @@ function initMap() {
 
 $(function() {
   // When the document is ready, do this.
-  initMap();
   viewProfile();
   submitForm();
   logoClickable();
