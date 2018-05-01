@@ -2,8 +2,6 @@ const BETTERDOCTOR_SEARCH_URL =
   "https://api.betterdoctor.com/2016-03-01/doctors";
 const BETTERDOCTOR_SPECIALTIES_URL =
   "https://api.betterdoctor.com/2016-03-01/specialties";
-const GOOGLE_MAPS_URL =
-  "https://maps.googleapis.com/maps/api/geocode/json?{zipcode}&key=AIzaSyBz-b2oHF59bQHRL6n7WARMrt5tPQeF1i4"
 
 // CHANGE #1: CHECK THIS STATUS OBJECT.
 var state = {
@@ -32,7 +30,7 @@ function getDataFromApi(lat, lng) {
   const doctors = {
     url: BETTERDOCTOR_SEARCH_URL,
     data: {
-      location: `${lat}, ${lng}, 100`,
+      location: `${lat}, ${lng}, 50`,
       skip: 0,
       limit: 25,
       user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
@@ -71,26 +69,17 @@ function submitForm() {
 function getLatLong(zipCode) {
   // get lat lng from Google Maps
 
-  const maps = {
-    url: GOOGLE_MAPS_URL,
-    data: {
-      location: 'LatLng',
-      accuracy: 100,
-      maps_key: 'AIzaSyBz-b2oHF59bQHRL6n7WARMrt5tPQeF1i4'
-    }
-  }
-
-    geocoder.geocode({'zipCode': zipCode}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-         lat = results[0].geometry.location.lat();
-         lng = results[0].geometry.location.lng();
-      } else {
+  geocoder.geocode({'address': zipCode}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      lat = results[0].geometry.location.lat();
+      lng = results[0].geometry.location.lng();
+      alert('Latitude: ' + lat + ' Logitude: ' + lng);
+      getDataFromApi(lat, lng);
+      map.setCenter(new google.maps.LatLng(lat,lng));
+    } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
-
-  alert('Latitude: ' + lat + ' Logitude: ' + lng);
-  getDataFromApi(37.755117, -122.457847);
 }
 
 // populate health plan dropdown 
