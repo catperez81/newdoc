@@ -15,6 +15,7 @@ html, body, main {
 .start-header {
   width: 70%;
   margin: 0 auto;
+  text-align: center;
 }
 
 p {
@@ -27,12 +28,26 @@ h1 {
 }
 
 /* navigation */
+
+nav {
+  border-bottom: 1px solid #E5E5E5;
+}
+
 .logo-section{
-  background-color:#fdf3f3;
   height: 50px;
+  padding: 20px 0px 40px 20px;
+  display: inline-block;
+}
+
+.new-search {
+  padding: 4px;
+  font-size: 100%;
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 40px;
+  border-radius: 3px;
+  border: none;
+  background-color: #14537d;
+  color: white;
+  float: left;
 }
 
 /* Form Styling */
@@ -136,17 +151,6 @@ input {
 .results-overview {
   width: 80%;
   text-align: left;
-}
-
-.new-search {
-  padding: 4px;
-  font-size: 100%;
-  text-align: center;
-  border-radius: 3px;
-  border: none;
-  background-color: #14537d;
-  color: white;
-  float: left;
 }
 
 

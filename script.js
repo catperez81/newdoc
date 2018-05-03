@@ -2,6 +2,8 @@ const BETTERDOCTOR_SEARCH_URL =
   "https://api.betterdoctor.com/2016-03-01/doctors";
 const BETTERDOCTOR_SPECIALTIES_URL =
   "https://api.betterdoctor.com/2016-03-01/specialties";
+const BETTERDOCTOR_INSURANCES_URL =
+  "https://api.betterdoctor.com/2016-03-01/insurances";  
 
 // CHANGE #1: CHECK THIS STATUS OBJECT.
 var state = {
@@ -15,19 +17,22 @@ var lng = '';
 var map;
 var geocoder;
 
-function getDataFromApi(lat, lng) {
-
+function getDataFromApi(lat, lng, healthPlan, specialty) {
+  console.log(specialty);
   const doctors = {
     url: BETTERDOCTOR_SEARCH_URL,
     data: {
       location: `${lat}, ${lng}, 50`,
       skip: 0,
       limit: 25,
+      // insurance_uid: healthPlan,
+      specialty_uid: specialty,
       user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
     },
     dataType: "json",
     type: "GET",
     success: function(response) {
+      console.log(response);
       state.doctors = response.data;
       showDoctors();
     },
@@ -40,9 +45,8 @@ function getDataFromApi(lat, lng) {
 }
 
 function getHealthPlansFromApi() {
-
     const healthPlan = {
-    url: BETTERDOCTOR_SPECIALTIES_URL,
+    url: BETTERDOCTOR_INSURANCES_URL,
     data: {
       skip: 0,
       limit: 100,
@@ -57,15 +61,42 @@ function getHealthPlansFromApi() {
       // use below format / structure
       // const plans = response.map((item, index) => renderPlanDropdown(item, index));
       // $("#plan-dropdown").html(response);
-      map(data, function (user_key, entry) {
-        dropdown.append($('<option></option>').attr('value', input).text(input.name));
+      response.data.map(function (insurance, index) {
+        dropdown.append($(`<option>${insurance.name}</option>`).attr('value', insurance.uid));
       })
 
     },
     error: function(error) {
-      console.log(error);
+      console.log('test', error);
     }
   }
+  $.ajax(healthPlan);
+}
+
+function getSpecialtiesFromApi() {
+    const specialties = {
+    url: BETTERDOCTOR_SPECIALTIES_URL,
+    data: {
+      skip: 0,
+      limit: 100,
+      user_key: '38a5e05a1ba6c75134d6d9a0497c51c0'
+    },
+    dataType: 'json',
+    type: 'GET',
+    success: function(response) {
+      let dropdown = $('#specialty-dropdown');
+      dropdown.empty();
+      console.log(response);
+      response.data.map(function (specialty, index) {
+        dropdown.append($(`<option>${specialty.name}</option>`).attr('value', specialty.uid));
+      })
+
+    },
+    error: function(error) {
+      console.log('test', error);
+    }
+  }
+  $.ajax(specialties);
 }
 
 /* submit doctor search form */
@@ -80,19 +111,19 @@ function submitForm() {
     $("#plan-dropdown").val("");
     let specialty = $('#specialty-dropdown').val();
     $("#specialty-dropdown").val("");
-    getLatLong(zipCode);
+    getLatLong(zipCode, healthPlan, specialty);
     showDoctors();
   });
 }
 
-function getLatLong(zipCode) {
+function getLatLong(zipCode, healthPlan, specialty) {
   // get lat lng from Google Maps
 
   geocoder.geocode({'address': zipCode}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       lat = results[0].geometry.location.lat();
       lng = results[0].geometry.location.lng();
-      getDataFromApi(lat, lng);
+      getDataFromApi(lat, lng, healthPlan, specialty);
       map.setCenter(new google.maps.LatLng(lat,lng));
     } else {
         alert("Geocode was not successful for the following reason: " + status);
@@ -205,6 +236,7 @@ function showDoctors() {
   $("#doc-search-form").hide();
   $("#doc-results").show();
   renderResults();
+  setPins();
 }
 
 //////////////////////// SETUP EVENT LISTENERS ////////////////////////
@@ -225,19 +257,28 @@ function presentValues() {
   $(".form-values").html(`Your details: ${zipCode}`);
 }
 
+function setPins() {
+  state.doctors.forEach((item, index) => { 
+    console.log(item.practices[0]);
+    var uluru = {lat: item.practices[0].lat, lng: item.practices[0].lon};
+    var marker = new google.maps.Marker ({
+    position: uluru,
+    map: map
+    });
+  });
+}
+
+//info-window on practices//
+
 //////////////////////// INITIALIZE  ////////////////////////
 
 function initMap() {
   $('#map').html();
   geocoder = new google.maps.Geocoder();
-  var uluru = {lat: 37.755117, lng: -122.457847};
+  var uluru = {lat: 40.6452227, lng: -74.0152088};
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: uluru
-  });
-  var marker = new google.maps.Marker({
-    position: uluru,
-    map: map
   });
 }
   // INIT MAP STUFF HERE.
@@ -245,7 +286,8 @@ function initMap() {
 
 $(function() {
   // When the document is ready, do this.
-  getHealthPlansFromApi();
+  getSpecialtiesFromApi();
+  // getHealthPlansFromApi();
   viewProfile();
   submitForm();
   logoClickable();

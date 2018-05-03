@@ -15,11 +15,14 @@
       <div class="logo-section">
        <img src="images/newdoc-logo.png" id="logo" height="30px" border="0" alt="newdoc logo">
       </div>
+      <div class="new-search">
+        <button class="btn btn-default new-search" type="submit">New search</button>
+      </div>
     </nav>
 
     <section role="region" id="doc-search-form">
       <div class="start-header">
-        <h1>Find a new doctor who takes your insurance plan!</h1>
+        <h1>Find a new doctor</h1>
         <form id="findadoc">
           <fieldset>
               <div class=row>
@@ -27,25 +30,19 @@
                   <label>Zip code</label><br>
                   <input type="text" name="zip" id="zip" required>
                 </div>
-              <div class="field">
-                <label>Health insurance plan</label><br>
-                <select id="plan-dropdown">
-                  <option>Select your health insurance plan</option>
-                </select>
               </div>
+              <div class="field">
+                <label>Doctor specialty</label><br>
+                <select id="specialty-dropdown">
+                  <option>Use specialties</option>
+                </select>
               </div>
               <div class=row>
                 <div class="field">
-                  <label>Doctor specialty</label><br>
-                  <select id="specialty-dropdown">
-                    <option>Use specialties</option>
-                  </select>
-                </div>
-                <div class="field">
                   <label>Gender</label><br>
                   <select id="gender-dropdown">
-                    <option>Female</option>
-                    <option>Male</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
                   </select>
                 </div>
               </div>
@@ -63,9 +60,6 @@
         <div class="results-overview">
           <a name="top"></a>
           <span class="form-values"></span>
-          <div class="new-search">
-            <button class="btn btn-default new-search" type="submit">New search</button>
-          </div>
         </div>
       <div class="results">
       </div>
