@@ -180,19 +180,13 @@ function renderDoctor(doctor, index) {
 function viewProfile() {
   $("#doc-results").on("click", ".doctor-profile", function(event) {
     event.preventDefault();
-    // TODO #1. Which doctor was clicked?
-    // Get it from the button using
     var index = $(this).attr("data-index");
-    // Now you have that in a var.
-    // Get the right doctor into the state.
     state.selectedDoctor = state.doctors[index];
     showProfile();
   });
 }
 
 function renderProfile(index, data) {
-  // TODO Instead of returning this. Put the html in the right place in the PAGES
-  // TODO use the data from state.selectedDoctor to render it
   let selectedDoctor = state.selectedDoctor;
   console.log(selectedDoctor);
   var html =  `
@@ -239,7 +233,7 @@ function showDoctors() {
   setPins();
 }
 
-//////////////////////// SETUP EVENT LISTENERS ////////////////////////
+//////////////////////// EVENT LISTENERS ////////////////////////
 
 function logoClickable() {
   $("#logo").on("click", function() {
@@ -268,7 +262,7 @@ function setPins() {
   });
 }
 
-//info-window on practices//
+//info-window on practices
 
 //////////////////////// INITIALIZE  ////////////////////////
 
@@ -281,8 +275,6 @@ function initMap() {
     center: uluru
   });
 }
-  // INIT MAP STUFF HERE.
-  // Create map, pointers, we'll see later on.
 
 $(function() {
   // When the document is ready, do this.
