@@ -17,7 +17,7 @@ var lng = '';
 var map;
 var geocoder;
 
-function getDataFromApi(lat, lng, healthPlan, specialty) {
+function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
   console.log(specialty);
   const doctors = {
     url: BETTERDOCTOR_SEARCH_URL,
@@ -27,6 +27,7 @@ function getDataFromApi(lat, lng, healthPlan, specialty) {
       limit: 25,
       // insurance_uid: healthPlan,
       specialty_uid: specialty,
+      gender: gender,
       user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
     },
     dataType: "json",
@@ -99,6 +100,33 @@ function getSpecialtiesFromApi() {
   $.ajax(specialties);
 }
 
+function getGenderFromApi() {
+    const gender = {
+    url: BETTERDOCTOR_SEARCH_URL,
+    data: {
+      skip: 0,
+      limit: 100,
+      user_key: '38a5e05a1ba6c75134d6d9a0497c51c0'
+    },
+    dataType: 'json',
+    type: 'GET',
+    success: function(response) {
+      let dropdown = $('#gender-dropdown');
+      dropdown.empty();
+      console.log(response);
+      response.data.map(function (gender, index) {
+        dropdown.append($(`<option>${gender}</option>`).attr('value', gender));
+      })
+
+    },
+    error: function(error) {
+      console.log('test', error);
+    }
+  }
+  $.ajax(gender);
+}
+
+
 /* submit doctor search form */
 function submitForm() {
   $("#findadoc").submit(function(event) {
@@ -111,39 +139,25 @@ function submitForm() {
     $("#plan-dropdown").val("");
     let specialty = $('#specialty-dropdown').val();
     $("#specialty-dropdown").val("");
-    getLatLong(zipCode, healthPlan, specialty);
+    getLatLong(zipCode, healthPlan, specialty, gender);
     showDoctors();
   });
 }
 
-function getLatLong(zipCode, healthPlan, specialty) {
+function getLatLong(zipCode, healthPlan, specialty, gender) {
   // get lat lng from Google Maps
 
   geocoder.geocode({'address': zipCode}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       lat = results[0].geometry.location.lat();
       lng = results[0].geometry.location.lng();
-      getDataFromApi(lat, lng, healthPlan, specialty);
+      getDataFromApi(lat, lng, healthPlan, specialty, gender);
       map.setCenter(new google.maps.LatLng(lat,lng));
     } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
 }
-
-//populate health plan dropdown AJAX / need to pass the key, similar to doctors
-
-// function renderDropdowns(healthPlan){
-
-// //Populate dropdown with list of plans  
-//   $.getJSON(url, function (data) {
-//     $.each(data, function (user_key, entry) {
-//       dropdown.append($('<option></option>').attr('value', input).text(input.name));
-//     })
-//   });
-// }
-
-// renderDropdowns();
 
 /* Pass through all results */
 function renderResults() {
@@ -279,7 +293,7 @@ function initMap() {
 $(function() {
   // When the document is ready, do this.
   getSpecialtiesFromApi();
-  // getHealthPlansFromApi();
+  getGenderFromApi();
   viewProfile();
   submitForm();
   logoClickable();
