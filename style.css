@@ -109,9 +109,9 @@ input {
   color: white;
 }
 
-#plan-dropdown, #specialty-dropdown, #gender-dropdown {
+#specialty-dropdown, #gender-dropdown {
   -webkit-appearance: none;
-   background-image: url("http://i67.tinypic.com/mpyz7.jpg") no-repeat right center;
+   background: url("http://i67.tinypic.com/mpyz7.jpg") no-repeat right center;
    font-size: 14px;
    padding-left: 10px;
    height: 33px;

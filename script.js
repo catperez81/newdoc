@@ -261,10 +261,6 @@ function newDoctorSearch() {
   });
 }
 
-function presentValues() {
-  $(".form-values").html(`Your details: ${zipCode}`);
-}
-
 function setPins() {
   state.doctors.forEach((item, index) => { 
     console.log(item.practices[0]);
