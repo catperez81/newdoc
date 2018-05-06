@@ -202,7 +202,7 @@ function viewProfile() {
 
 function renderProfile(index, data) {
   let selectedDoctor = state.selectedDoctor;
-  console.log(selectedDoctor);
+  // let distance = Math.round(index.practices[0].distance);
   var html =  `
     <div class="card-content">
       <div class="doc-image">
@@ -216,15 +216,16 @@ function renderProfile(index, data) {
         <p>${selectedDoctor.specialties[0].name}</p>
       </div>
       <div class="info-section">
-        <p>${selectedDoctor.practices[0].accepts_new_patients}</p>
-        <p>${selectedDoctor.practices[0].languages[0].name}</p>
-        <p>${selectedDoctor.practices[0].office_hours}</p>
-        <p>${selectedDoctor.practices[0].phones}</p>
+        <p>${selectedDoctor.practices[0].insurance_uids}</p>
+        <p>Accepting new patients: ${selectedDoctor.practices[0].accepts_new_patients}</p>
+        <p>Languages: ${selectedDoctor.practices[0].languages[0].name}</p>
+        <p class="phone">Contact: ${selectedDoctor.practices[0].phones[0].number}</p>
       </div>
     </div>
     <br>`;
 
   $("#doc-profile").html(html);
+  formatPhone(); 
 }
 
 //////////////////////// SHOW / HIDE PAGES ////////////////////////
@@ -269,6 +270,41 @@ function setPins() {
     position: uluru,
     map: map
     });
+    var contentString = '<div id="content">'+
+    '<div id="siteNotice">'+
+    '</div>'+
+    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+    '<div id="bodyContent">'+
+    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+    'sandstone rock formation in the southern part of the '+
+    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+    'south west of the nearest large town, Alice Springs; 450&#160;km '+
+    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+    'Aboriginal people of the area. It has many springs, waterholes, '+
+    'rock caves and ancient paintings. Uluru is listed as a World '+
+    'Heritage Site.</p>'+
+    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+    '(last visited June 22, 2009).</p>'+
+    '</div>'+
+    '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  });
+}
+
+function formatPhone() {
+  $(".phone").text(function(i, text) {
+    text = text.replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, "$1-$2-$3");
+    return text;
   });
 }
 

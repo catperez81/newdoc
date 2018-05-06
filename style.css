@@ -170,11 +170,14 @@ input {
     border-radius: 10%;
 }
 
+.info-section {
+  margin-left: 20px;
+}
+
 .card-content, .info-section {
   background: white;
   display: inline-block;
   width: 60%;
-  border: 1px solid #E5E5E5;
   border-radius: 5px;
   padding: 14px;
   margin-top: 20px;
