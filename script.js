@@ -22,7 +22,7 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
   const doctors = {
     url: BETTERDOCTOR_SEARCH_URL,
     data: {
-      location: `${lat}, ${lng}, 50`,
+      location: `${lat}, ${lng}, 30`,
       skip: 0,
       limit: 25,
       // insurance_uid: healthPlan,
@@ -202,6 +202,9 @@ function viewProfile() {
 
 function renderProfile(index, data) {
   let selectedDoctor = state.selectedDoctor;
+  // let insuranceTaken = $('selectedDoctor').forEach(function(insurances){
+  //   return(selectedDoctor.insurances.insurance_plan.name);
+  // });
   // let distance = Math.round(index.practices[0].distance);
   var html =  `
     <div class="card-content">
@@ -216,8 +219,9 @@ function renderProfile(index, data) {
         <p>${selectedDoctor.specialties[0].name}</p>
       </div>
       <div class="info-section">
-        <p>${selectedDoctor.practices[0].insurance_uids}</p>
+        <p>About: ${selectedDoctor.profile.bio}</p><br>
         <p>Accepting new patients: ${selectedDoctor.practices[0].accepts_new_patients}</p>
+        <p>Insurances taken: ${selectedDoctor.insurances[0].insurance_plan.name}</p><br>
         <p>Languages: ${selectedDoctor.practices[0].languages[0].name}</p>
         <p class="phone">Contact: ${selectedDoctor.practices[0].phones[0].number}</p>
       </div>
@@ -236,11 +240,13 @@ function showProfile() {
   $("#doc-profile").show();
   renderProfile();
 }
+
 function showSearchForm() {
   $("#doc-results").hide();
   $("#doc-profile").hide();
   $("#doc-search-form").show();
 }
+
 function showDoctors() {
   $("#doc-search-form").hide();
   $("#doc-results").show();
@@ -270,29 +276,18 @@ function setPins() {
     position: uluru,
     map: map
     });
-    var contentString = '<div id="content">'+
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-    '<div id="bodyContent">'+
-    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-    'sandstone rock formation in the southern part of the '+
-    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-    'south west of the nearest large town, Alice Springs; 450&#160;km '+
-    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-    'Aboriginal people of the area. It has many springs, waterholes, '+
-    'rock caves and ancient paintings. Uluru is listed as a World '+
-    'Heritage Site.</p>'+
-    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-    '(last visited June 22, 2009).</p>'+
-    '</div>'+
-    '</div>';
+    var doctorInfoWindow = `
+    <div id="content">
+      <div id="infoWindow"> 
+    </div> 
+      <h1 id="firstHeading" class="firstHeading">Uluru</h1>
+      <div id="bodyContent">
+      <p>Testing copy here</p>
+      </div>
+    </div>`;
 
     var infowindow = new google.maps.InfoWindow({
-      content: contentString
+      content: doctorInfoWindow
     });
 
     marker.addListener('click', function() {
