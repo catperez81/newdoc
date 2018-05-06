@@ -41,7 +41,6 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
       console.log(error);
     }
   };
-
   $.ajax(doctors);
 }
 
@@ -145,8 +144,6 @@ function submitForm() {
 }
 
 function getLatLong(zipCode, healthPlan, specialty, gender) {
-  // get lat lng from Google Maps
-
   geocoder.geocode({'address': zipCode}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       lat = results[0].geometry.location.lat();
@@ -159,13 +156,11 @@ function getLatLong(zipCode, healthPlan, specialty, gender) {
     });
 }
 
-/* Pass through all results */
 function renderResults() {
   const results = state.doctors.map((item, index) => renderDoctor(item, index));
   $(".top-button-container").html(results);
 }
 
-/* Pass through each single result */
 function renderDoctor(doctor, index) {
   let distance = Math.round(doctor.practices[0].distance);
   return `
@@ -302,8 +297,6 @@ function formatPhone() {
     return text;
   });
 }
-
-//info-window on practices
 
 //////////////////////// INITIALIZE  ////////////////////////
 
