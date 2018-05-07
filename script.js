@@ -206,11 +206,14 @@ function renderProfile(index, data) {
   });
   profileMap.setCenter(doctorPosition);
 
-  let profileSpecialties = selectedDoctor.specialties.map(function (specialty, index) {
+  let profileSpecialties = selectedDoctor.specialties.map(function(
+    specialty,
+    index
+  ) {
     return `<span>${specialty.name}</span>`;
   });
 
-  let plansTaken = selectedDoctor.insurances.map(function (insurance, index) {
+  let plansTaken = selectedDoctor.insurances.map(function(insurance, index) {
     return `<span>${insurance.insurance_plan.name}</span>`;
   });
 
@@ -221,18 +224,26 @@ function renderProfile(index, data) {
         <img src="${selectedDoctor.profile.image_url}" class="img-circle">
       </div>
       <div class="doctor-info">
-        <h3>${selectedDoctor.profile.first_name} ${selectedDoctor.profile.last_name}</h3>
+        <h3>${selectedDoctor.profile.first_name} ${
+    selectedDoctor.profile.last_name
+  }</h3>
         <p>${selectedDoctor.profile.gender}</p>
         <p>${distance} miles away</p>
-        <p>${selectedDoctor.practices[0].visit_address.street}, ${selectedDoctor.practices[0].visit_address.city}, ${selectedDoctor.practices[0].visit_address.state_long}</p>
+        <p>${selectedDoctor.practices[0].visit_address.street}, ${
+    selectedDoctor.practices[0].visit_address.city
+  }, ${selectedDoctor.practices[0].visit_address.state_long}</p>
         <p class="specialties">Specialties: ${profileSpecialties.join(", ")}</p>
         <p class="insurances">Insurance taken: ${plansTaken.join(", ")}</p>
       </div>
       <div class="info-section">
         <p>About: ${selectedDoctor.profile.bio}</p><br>
-        <p>Accepting new patients: ${selectedDoctor.practices[0].accepts_new_patients}</p>
+        <p>Accepting new patients: ${
+          selectedDoctor.practices[0].accepts_new_patients
+        }</p>
         <p>Languages: ${selectedDoctor.practices[0].languages[0].name}</p>
-        <p class="phone">Contact: ${selectedDoctor.practices[0].phones[0].number}</p>
+        <p class="phone">Contact: ${
+          selectedDoctor.practices[0].phones[0].number
+        }</p>
       </div>
       <div class="back-to-results">
         <a href="#doc-results">Back to results</a>
@@ -271,12 +282,12 @@ function showDoctors() {
 }
 
 function backToResults() {
-  $(".back-to-results").on('click', function(){
+  $(".back-to-results").on("click", function() {
     $("#doc-profile").hide();
     $("#profile-map").hide();
     $("#doc-search-form").hide();
     $("#doc-results").show();
-  })
+  });
 }
 
 //////////////////////// EVENT LISTENERS ////////////////////////
