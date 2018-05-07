@@ -16,6 +16,7 @@ var lng = '';
 
 var map;
 var geocoder;
+var infowindow;
 
 function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
   console.log(specialty);
@@ -61,10 +62,9 @@ function getHealthPlansFromApi() {
       // use below format / structure
       // const plans = response.map((item, index) => renderPlanDropdown(item, index));
       // $("#plan-dropdown").html(response);
-      response.data.map(function (insurance, index) {
-        dropdown.append($(`<option>${insurance.name}</option>`).attr('value', insurance.uid));
-      })
-
+      // response.data.map(function (insurance, index) {
+      //   insurance.append($(`${insurance.name}`).attr('value', insurance.uid));
+      // })
     },
     error: function(error) {
       console.log('test', error);
@@ -84,10 +84,6 @@ function getSpecialtiesFromApi() {
     dataType: 'json',
     type: 'GET',
     success: function(response) {
-      let profileSpecialties = $('.specialties');
-      response.data.map(function (specialty, index) {
-        profileSpecialties.append($(`<p>${specialty.name}</p>`).attr('value', specialty.uid));
-      })
       let dropdown = $('#specialty-dropdown');
       dropdown.empty();
       response.data.map(function (specialty, index) {
@@ -163,7 +159,6 @@ function renderResults() {
   const results = state.doctors.map((item, index) => renderDoctor(item, index));
   $(".top-button-container").html(results);
   let totalResults = results.length;
-  console.log(totalResults);
   var html = `
     <div class="results">
       <p class="total-results">We've found ${totalResults} doctors</p>
@@ -210,6 +205,10 @@ function renderProfile(index, data) {
   // let insuranceTaken = $('selectedDoctor').forEach(function(insurances){
   //   return(${selectedDoctor.insurances.insurance_plan.name});
   // });
+  let profileSpecialties = selectedDoctor.specialties.map(function (specialty, index) {
+    return(`<span>${specialty.name}</span>`);
+  })
+  console.log(selectedDoctor);
   let distance = Math.round(selectedDoctor.practices[0].distance);
   var html =  `
     <div class="card-content">
@@ -221,12 +220,12 @@ function renderProfile(index, data) {
         <p>${selectedDoctor.profile.gender}</p>
         <p>${distance} miles away</p>
         <p>${selectedDoctor.practices[0].visit_address.street}, ${selectedDoctor.practices[0].visit_address.city}, ${selectedDoctor.practices[0].visit_address.state_long}</p>
-        <p class="specialties"></p>
+        <p class="specialties">${profileSpecialties.join(', ')}</p>
       </div>
       <div class="info-section">
         <p>About: ${selectedDoctor.profile.bio}</p><br>
         <p>Accepting new patients: ${selectedDoctor.practices[0].accepts_new_patients}</p>
-        <p>Insurances taken: ${selectedDoctor.insurances[0].insurance_plan.name}</p><br>
+        <p class="insurance">Insurances taken: ${selectedDoctor.insurances[0].insurance_plan.name}</p><br>
         <p>Languages: ${selectedDoctor.practices[0].languages[0].name}</p>
         <p class="phone">Contact: ${selectedDoctor.practices[0].phones[0].number}</p>
       </div>
@@ -274,29 +273,32 @@ function newDoctorSearch() {
 }
 
 function setPins() {
-  state.doctors.forEach((item, index) => { 
-    console.log(item.practices[0]);
-    var uluru = {lat: item.practices[0].lat, lng: item.practices[0].lon};
-    var marker = new google.maps.Marker ({
-    position: uluru,
-    map: map
-    });
+  state.doctors.forEach((doctor, index) => { 
+    let distance = Math.round(doctor.practices[0].distance);
     var doctorInfoWindow = `
     <div id="content">
       <div id="infoWindow"> 
-    </div> 
-      <h1 id="firstHeading" class="firstHeading">Uluru</h1>
-      <div id="bodyContent">
-      <p>Testing copy here</p>
-      </div>
+        <div class="doctor-info">
+          <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
+          <p>${doctor.profile.gender}</p>
+          <p>${doctor.practices[0].visit_address.street}, 
+             ${doctor.practices[0].visit_address.city}, 
+             ${doctor.practices[0].visit_address.state_long}</p>
+          <p>${distance} miles away</p>
+          <p>${doctor.specialties[0].name}</p>
+        </div>
+      </div> 
     </div>`;
-
-    var infowindow = new google.maps.InfoWindow({
+    var uluru = {lat: doctor.practices[0].lat, lng: doctor.practices[0].lon};
+    var marker = new google.maps.Marker ({
+      position: uluru,
+      map: map,
       content: doctorInfoWindow
     });
 
     marker.addListener('click', function() {
       infowindow.open(map, marker);
+      infowindow.setContent(marker.content);
     });
   });
 }
@@ -317,6 +319,9 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: uluru
+  });
+  infowindow = new google.maps.InfoWindow({
+    content: ''
   });
 }
 
