@@ -208,10 +208,12 @@ p {
   margin-top: 30px;
 }
 
+.doctor-info-window {
+  text-align: left;
+}
 /* profile styling */
 
-.doctor-profile-view,
-.overview-container {
+.doctor-profile-container {
   width: 80%;
   margin: 0 auto;
 }
@@ -228,7 +230,7 @@ ul {
 }
 
 #profile-map {
-  position: static;
+  position: relative !important;
 }
 
 /* Mobile Responsive */

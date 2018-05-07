@@ -5,7 +5,6 @@ const BETTERDOCTOR_SPECIALTIES_URL =
 const BETTERDOCTOR_INSURANCES_URL =
   "https://api.betterdoctor.com/2016-03-01/insurances";
 
-// CHANGE #1: CHECK THIS STATUS OBJECT.
 var state = {
   doctors: [],
   selectedDoctor: {}
@@ -28,7 +27,6 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
       location: `${lat}, ${lng}, 30`,
       skip: 0,
       limit: 25,
-      // insurance_uid: healthPlan,
       specialty_uid: specialty,
       gender: gender,
       user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
@@ -61,12 +59,6 @@ function getHealthPlansFromApi() {
       let dropdown = $("#plan-dropdown");
       dropdown.empty();
       console.log(response);
-      // use below format / structure
-      // const plans = response.map((item, index) => renderPlanDropdown(item, index));
-      // $("#plan-dropdown").html(response);
-      // response.data.map(function (insurance, index) {
-      //   insurance.append($(`${insurance.name}`).attr('value', insurance.uid));
-      // })
     },
     error: function(error) {
       console.log("test", error);
@@ -114,7 +106,6 @@ function getGenderFromApi() {
     success: function(response) {
       let dropdown = $("#gender-dropdown");
       dropdown.empty();
-      console.log(response);
       response.data.map(function(gender, index) {
         dropdown.append($(`<option>${gender}</option>`).attr("value", gender));
       });
@@ -203,9 +194,7 @@ function viewProfile() {
 
 function renderProfile(index, data) {
   let selectedDoctor = state.selectedDoctor;
-  // let insuranceTaken = $('selectedDoctor').forEach(function(insurances){
-  //   return(${selectedDoctor.insurances.insurance_plan.name});
-  // });
+  console.log(selectedDoctor);
   var doctorPosition = {
     lat: selectedDoctor.practices[0].lat,
     lng: selectedDoctor.practices[0].lon
@@ -217,11 +206,12 @@ function renderProfile(index, data) {
   });
   profileMap.setCenter(doctorPosition);
 
-  let profileSpecialties = selectedDoctor.specialties.map(function(
-    specialty,
-    index
-  ) {
+  let profileSpecialties = selectedDoctor.specialties.map(function (specialty, index) {
     return `<span>${specialty.name}</span>`;
+  });
+
+  let plansTaken = selectedDoctor.insurances.map(function (insurance, index) {
+    return `<span>${insurance.insurance_plan.name}</span>`;
   });
 
   let distance = Math.round(selectedDoctor.practices[0].distance);
@@ -231,33 +221,27 @@ function renderProfile(index, data) {
         <img src="${selectedDoctor.profile.image_url}" class="img-circle">
       </div>
       <div class="doctor-info">
-        <h3>${selectedDoctor.profile.first_name} ${
-    selectedDoctor.profile.last_name
-  }</h3>
+        <h3>${selectedDoctor.profile.first_name} ${selectedDoctor.profile.last_name}</h3>
         <p>${selectedDoctor.profile.gender}</p>
         <p>${distance} miles away</p>
-        <p>${selectedDoctor.practices[0].visit_address.street}, ${
-    selectedDoctor.practices[0].visit_address.city
-  }, ${selectedDoctor.practices[0].visit_address.state_long}</p>
-        <p class="specialties">${profileSpecialties.join(", ")}</p>
+        <p>${selectedDoctor.practices[0].visit_address.street}, ${selectedDoctor.practices[0].visit_address.city}, ${selectedDoctor.practices[0].visit_address.state_long}</p>
+        <p class="specialties">Specialties: ${profileSpecialties.join(", ")}</p>
+        <p class="insurances">Insurance taken: ${plansTaken.join(", ")}</p>
       </div>
       <div class="info-section">
         <p>About: ${selectedDoctor.profile.bio}</p><br>
-        <p>Accepting new patients: ${
-          selectedDoctor.practices[0].accepts_new_patients
-        }</p>
-        <p class="insurance">Insurances taken: ${
-          selectedDoctor.insurances[0].insurance_plan.name
-        }</p><br>
+        <p>Accepting new patients: ${selectedDoctor.practices[0].accepts_new_patients}</p>
         <p>Languages: ${selectedDoctor.practices[0].languages[0].name}</p>
-        <p class="phone">Contact: ${
-          selectedDoctor.practices[0].phones[0].number
-        }</p>
+        <p class="phone">Contact: ${selectedDoctor.practices[0].phones[0].number}</p>
+      </div>
+      <div class="back-to-results">
+        <a href="#doc-results">Back to results</a>
       </div>
     </div>
     <br>`;
 
   $("#doc-profile").html(html);
+  backToResults();
   formatPhone();
 }
 
@@ -267,20 +251,32 @@ function showProfile() {
   $("#doc-results").hide();
   $("#doc-search-form").hide();
   $("#doc-profile").show();
+  $("#profile-map").show();
   renderProfile();
 }
 
 function showSearchForm() {
   $("#doc-results").hide();
   $("#doc-profile").hide();
+  $("#profile-map").hide();
   $("#doc-search-form").show();
 }
 
 function showDoctors() {
   $("#doc-search-form").hide();
+  $("#profile-map").hide();
   $("#doc-results").show();
   renderResults();
   setPins();
+}
+
+function backToResults() {
+  $(".back-to-results").on('click', function(){
+    $("#doc-profile").hide();
+    $("#profile-map").hide();
+    $("#doc-search-form").hide();
+    $("#doc-results").show();
+  })
 }
 
 //////////////////////// EVENT LISTENERS ////////////////////////
@@ -303,7 +299,7 @@ function setPins() {
     var doctorInfoWindow = `
     <div id="content">
       <div id="infoWindow">
-        <div class="doctor-info">
+        <div class="doctor-info-window">
           <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
           <p>${doctor.profile.gender}</p>
           <p>${doctor.practices[0].visit_address.street},
@@ -356,7 +352,6 @@ function initMap() {
 }
 
 $(function() {
-  // When the document is ready, do this.
   getSpecialtiesFromApi();
   getGenderFromApi();
   viewProfile();
