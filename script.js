@@ -3,7 +3,7 @@ const BETTERDOCTOR_SEARCH_URL =
 const BETTERDOCTOR_SPECIALTIES_URL =
   "https://api.betterdoctor.com/2016-03-01/specialties";
 const BETTERDOCTOR_INSURANCES_URL =
-  "https://api.betterdoctor.com/2016-03-01/insurances";  
+  "https://api.betterdoctor.com/2016-03-01/insurances";
 
 // CHANGE #1: CHECK THIS STATUS OBJECT.
 var state = {
@@ -11,12 +11,14 @@ var state = {
   selectedDoctor: {}
 };
 
-var lat = '';
-var lng = '';
+var lat = "";
+var lng = "";
 
 var map;
 var geocoder;
 var infowindow;
+var profileMap;
+var profileMarker;
 
 function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
   console.log(specialty);
@@ -46,17 +48,17 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
 }
 
 function getHealthPlansFromApi() {
-    const healthPlan = {
+  const healthPlan = {
     url: BETTERDOCTOR_INSURANCES_URL,
     data: {
       skip: 0,
       limit: 100,
-      user_key: '38a5e05a1ba6c75134d6d9a0497c51c0'
+      user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
     },
-    dataType: 'json',
-    type: 'GET',
+    dataType: "json",
+    type: "GET",
     success: function(response) {
-      let dropdown = $('#plan-dropdown');
+      let dropdown = $("#plan-dropdown");
       dropdown.empty();
       console.log(response);
       // use below format / structure
@@ -67,63 +69,62 @@ function getHealthPlansFromApi() {
       // })
     },
     error: function(error) {
-      console.log('test', error);
+      console.log("test", error);
     }
-  }
+  };
   $.ajax(healthPlan);
 }
 
 function getSpecialtiesFromApi() {
-    const specialties = {
+  const specialties = {
     url: BETTERDOCTOR_SPECIALTIES_URL,
     data: {
       skip: 0,
       limit: 100,
-      user_key: '38a5e05a1ba6c75134d6d9a0497c51c0'
+      user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
     },
-    dataType: 'json',
-    type: 'GET',
+    dataType: "json",
+    type: "GET",
     success: function(response) {
-      let dropdown = $('#specialty-dropdown');
+      let dropdown = $("#specialty-dropdown");
       dropdown.empty();
-      response.data.map(function (specialty, index) {
-        dropdown.append($(`<option>${specialty.name}</option>`).attr('value', specialty.uid));
-      })
-
+      response.data.map(function(specialty, index) {
+        dropdown.append(
+          $(`<option>${specialty.name}</option>`).attr("value", specialty.uid)
+        );
+      });
     },
     error: function(error) {
-      console.log('test', error);
+      console.log("test", error);
     }
-  }
+  };
   $.ajax(specialties);
 }
 
 function getGenderFromApi() {
-    const gender = {
+  const gender = {
     url: BETTERDOCTOR_SEARCH_URL,
     data: {
       skip: 0,
       limit: 100,
-      user_key: '38a5e05a1ba6c75134d6d9a0497c51c0'
+      user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
     },
-    dataType: 'json',
-    type: 'GET',
+    dataType: "json",
+    type: "GET",
     success: function(response) {
-      let dropdown = $('#gender-dropdown');
+      let dropdown = $("#gender-dropdown");
       dropdown.empty();
       console.log(response);
-      response.data.map(function (gender, index) {
-        dropdown.append($(`<option>${gender}</option>`).attr('value', gender));
-      })
-
+      response.data.map(function(gender, index) {
+        dropdown.append($(`<option>${gender}</option>`).attr("value", gender));
+      });
     },
     error: function(error) {
-      console.log('test', error);
+      console.log("test", error);
     }
-  }
+  };
   $.ajax(gender);
 }
-
 
 /* submit doctor search form */
 function submitForm() {
@@ -133,9 +134,9 @@ function submitForm() {
     $("#zip").val("");
     let gender = $("#gender-dropdown").val();
     $("#gender-dropdown").val("");
-    let healthPlan = $('#plan-dropdown').val();
+    let healthPlan = $("#plan-dropdown").val();
     $("#plan-dropdown").val("");
-    let specialty = $('#specialty-dropdown').val();
+    let specialty = $("#specialty-dropdown").val();
     $("#specialty-dropdown").val("");
     getLatLong(zipCode, healthPlan, specialty, gender);
     showDoctors();
@@ -143,16 +144,16 @@ function submitForm() {
 }
 
 function getLatLong(zipCode, healthPlan, specialty, gender) {
-  geocoder.geocode({'address': zipCode}, function(results, status) {
+  geocoder.geocode({ address: zipCode }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       lat = results[0].geometry.location.lat();
       lng = results[0].geometry.location.lng();
       getDataFromApi(lat, lng, healthPlan, specialty, gender);
-      map.setCenter(new google.maps.LatLng(lat,lng));
+      map.setCenter(new google.maps.LatLng(lat, lng));
     } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
 }
 
 function renderResults() {
@@ -177,8 +178,8 @@ function renderDoctor(doctor, index) {
         <div class="doctor-info">
           <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
           <p>${doctor.profile.gender}</p>
-          <p>${doctor.practices[0].visit_address.street}, 
-             ${doctor.practices[0].visit_address.city}, 
+          <p>${doctor.practices[0].visit_address.street},
+             ${doctor.practices[0].visit_address.city},
              ${doctor.practices[0].visit_address.state_long}</p>
           <p>${distance} miles away</p>
           <p>${doctor.specialties[0].name}</p>
@@ -205,35 +206,59 @@ function renderProfile(index, data) {
   // let insuranceTaken = $('selectedDoctor').forEach(function(insurances){
   //   return(${selectedDoctor.insurances.insurance_plan.name});
   // });
-  let profileSpecialties = selectedDoctor.specialties.map(function (specialty, index) {
-    return(`<span>${specialty.name}</span>`);
-  })
-  console.log(selectedDoctor);
+  var doctorPosition = {
+    lat: selectedDoctor.practices[0].lat,
+    lng: selectedDoctor.practices[0].lon
+  };
+
+  profileMarker = new google.maps.Marker({
+    position: doctorPosition,
+    map: profileMap
+  });
+  profileMap.setCenter(doctorPosition);
+
+  let profileSpecialties = selectedDoctor.specialties.map(function(
+    specialty,
+    index
+  ) {
+    return `<span>${specialty.name}</span>`;
+  });
+
   let distance = Math.round(selectedDoctor.practices[0].distance);
-  var html =  `
+  var html = `
     <div class="card-content">
       <div class="doc-image">
         <img src="${selectedDoctor.profile.image_url}" class="img-circle">
       </div>
       <div class="doctor-info">
-        <h3>${selectedDoctor.profile.first_name} ${selectedDoctor.profile.last_name}</h3>
+        <h3>${selectedDoctor.profile.first_name} ${
+    selectedDoctor.profile.last_name
+  }</h3>
         <p>${selectedDoctor.profile.gender}</p>
         <p>${distance} miles away</p>
-        <p>${selectedDoctor.practices[0].visit_address.street}, ${selectedDoctor.practices[0].visit_address.city}, ${selectedDoctor.practices[0].visit_address.state_long}</p>
-        <p class="specialties">${profileSpecialties.join(', ')}</p>
+        <p>${selectedDoctor.practices[0].visit_address.street}, ${
+    selectedDoctor.practices[0].visit_address.city
+  }, ${selectedDoctor.practices[0].visit_address.state_long}</p>
+        <p class="specialties">${profileSpecialties.join(", ")}</p>
       </div>
       <div class="info-section">
         <p>About: ${selectedDoctor.profile.bio}</p><br>
-        <p>Accepting new patients: ${selectedDoctor.practices[0].accepts_new_patients}</p>
-        <p class="insurance">Insurances taken: ${selectedDoctor.insurances[0].insurance_plan.name}</p><br>
+        <p>Accepting new patients: ${
+          selectedDoctor.practices[0].accepts_new_patients
+        }</p>
+        <p class="insurance">Insurances taken: ${
+          selectedDoctor.insurances[0].insurance_plan.name
+        }</p><br>
         <p>Languages: ${selectedDoctor.practices[0].languages[0].name}</p>
-        <p class="phone">Contact: ${selectedDoctor.practices[0].phones[0].number}</p>
+        <p class="phone">Contact: ${
+          selectedDoctor.practices[0].phones[0].number
+        }</p>
       </div>
     </div>
     <br>`;
 
   $("#doc-profile").html(html);
-  formatPhone(); 
+  formatPhone();
 }
 
 //////////////////////// SHOW / HIDE PAGES ////////////////////////
@@ -268,35 +293,35 @@ function logoClickable() {
 
 function newDoctorSearch() {
   $(".new-search").on("click", function() {
-    showSearchForm();  
+    showSearchForm();
   });
 }
 
 function setPins() {
-  state.doctors.forEach((doctor, index) => { 
+  state.doctors.forEach((doctor, index) => {
     let distance = Math.round(doctor.practices[0].distance);
     var doctorInfoWindow = `
     <div id="content">
-      <div id="infoWindow"> 
+      <div id="infoWindow">
         <div class="doctor-info">
           <h3>${doctor.profile.first_name} ${doctor.profile.last_name}</h3>
           <p>${doctor.profile.gender}</p>
-          <p>${doctor.practices[0].visit_address.street}, 
-             ${doctor.practices[0].visit_address.city}, 
+          <p>${doctor.practices[0].visit_address.street},
+             ${doctor.practices[0].visit_address.city},
              ${doctor.practices[0].visit_address.state_long}</p>
           <p>${distance} miles away</p>
           <p>${doctor.specialties[0].name}</p>
         </div>
-      </div> 
+      </div>
     </div>`;
-    var uluru = {lat: doctor.practices[0].lat, lng: doctor.practices[0].lon};
-    var marker = new google.maps.Marker ({
+    var uluru = { lat: doctor.practices[0].lat, lng: doctor.practices[0].lon };
+    var marker = new google.maps.Marker({
       position: uluru,
       map: map,
       content: doctorInfoWindow
     });
 
-    marker.addListener('click', function() {
+    marker.addListener("click", function() {
       infowindow.open(map, marker);
       infowindow.setContent(marker.content);
     });
@@ -313,15 +338,20 @@ function formatPhone() {
 //////////////////////// INITIALIZE  ////////////////////////
 
 function initMap() {
-  $('#map').html();
+  $("#map").html();
   geocoder = new google.maps.Geocoder();
-  var uluru = {lat: 40.6452227, lng: -74.0152088};
-  map = new google.maps.Map(document.getElementById('map'), {
+  var uluru = { lat: 40.6452227, lng: -74.0152088 };
+  map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: uluru
   });
   infowindow = new google.maps.InfoWindow({
-    content: ''
+    content: ""
+  });
+
+  profileMap = new google.maps.Map(document.getElementById("profile-map"), {
+    zoom: 10,
+    center: uluru
   });
 }
 

@@ -1,13 +1,15 @@
 /* Defaults for all elements */
 * {
-  font-family: 'Oxygen', sans-serif;
+  font-family: "Oxygen", sans-serif;
   line-height: 1.7em;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body, main {
+html,
+body,
+main {
   background-size: cover;
   height: 100%;
 }
@@ -30,11 +32,11 @@ h1 {
 /* navigation */
 
 nav {
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #e5e5e5;
   margin-top: 10px;
 }
 
-.logo-section{
+.logo-section {
   height: 50px;
   padding: 10px 0px 40px 20px;
   display: inline-block;
@@ -63,9 +65,9 @@ nav {
   width: 100%;
 }
 
-fieldset { 
+fieldset {
   border: none;
-  font-size: 0; 
+  font-size: 0;
   display: inline-block;
 }
 
@@ -111,22 +113,23 @@ input {
   color: white;
 }
 
-#specialty-dropdown, #gender-dropdown {
+#specialty-dropdown,
+#gender-dropdown {
   -webkit-appearance: none;
-   background: url("http://i67.tinypic.com/mpyz7.jpg") no-repeat right center;
-   font-size: 14px;
-   padding-left: 10px;
-   height: 33px;
-   width: 85%;
-   color: #14537d;
+  background: url("http://i67.tinypic.com/mpyz7.jpg") no-repeat right center;
+  font-size: 14px;
+  padding-left: 10px;
+  height: 33px;
+  width: 85%;
+  color: #14537d;
 }
 
 .dropdown select {
-   border: 1px solid #ccc;
-   font-size: 16px;
-   height: 34px;
-   width: 268px;
-   color: #14537d;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  height: 34px;
+  width: 268px;
+  color: #14537d;
 }
 
 .cta-row {
@@ -159,7 +162,6 @@ input {
   font-size: 120%;
 }
 
-
 .doctor-profile {
   padding: 10px 14px 10px 14px;
   font-size: 100%;
@@ -170,14 +172,15 @@ input {
 }
 
 .img-circle {
-    border-radius: 10%;
+  border-radius: 10%;
 }
 
 .info-section {
   margin-left: 20px;
 }
 
-.card-content, .info-section {
+.card-content,
+.info-section {
   background: white;
   display: inline-block;
   width: 60%;
@@ -191,8 +194,10 @@ p {
   font-size: 14px;
 }
 
-.doc-image, .doctor-info, .doctor-profile-button {
-  display:inline-block;
+.doc-image,
+.doctor-info,
+.doctor-profile-button {
+  display: inline-block;
   float: left;
   padding-left: 30px;
 }
@@ -205,7 +210,8 @@ p {
 
 /* profile styling */
 
-.doctor-profile-view, .overview-container {
+.doctor-profile-view,
+.overview-container {
   width: 80%;
   margin: 0 auto;
 }
@@ -221,18 +227,28 @@ ul {
   padding-bottom: 200px;
 }
 
+#profile-map {
+  position: static;
+}
+
 /* Mobile Responsive */
 @media only screen and (max-width: 768px) {
-
-  input, .dropdown, .doctor-list, .results-overview, .doctor-image {
+  input,
+  .dropdown,
+  .doctor-list,
+  .results-overview,
+  .doctor-image {
     width: 100%;
   }
 
-  .start-cta, .field, .input {
+  .start-cta,
+  .field,
+  .input {
     width: 100%;
   }
 
-  .card-content, .info-section {
+  .card-content,
+  .info-section {
     width: 85%;
   }
 
@@ -247,9 +263,9 @@ ul {
     height: auto;
   }
 
-  #plan-dropdown, #specialty-dropdown, #gender-dropdown {
-    width: 100%; 
+  #plan-dropdown,
+  #specialty-dropdown,
+  #gender-dropdown {
+    width: 100%;
   }
-
 }
-
