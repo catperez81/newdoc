@@ -151,9 +151,10 @@ input {
   margin: 0 auto;
 }
 
-.results-overview {
-  width: 80%;
-  text-align: left;
+.total-results {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 120%;
 }
 
 

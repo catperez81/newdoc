@@ -159,6 +159,13 @@ function getLatLong(zipCode, healthPlan, specialty, gender) {
 function renderResults() {
   const results = state.doctors.map((item, index) => renderDoctor(item, index));
   $(".top-button-container").html(results);
+  let totalResults = results.length;
+  console.log(totalResults);
+  var html = `
+    <div class="results">
+      <p class="total-results">We've found ${totalResults} doctors</p>
+    </div>`;
+  $(".total-results").html(html);
 }
 
 function renderDoctor(doctor, index) {
@@ -198,7 +205,7 @@ function viewProfile() {
 function renderProfile(index, data) {
   let selectedDoctor = state.selectedDoctor;
   // let insuranceTaken = $('selectedDoctor').forEach(function(insurances){
-  //   return(selectedDoctor.insurances.insurance_plan.name);
+  //   return(${selectedDoctor.insurances.insurance_plan.name});
   // });
   // let distance = Math.round(index.practices[0].distance);
   var html =  `
