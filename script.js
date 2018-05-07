@@ -1,9 +1,4 @@
-const BETTERDOCTOR_SEARCH_URL =
-  "https://api.betterdoctor.com/2016-03-01/doctors";
-const BETTERDOCTOR_SPECIALTIES_URL =
-  "https://api.betterdoctor.com/2016-03-01/specialties";
-const BETTERDOCTOR_INSURANCES_URL =
-  "https://api.betterdoctor.com/2016-03-01/insurances";
+const BETTERDOCTOR_API_URL = "https://api.betterdoctor.com/2016-03-01";
 
 var state = {
   doctors: [],
@@ -20,17 +15,22 @@ var profileMap;
 var profileMarker;
 
 function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
-  console.log(specialty);
+  var requestData = {
+    location: `${lat}, ${lng}, 30`,
+    skip: 0,
+    limit: 100,
+    specialty_uid: specialty,
+    user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
+  };
+
+  if (gender) {
+    console.log(gender);
+    requestData.gender = gender;
+  }
+
   const doctors = {
-    url: BETTERDOCTOR_SEARCH_URL,
-    data: {
-      location: `${lat}, ${lng}, 30`,
-      skip: 0,
-      limit: 100,
-      specialty_uid: specialty,
-      gender: gender,
-      user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
-    },
+    url: `${BETTERDOCTOR_API_URL}/doctors`,
+    data: requestData,
     dataType: "json",
     type: "GET",
     success: function(response) {
@@ -47,7 +47,7 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
 
 function getHealthPlansFromApi() {
   const healthPlan = {
-    url: BETTERDOCTOR_INSURANCES_URL,
+    url: `${BETTERDOCTOR_API_URL}/insurances`,
     data: {
       skip: 0,
       limit: 100,
@@ -58,7 +58,7 @@ function getHealthPlansFromApi() {
     success: function(response) {
       let dropdown = $("#plan-dropdown");
       dropdown.empty();
-      console.log(response);
+      // TODO: STUFF HERE? OR DELETE THE FUNCTION??
     },
     error: function(error) {
       console.log("test", error);
@@ -69,7 +69,7 @@ function getHealthPlansFromApi() {
 
 function getSpecialtiesFromApi() {
   const specialties = {
-    url: BETTERDOCTOR_SPECIALTIES_URL,
+    url: `${BETTERDOCTOR_API_URL}/specialties`,
     data: {
       skip: 0,
       limit: 100,
@@ -91,30 +91,6 @@ function getSpecialtiesFromApi() {
     }
   };
   $.ajax(specialties);
-}
-
-function getGenderFromApi() {
-  const gender = {
-    url: BETTERDOCTOR_SEARCH_URL,
-    data: {
-      skip: 0,
-      limit: 100,
-      user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
-    },
-    dataType: "json",
-    type: "GET",
-    success: function(response) {
-      let dropdown = $("#gender-dropdown");
-      dropdown.empty();
-      response.data.map(function(gender, index) {
-        dropdown.append($(`<option>${gender}</option>`).attr("value", gender));
-      });
-    },
-    error: function(error) {
-      console.log(error);
-    }
-  };
-  $.ajax(gender);
 }
 
 /* submit doctor search form */
@@ -194,7 +170,6 @@ function viewProfile() {
 
 function renderProfile(index, data) {
   let selectedDoctor = state.selectedDoctor;
-  console.log(selectedDoctor);
   var doctorPosition = {
     lat: selectedDoctor.practices[0].lat,
     lng: selectedDoctor.practices[0].lon
@@ -217,33 +192,33 @@ function renderProfile(index, data) {
     return `<span>${insurance.insurance_plan.name}</span>`;
   });
 
-  let distance = Math.round(selectedDoctor.practices[0].distance);
+  let selectedDoctorPractice = selectedDoctor.practices[0];
+  let selectedDoctorName =
+    selectedDoctor.profile.first_name + "" + selectedDoctor.profile.last_name;
+
+  let distance = Math.round(selectedDoctorPractice.distance);
   var html = `
     <div class="card-content">
       <div class="doc-image">
         <img src="${selectedDoctor.profile.image_url}" class="img-circle">
       </div>
       <div class="doctor-info">
-        <h3>${selectedDoctor.profile.first_name} ${
-    selectedDoctor.profile.last_name
-  }</h3>
+        <h3>${selectedDoctorName}</h3>
         <p>${selectedDoctor.profile.gender}</p>
         <p>${distance} miles away</p>
-        <p>${selectedDoctor.practices[0].visit_address.street}, ${
-    selectedDoctor.practices[0].visit_address.city
-  }, ${selectedDoctor.practices[0].visit_address.state_long}</p>
+        <p>${selectedDoctorPractice.visit_address.street}, ${
+    selectedDoctorPractice.visit_address.city
+  }, ${selectedDoctorPractice.visit_address.state_long}</p>
         <p class="specialties">Specialties: ${profileSpecialties.join(", ")}</p>
         <p class="insurances">Insurance taken: ${plansTaken.join(", ")}</p>
       </div>
       <div class="info-section">
         <p>About: ${selectedDoctor.profile.bio}</p><br>
         <p>Accepting new patients: ${
-          selectedDoctor.practices[0].accepts_new_patients
+          selectedDoctorPractice.accepts_new_patients
         }</p>
-        <p>Languages: ${selectedDoctor.practices[0].languages[0].name}</p>
-        <p class="phone">Contact: ${
-          selectedDoctor.practices[0].phones[0].number
-        }</p>
+        <p>Languages: ${selectedDoctorPractice.languages[0].name}</p>
+        <p class="phone">Contact: ${selectedDoctorPractice.phones[0].number}</p>
       </div>
       <div class="back-to-results">
         <a href="#doc-results">Back to results</a>
@@ -364,7 +339,6 @@ function initMap() {
 
 $(function() {
   getSpecialtiesFromApi();
-  getGenderFromApi();
   viewProfile();
   submitForm();
   logoClickable();
