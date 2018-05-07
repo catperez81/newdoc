@@ -26,7 +26,7 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
     data: {
       location: `${lat}, ${lng}, 30`,
       skip: 0,
-      limit: 25,
+      limit: 100,
       specialty_uid: specialty,
       gender: gender,
       user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
@@ -111,7 +111,7 @@ function getGenderFromApi() {
       });
     },
     error: function(error) {
-      console.log("test", error);
+      console.log(error);
     }
   };
   $.ajax(gender);

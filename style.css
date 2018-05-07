@@ -233,6 +233,10 @@ ul {
   position: relative !important;
 }
 
+.back-to-results {
+  padding-left: 34px;
+}
+
 /* Mobile Responsive */
 @media only screen and (max-width: 768px) {
   input,
