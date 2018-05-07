@@ -237,6 +237,12 @@ ul {
   padding-left: 34px;
 }
 
+#doctor-profile-container,
+#profile-map {
+  width: 100%;
+  height: 100%;
+}
+
 /* Mobile Responsive */
 @media only screen and (max-width: 768px) {
   input,
