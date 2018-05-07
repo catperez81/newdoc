@@ -47,6 +47,8 @@ nav {
   border: none;
   background-color: #14537d;
   color: white;
+  margin-right: 10px;
+  margin-left: 10px;
   float: right;
 }
 
@@ -218,7 +220,6 @@ ul {
   background: #fdf3f3;
   padding-bottom: 200px;
   height: 100%;
-  width: 100%;
 }
 
 /* Mobile Responsive */
@@ -233,8 +234,7 @@ ul {
   }
 
   .card-content, .info-section {
-    width: 100%;
-    margin: 20px;
+    width: 85%;
   }
 
   .doctor-profile-button {

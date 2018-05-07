@@ -84,9 +84,12 @@ function getSpecialtiesFromApi() {
     dataType: 'json',
     type: 'GET',
     success: function(response) {
+      let profileSpecialties = $('.specialties');
+      response.data.map(function (specialty, index) {
+        profileSpecialties.append($(`<p>${specialty.name}</p>`).attr('value', specialty.uid));
+      })
       let dropdown = $('#specialty-dropdown');
       dropdown.empty();
-      console.log(response);
       response.data.map(function (specialty, index) {
         dropdown.append($(`<option>${specialty.name}</option>`).attr('value', specialty.uid));
       })
@@ -207,7 +210,7 @@ function renderProfile(index, data) {
   // let insuranceTaken = $('selectedDoctor').forEach(function(insurances){
   //   return(${selectedDoctor.insurances.insurance_plan.name});
   // });
-  // let distance = Math.round(index.practices[0].distance);
+  let distance = Math.round(selectedDoctor.practices[0].distance);
   var html =  `
     <div class="card-content">
       <div class="doc-image">
@@ -216,9 +219,9 @@ function renderProfile(index, data) {
       <div class="doctor-info">
         <h3>${selectedDoctor.profile.first_name} ${selectedDoctor.profile.last_name}</h3>
         <p>${selectedDoctor.profile.gender}</p>
-        <p>${selectedDoctor.practices[0].distance} miles away</p>
+        <p>${distance} miles away</p>
         <p>${selectedDoctor.practices[0].visit_address.street}, ${selectedDoctor.practices[0].visit_address.city}, ${selectedDoctor.practices[0].visit_address.state_long}</p>
-        <p>${selectedDoctor.specialties[0].name}</p>
+        <p class="specialties"></p>
       </div>
       <div class="info-section">
         <p>About: ${selectedDoctor.profile.bio}</p><br>
