@@ -236,21 +236,22 @@ function renderProfile(index, data) {
 function showProfile() {
   $("#doc-results").hide();
   $("#doc-search-form").hide();
-  $("#doc-profile").show();
+  $("#doctor-profile-container").show();
+  // $("#doc-profile").show();
   $("#profile-map").show();
   renderProfile();
 }
 
 function showSearchForm() {
   $("#doc-results").hide();
-  $("#doc-profile").hide();
-  $("#profile-map").hide();
+  // $("#doc-profile").hide();
+  $("#doctor-profile-container").hide();
   $("#doc-search-form").show();
 }
 
 function showDoctors() {
   $("#doc-search-form").hide();
-  $("#profile-map").hide();
+  $("#doctor-profile-container").hide();
   $("#doc-results").show();
   renderResults();
   setPins();
@@ -258,8 +259,8 @@ function showDoctors() {
 
 function backToResults() {
   $(".back-to-results").on("click", function() {
-    $("#doc-profile").hide();
-    $("#profile-map").hide();
+    // $("#doc-profile").hide();
+    $("#doctor-profile-container").hide();
     $("#doc-search-form").hide();
     $("#doc-results").show();
   });
