@@ -1,23 +1,20 @@
-NewDoc
-A doctor search application. Users can create lists of their favorite books and have others recommended to them.
+<strong>NewDoc</strong><br>
 
-Motivation
-We wanted a book recommendation app that was community driven. Books and lists are all created by the users.
+<strong>Summary</strong><br>
+<p>A doctor search application where users can search for a doctor by location, specialty and gender.
+They can also see those doctors on a map to inform proximity & access. Additionally, if they want more information on a doctor they are interested in, they can see the doctor's profile and get more information.</p> 
 
-APIs:
-BetterDoctor
-Google Maps
+<strong>Technology</strong><br>
+<p>Using APIs of:</p>
+<ul>
+ <li>Better Doctor</li>
+ <li>Google Maps</li>
+</ul>
 
-
-Screenshots:
- 
-
-
-Built With:
-• Front-End
-• HTML/CSS/JavaScript/jQuery
-
-Features:
-Search for a doctor by location, specialty and gender
-See doctors on a map
-See doctor profile and more details on the doctor 
+<p>Built with</p>
+<ul>
+ <li>HTML</li>
+ <li>CSS</li>
+ <li>JavaScript</li>
+ <li>jQuery</li>
+</ul>
