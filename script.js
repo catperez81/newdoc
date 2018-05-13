@@ -81,9 +81,7 @@ function getSpecialtiesFromApi() {
       let dropdown = $("#specialty-dropdown");
       dropdown.empty();
       response.data.map(function(specialty, index) {
-        dropdown.append(
-          $(`<option>${specialty.name}</option>`).attr("value", specialty.uid)
-        );
+        dropdown.append($(`<option>${specialty.name}</option>`).attr("value", specialty.uid));
       });
     },
     error: function(error) {
@@ -184,10 +182,7 @@ function renderProfile(index, data) {
   });
   profileMap.setCenter(doctorPosition);
 
-  let profileSpecialties = selectedDoctor.specialties.map(function(
-    specialty,
-    index
-  ) {
+  let profileSpecialties = selectedDoctor.specialties.map(function(specialty,index) {
     return `<span>${specialty.name}</span>`;
   });
 
@@ -209,17 +204,13 @@ function renderProfile(index, data) {
         <h3>${selectedDoctorName}</h3>
         <p>${selectedDoctor.profile.gender}</p>
         <p>${distance} miles away</p>
-        <p>${selectedDoctorPractice.visit_address.street}, ${
-    selectedDoctorPractice.visit_address.city
-  }, ${selectedDoctorPractice.visit_address.state_long}</p>
+        <p>${selectedDoctorPractice.visit_address.street}, ${selectedDoctorPractice.visit_address.city}, ${selectedDoctorPractice.visit_address.state_long}</p>
         <p class="specialties">Specialties: ${profileSpecialties.join(", ")}</p>
         <p class="insurances">Insurance taken: ${plansTaken.join(", ")}</p>
       </div>
       <div class="info-section">
         <p>About: ${selectedDoctor.profile.bio}</p><br>
-        <p>Accepting new patients: ${
-          selectedDoctorPractice.accepts_new_patients
-        }</p>
+        <p>Accepting new patients: ${selectedDoctorPractice.accepts_new_patients}</p>
         <p>Languages: ${selectedDoctorPractice.languages[0].name}</p>
         <p class="phone">Contact: ${selectedDoctorPractice.phones[0].number}</p>
       </div>

@@ -1,84 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>NewDoc</title>
-  <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
-  <link href="style.css" rel="stylesheet" type="text/css" />
-</head>
 
-<body>
-  <main role ="main">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>NewDoc</title>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
 
-    <nav role="navigation">
-      <div class="logo-section">
-       <img src="images/newdoc-logo.png" id="logo" height="24px" border="0" alt="newdoc logo">
-      </div>
-      <div class="new-search">
-        <button class="btn btn-default new-search" type="submit">New search</button>
-      </div>
-    </nav>
-
-    <section role="region" id="doc-search-form">
-      <div class="start-header">
-        <h1>Find a new doctor</h1>
-        <form id="findadoc">
-          <fieldset>
-              <div class=row>
-                <div class="field">
-                  <label>Address or zip code</label><br>
-                  <input type="text" name="zip" id="zip" required>
+  <body>
+    <main role ="main">
+      <nav role="navigation">
+        <div class="logo-section">
+         <img src="images/newdoc-logo.png" id="logo" height="24px" border="0" alt="newdoc logo">
+        </div>
+        <div class="new-search">
+          <button class="btn btn-default new-search" type="submit">New search</button>
+        </div>
+      </nav>
+      <section role="region" id="doc-search-form">
+        <div class="start-header">
+          <h1>Find a new doctor</h1>
+          <form id="findadoc">
+            <fieldset>
+                <div class=row>
+                  <div class="field">
+                    <label>Address or zip code</label><br>
+                    <input type="text" name="zip" id="zip" required>
+                  </div>
                 </div>
-              </div>
-              <div class="field">
-                <label>Doctor specialty</label><br>
-                <select id="specialty-dropdown">
-                  <option selected="selected">Select a specialty</option>
-                </select>
-              </div>
-              <div class=row>
                 <div class="field">
-                  <label>Gender</label><br>
-                  <select id="gender-dropdown" name="Select gender" required>
-                    <option value="" disabled selected>Select a gender</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                    <option value="">No preference</option>
+                  <label>Doctor specialty</label><br>
+                  <select id="specialty-dropdown">
+                    <option selected="selected">Select a specialty</option>
                   </select>
                 </div>
-              </div>
-          </fieldset>
-          <div class=cta-row>
-            <button class="btn btn-default start-cta" type="submit">Submit</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section role="region" id="doc-results">
-      <div id="map">
-        <a name="top"></a>
-      </div>
-      <div class="results">
-        <img src="images/ajax-loader.gif" id="loader" height="24px" border="0" alt="results loading">
-        <p class="total-results"></p>
-      </div>
-      <div class="top-button-container"></div>
-        <div class="back-to-top">
-          <a href="#top">Back to top</a>
+                <div class=row>
+                  <div class="field">
+                    <label>Gender</label><br>
+                    <select id="gender-dropdown" name="Select gender" required>
+                      <option value="" disabled selected>Select a gender</option>
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
+                      <option value="">No preference</option>
+                    </select>
+                  </div>
+                </div>
+            </fieldset>
+            <div class=cta-row>
+              <button class="btn btn-default start-cta" type="submit">Submit</button>
+            </div>
+          </form>
         </div>
-      </div>
-    </section>
+      </section>
+      <section role="region" id="doc-results">
+        <div id="map">
+          <a name="top"></a>
+        </div>
+        <div class="results">
+          <img src="images/ajax-loader.gif" id="loader" height="24px" border="0" alt="results loading">
+          <p class="total-results"></p>
+        </div>
+        <div class="top-button-container"></div>
+          <div class="back-to-top">
+            <a href="#top">Back to top</a>
+          </div>
+        </div>
+      </section>
+      <section role="region" id="doctor-profile-container">
+        <div id="profile-map"></div>
+        <div id="doc-profile"></div>
+      </section>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz-b2oHF59bQHRL6n7WARMrt5tPQeF1i4&callback=initMap" type="text/javascript"></script> 
+  </body>
 
-    <section role="region" id="doctor-profile-container">
-      <div id="profile-map"></div>
-      <div id="doc-profile"></div>
-    </section>
-
-  </main>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="script.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz-b2oHF59bQHRL6n7WARMrt5tPQeF1i4&callback=initMap" type="text/javascript"></script>
-</body>
 </html>
