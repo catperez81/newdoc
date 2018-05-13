@@ -1,5 +1,5 @@
 <strong>NewDoc</strong><br>
-<a href="https://catperez81.github.io/newdoc-api/" target="blank">Acess the app here:</a>
+<a href="https://catperez81.github.io/newdoc-api/" target="_blank">Try the app!</a>
 
 <strong>Summary</strong><br>
 <p>A doctor search application where users can search for a doctor by location, specialty and gender.
