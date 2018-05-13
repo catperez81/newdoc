@@ -106,20 +106,19 @@ function submitForm() {
     let specialty = $("#specialty-dropdown").val();
     $("#specialty-dropdown").val("");
     getLatLong(zipCode, healthPlan, specialty, gender);
-    showDoctors();
   });
 }
 
 function getLatLong(zipCode, healthPlan, specialty, gender) {
   geocoder.geocode({ address: zipCode }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
+      showDoctors();
       lat = results[0].geometry.location.lat();
       lng = results[0].geometry.location.lng();
       getDataFromApi(lat, lng, healthPlan, specialty, gender);
       map.setCenter(new google.maps.LatLng(lat, lng));
     } else {
-      showSearchForm();
-      alert("Sorry, but that Zip code / address was invalid. Please enter a valid Zip code or address");
+      alert("Sorry, but that Zip code / address was invalid. Please enter a valid Zip code or address.");
     }
   });
 }
