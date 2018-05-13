@@ -18,3 +18,8 @@ They can also see those doctors on a map to inform proximity & access. Additiona
  <li>JavaScript</li>
  <li>jQuery</li>
 </ul>
+
+<strong>Preview</strong>
+<img src="http://i65.tinypic.com/2jdgd8x.png" border="0"> 
+<img src="http://i63.tinypic.com/2rxunoy.png" border="0"> 
+<img src="http://i66.tinypic.com/5vzn8o.png" border="0"> 
