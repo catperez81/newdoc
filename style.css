@@ -81,8 +81,9 @@ label {
 
 .field {
   width: 100%;
+  padding: 0;
   padding-bottom: 30px;
-  float: left;
+  text-align: left;
 }
 
 label {
@@ -94,7 +95,7 @@ label {
 
 input {
   height: 33px;
-  width: 85%;
+  width: 100%;
   color: #3b3434;
   font-size: 20px;
   border-radius: 5px;
@@ -119,8 +120,9 @@ input {
   font-size: 14px;
   padding-left: 10px;
   height: 33px;
-  width: 85%;
+  width: 100%;
   color: #14537d;
+  background-color: #ffffff;
 }
 
 .dropdown select {
@@ -136,6 +138,11 @@ input {
 }
 
 /* results styling */
+
+#loader {
+  margin-top: 50px;
+  display: none;
+}
 
 #doc-results {
   display: none;
@@ -222,7 +229,6 @@ ul {
 }
 
 #doc-profile {
-/*  display: none;*/
   text-align: center;
   background: #fdf3f3;
   padding-bottom: 200px;
@@ -238,7 +244,6 @@ ul {
 
 #doctor-profile-container,
 #profile-map {
-/*  display: none;*/
   width: 100%;
   height: 100%;
 }

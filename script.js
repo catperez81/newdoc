@@ -35,13 +35,16 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
     type: "GET",
     success: function(response) {
       console.log(response);
+      $('#loader').hide();
       state.doctors = response.data;
       showDoctors();
     },
     error: function(error) {
       console.log(error);
+      $('#loader').hide();
     }
   };
+  $('#loader').show();
   $.ajax(doctors);
 }
 
@@ -56,9 +59,6 @@ function getHealthPlansFromApi() {
     dataType: "json",
     type: "GET",
     success: function(response) {
-      let dropdown = $("#plan-dropdown");
-      dropdown.empty();
-      // TODO: STUFF HERE? OR DELETE THE FUNCTION??
     },
     error: function(error) {
       console.log("test", error);
@@ -118,7 +118,8 @@ function getLatLong(zipCode, healthPlan, specialty, gender) {
       getDataFromApi(lat, lng, healthPlan, specialty, gender);
       map.setCenter(new google.maps.LatLng(lat, lng));
     } else {
-      alert("Geocode was not successful for the following reason: " + status);
+      showSearchForm();
+      alert("Sorry, but that Zip code / address was invalid. Please enter a valid Zip code or address");
     }
   });
 }
@@ -132,6 +133,9 @@ function renderResults() {
       <p class="total-results">We've found ${totalResults} doctors</p>
     </div>`;
   $(".total-results").html(html);
+  if(state.doctors.length === 0) {
+    $(".total-results").html('Sorry, no doctors found.');
+  }
 }
 
 function renderDoctor(doctor, index) {
@@ -237,14 +241,12 @@ function showProfile() {
   $("#doc-results").hide();
   $("#doc-search-form").hide();
   $("#doctor-profile-container").show();
-  // $("#doc-profile").show();
   $("#profile-map").show();
   renderProfile();
 }
 
 function showSearchForm() {
   $("#doc-results").hide();
-  // $("#doc-profile").hide();
   $("#doctor-profile-container").hide();
   $("#doc-search-form").show();
 }
@@ -259,7 +261,6 @@ function showDoctors() {
 
 function backToResults() {
   $(".back-to-results").on("click", function() {
-    // $("#doc-profile").hide();
     $("#doctor-profile-container").hide();
     $("#doc-search-form").hide();
     $("#doc-results").show();
