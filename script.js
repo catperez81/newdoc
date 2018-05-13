@@ -9,6 +9,7 @@ var lat = "";
 var lng = "";
 
 var map;
+var profileMap;
 var geocoder;
 var infowindow;
 var profileMap;
@@ -131,7 +132,7 @@ function renderResults() {
     </div>`;
   $(".total-results").html(html);
   if(state.doctors.length === 0) {
-    $(".total-results").html('Sorry, no doctors found.');
+    $(".total-results").html('Sorry, we could not find any doctors. Try another search.');
   }
 }
 
@@ -153,14 +154,14 @@ function renderDoctor(doctor, index) {
           <p>${doctor.specialties[0].name}</p>
         </div>
         <div class="doctor-profile-button">
-          <button data-index="${index}" class="btn btn-default doctor-profile type="button">View profile</button>
+          <button data-index="${index}" class="doctor-profile type="button">View profile</button>
         </div>
       </div>
     </div>
   <br>`;
 }
 
-function viewProfile() {
+function docProfileView() {
   $("#doc-results").on("click", ".doctor-profile", function(event) {
     event.preventDefault();
     var index = $(this).attr("data-index");
@@ -191,8 +192,7 @@ function renderProfile(index, data) {
   });
 
   let selectedDoctorPractice = selectedDoctor.practices[0];
-  let selectedDoctorName =
-    selectedDoctor.profile.first_name + "" + selectedDoctor.profile.last_name;
+  let selectedDoctorName = selectedDoctor.profile.first_name + "" + selectedDoctor.profile.last_name;
 
   let distance = Math.round(selectedDoctorPractice.distance);
   var html = `
@@ -239,6 +239,7 @@ function showSearchForm() {
   $("#doc-results").hide();
   $("#doctor-profile-container").hide();
   $("#doc-search-form").show();
+  getSpecialtiesFromApi();
 }
 
 function showDoctors() {
@@ -286,6 +287,9 @@ function setPins() {
           <p>${distance} miles away</p>
           <p>${doctor.specialties[0].name}</p>
         </div>
+        <div>
+          <button data-index="${index}" class="doctor-profile" type="button">View profile</button>
+        </div>
       </div>
     </div>`;
     var uluru = { lat: doctor.practices[0].lat, lng: doctor.practices[0].lon };
@@ -329,9 +333,19 @@ function initMap() {
   });
 }
 
+function initProfileMap() {
+  $("#profile-map").html();
+  geocoder = new google.maps.Geocoder();
+  var uluru = { lat: 40.6452227, lng: -74.0152088 };
+  profileMap = new google.maps.Map(document.getElementById("profile-map"), {
+    zoom: 10,
+    center: uluru
+  });
+}
+
 $(function() {
   getSpecialtiesFromApi();
-  viewProfile();
+  docProfileView();
   submitForm();
   logoClickable();
   newDoctorSearch();

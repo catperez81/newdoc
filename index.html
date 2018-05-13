@@ -16,7 +16,7 @@
          <img src="images/newdoc-logo.png" id="logo" height="24px" border="0" alt="newdoc logo">
         </div>
         <div class="new-search">
-          <button class="btn btn-default new-search" type="submit">New search</button>
+          <button class="btn btn-default new-search" type="reset" value="Reset Form">New search</button>
         </div>
       </nav>
       <section role="region" id="doc-search-form">
@@ -32,8 +32,8 @@
                 </div>
                 <div class="field">
                   <label>Doctor specialty</label><br>
-                  <select id="specialty-dropdown">
-                    <option selected="selected">Select a specialty</option>
+                  <select id="specialty-dropdown" name="Select specialty" required>
+                    <option value="" disabled selected>Select a specialty</option>
                   </select>
                 </div>
                 <div class=row>
@@ -69,7 +69,7 @@
         </div>
       </section>
       <section role="region" id="doctor-profile-container">
-        <div id="profile-map"></div>
+        <div id="profile-map" position="!relative"></div>
         <div id="doc-profile"></div>
       </section>
     </main>
