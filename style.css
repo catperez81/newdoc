@@ -113,6 +113,7 @@ input {
 }
 
 #specialty-dropdown, #gender-dropdown {
+  -moz-appearance: none;
   -webkit-appearance: none;
   background: url("http://i67.tinypic.com/mpyz7.jpg") no-repeat right center;
   font-size: 14px;
@@ -187,7 +188,7 @@ input {
 .card-content, .info-section {
   background: white;
   display: inline-block;
-  width: 60%;
+  width: 80%;
   border-radius: 5px;
   padding: 14px;
   margin-top: 20px;
