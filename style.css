@@ -201,7 +201,6 @@ p {
 
 .doc-image, .doctor-info, .doctor-profile-button {
   display: inline-block;
-  float: left;
   padding-left: 30px;
 }
 
