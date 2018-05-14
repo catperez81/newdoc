@@ -46,26 +46,9 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
     }
   };
   $('#loader').show();
+  $('.back-to-top').hide();
+  $(".total-results").html('Looking for doctors');
   $.ajax(doctors);
-}
-
-function getHealthPlansFromApi() {
-  const healthPlan = {
-    url: `${BETTERDOCTOR_API_URL}/insurances`,
-    data: {
-      skip: 0,
-      limit: 100,
-      user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
-    },
-    dataType: "json",
-    type: "GET",
-    success: function(response) {
-    },
-    error: function(error) {
-      console.log("test", error);
-    }
-  };
-  $.ajax(healthPlan);
 }
 
 function getSpecialtiesFromApi() {
@@ -239,6 +222,7 @@ function showProfile() {
 function showSearchForm() {
   $("#doc-results").hide();
   $("#doctor-profile-container").hide();
+  $(".new-search").show();
   $("#doc-search-form").show();
   getSpecialtiesFromApi();
 }
@@ -329,7 +313,6 @@ function initMap() {
   infowindow = new google.maps.InfoWindow({
     content: ""
   });
-
   profileMap = new google.maps.Map(document.getElementById("profile-map"), {
     zoom: 10,
     center: uluru

@@ -7,10 +7,10 @@
   box-sizing: border-box;
 }
 
-html,
-body,
-main {
+html, body, main {
   background-size: cover;
+  height: 100%;
+  background: #fdf3f3;
 }
 
 .start-header {
@@ -32,7 +32,7 @@ h1 {
 
 nav {
   border-bottom: 1px solid #e5e5e5;
-  margin-top: 10px;
+  background: #ffffff;
 }
 
 .logo-section {
@@ -48,15 +48,13 @@ nav {
   border: none;
   background-color: #14537d;
   color: white;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin: 4px 10px 0px 10px;
   float: right;
 }
 
 /* Form Styling */
 
 #doc-search-form {
-  background: #fdf3f3;
   padding-top: 100px;
   padding-bottom: 100px;
   color: #14537d;
@@ -147,7 +145,6 @@ input {
 #doc-results {
   display: none;
   text-align: center;
-  background: #fdf3f3;
   margin: 0 auto;
 }
 
@@ -232,7 +229,6 @@ ul {
 
 #doc-profile {
   text-align: center;
-  background: #fdf3f3;
   padding-bottom: 200px;
   padding-top: 420px;
 }
