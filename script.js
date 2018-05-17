@@ -214,6 +214,7 @@ function showProfile() {
   $("#doc-results").hide();
   $("#doc-search-form").hide();
   $(".new-search").show();
+  $("#doc-profile").show();
   $("#doctor-profile-container").show();
   $("#profile-map").show();
   renderProfile();

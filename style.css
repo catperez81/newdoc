@@ -1,31 +1,34 @@
 /* Defaults for all elements */
 * {
-  font-family: "Oxygen", sans-serif;
   line-height: 1.7em;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Bitter', serif;
 }
 
 html, body, main {
-  background-size: cover;
   height: 100%;
-  background: #fdf3f3;
 }
 
 .start-header {
-  width: 70%;
   margin: 0 auto;
-  text-align: center;
 }
 
 p {
   font-size: 18px;
+  font-family: 'Asap', sans-serif;
+}
+
+.app-description {
+  font-size: 18px;
+  padding-bottom: 50px;
 }
 
 h1 {
   font-size: 34px;
-  padding-bottom: 50px;
+  padding-bottom: 10px;
+  font-family: 'Asap', sans-serif;
 }
 
 /* Navigation */
@@ -43,6 +46,7 @@ nav {
 
 .new-search {
   padding: 4px;
+  font-family: 'Asap', sans-serif;
   font-size: 90%;
   border-radius: 3px;
   border: none;
@@ -56,22 +60,35 @@ nav {
 
 
 #doc-search-form {
-  padding-top: 100px;
-  padding-bottom: 100px;
-  color: #14537d;
-  margin: 0 auto;
-  height: 100%;
+  background-image: url(http://i63.tinypic.com/2v93f43.jpg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   width: 100%;
+  height: auto;
+  position: fixed; 
+  padding-top: 50px;
+  padding-left: 50px;
+  margin: 0 auto;
 }
 
 fieldset {
-  border: none;
+  padding: 40px;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #F6F6F6 !important;
   font-size: 0;
   display: inline-block;
 }
 
 label {
+  font-family: 'Asap', sans-serif;
   text-align: left;
+  padding-bottom: 10px;
+  color: #14537d;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .row {
@@ -86,29 +103,24 @@ label {
   text-align: left;
 }
 
-label {
-  padding-bottom: 10px;
-  color: #14537d;
-  font-size: 16px;
-  cursor: pointer;
-}
 
 input {
-  height: 33px;
+  height: 44px;
   width: 100%;
   color: #3b3434;
+  font-family: 'Asap', sans-serif;
   font-size: 20px;
   border-radius: 5px;
   position: relative;
 }
 
 .start-cta {
-  padding: 14px 60px 14px 60px;
-  font-size: 120%;
+  padding: 20px 50px;
+  font-family: 'Asap', sans-serif;
+  font-size: 16px;
   font-weight: bolder;
   border-radius: 3px;
   border: none;
-  margin-top: 30px;
   background-color: #14537d;
   color: white;
 }
@@ -116,10 +128,11 @@ input {
 #specialty-dropdown, #gender-dropdown {
   -moz-appearance: none;
   -webkit-appearance: none;
-  background: url("http://i67.tinypic.com/mpyz7.jpg") no-repeat right center;
+  background: url("http://i65.tinypic.com/1znwo53.png") no-repeat right center;
+  font-family: 'Asap', sans-serif;
   font-size: 14px;
   padding-left: 10px;
-  height: 33px;
+  height: 44px;
   width: 100%;
   color: #14537d;
   background-color: #ffffff;
@@ -127,6 +140,7 @@ input {
 
 .dropdown select {
   border: 1px solid #ccc;
+  font-family: 'Asap', sans-serif;
   font-size: 16px;
   height: 34px;
   width: 268px;
@@ -148,6 +162,7 @@ input {
   display: none;
   text-align: center;
   margin: 0 auto;
+  background: #fdf3f3;
 }
 
 #map, #profile-map {
@@ -196,10 +211,6 @@ input {
   text-align: left;
 }
 
-p {
-  font-size: 14px;
-}
-
 .doc-image, .doctor-info, .doctor-profile-button {
   display: inline-block;
   padding-left: 30px;
@@ -229,9 +240,11 @@ ul {
 }
 
 #doc-profile {
+  display: none;
   text-align: center;
   padding-bottom: 200px;
   padding-top: 420px;
+  background: #fdf3f3;
 }
 
 .back-to-results {
@@ -241,11 +254,18 @@ ul {
 #doctor-profile-container {
   width: 100%;
   height: 100%;
+  position: fixed;
 }
 
 /* Mobile Responsive */
 
 @media only screen and (max-width: 768px) {
+
+  #doc-search-form {
+  background: #E6EFF5;
+  padding: 10px;
+}
+
   input,
   .dropdown, .doctor-list, .results-overview, .doctor-image {
     width: 100%;
