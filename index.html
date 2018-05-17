@@ -15,47 +15,43 @@
     <main role ="main">
       <nav role="navigation">
         <div class="logo-section">
-         <img src="images/newdoc-logo.png" id="logo" height="24px" border="0" alt="newdoc logo">
+          <img src="images/newdoc-logo.png" id="logo" height="24px" border="0" alt="newdoc logo">
         </div>
         <div class="new-search">
-          <button class="btn btn-default new-search" type="reset" value="Reset Form">New search</button>
+          <button class="btn btn-default new-search-button" type="reset" value="Reset Form">New search</button>
         </div>
       </nav>
       <section role="region" id="doc-search-form">
         <div class="start-header">
           <h1>Find a new doctor with NewDoc</h1>
-          <p class="app-description">The fastest way to find doctors in your area based on specialty and gender.</p>
+          <p class="app-description">The fastest way to find doctors in your area by specialty and gender.</p>
         </div>
-          <form id="findadoc">
-            <fieldset>
-                <div class=row>
-                  <div class="field">
-                    <label>Address or zip code</label><br>
-                    <input type="text" name="zip" id="zip" required>
-                  </div>
-                </div>
-                <div class="field">
-                  <label>Doctor specialty</label><br>
-                  <select id="specialty-dropdown" name="Select specialty" required>
-                    <option value="" disabled selected>Select a specialty</option>
-                  </select>
-                </div>
-                <div class=row>
-                  <div class="field">
-                    <label>Preferred doctor gender</label>
-                    <select id="gender-dropdown" name="Select gender" required>
-                      <option value="" disabled selected>Select a gender</option>
-                      <option value="female">Female</option>
-                      <option value="male">Male</option>
-                      <option value="">No preference</option>
-                    </select>
-                  </div>
-                </div>
-              <div class=cta-row>
-                <button class="btn btn-default start-cta" type="submit">Submit</button>
+        <form id="findadoc">
+          <fieldset>
+            <div class="field">
+              <label>Address or zip code</label><br>
+              <input type="text" name="zip" id="zip" required>
+            </div>
+            <div class="field">
+              <label>Doctor specialty</label><br>
+              <select id="specialty-dropdown" name="Select specialty" required>
+                <option>Select a specialty</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Preferred doctor gender</label>
+              <select id="gender-dropdown" name="Select gender" required>
+                <option>Select a gender</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="">No preference</option>
+              </select>
               </div>
-            </fieldset>
-          </form>
+            <div class="cta-row">
+              <button class="btn btn-default start-cta" type="submit">Submit</button>
+            </div>
+          </fieldset>
+        </form>
       </section>
       <section role="region" id="doc-results">
         <div id="map">
@@ -65,7 +61,7 @@
           <img src="images/ajax-loader.gif" id="loader" height="24px" border="0" alt="results loading">
           <p class="total-results"></p>
         </div>
-        <div class="top-button-container"></div>
+        <div class="top-button-container">
           <div class="back-to-top">
             <a href="#top">Back to top</a>
           </div>
