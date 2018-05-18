@@ -89,6 +89,12 @@ function submitBottomForm() {
   });
 }
 
+function submitBottomForm() {
+  $("#findadoc3").submit(function(event) {
+    universalFormSubmission();
+  });
+}
+
 function universalFormSubmission(){
   event.preventDefault();
     let zipCode = $(".zip").val();
