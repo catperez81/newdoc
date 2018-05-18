@@ -63,7 +63,7 @@ function getSpecialtiesFromApi() {
     dataType: "json",
     type: "GET",
     success: function(response) {
-      let dropdown = $("#specialty-dropdown");
+      let dropdown = $(".specialty-dropdown");
       dropdown.empty();
       response.data.map(function(specialty, index) {
         dropdown.append($(`<option>${specialty.name}</option>`).attr("value", specialty.uid));
@@ -77,19 +77,27 @@ function getSpecialtiesFromApi() {
 }
 
 /* submit doctor search form */
-function submitForm() {
+function submitHeroForm() {
   $("#findadoc").submit(function(event) {
-    event.preventDefault();
-    let zipCode = $("#zip").val();
-    $("#zip").val("");
-    let gender = $("#gender-dropdown").val();
-    $("#gender-dropdown").val("");
-    let healthPlan = $("#plan-dropdown").val();
-    $("#plan-dropdown").val("");
-    let specialty = $("#specialty-dropdown").val();
-    $("#specialty-dropdown").val("");
-    getLatLong(zipCode, healthPlan, specialty, gender);
+    universalFormSubmission();
   });
+}
+
+function submitBottomForm() {
+  $("#findadoc2").submit(function(event) {
+    universalFormSubmission();
+  });
+}
+
+function universalFormSubmission(){
+  event.preventDefault();
+    let zipCode = $(".zip").val();
+    $(".zip").val("");
+    let gender = $(".gender-dropdown").val();
+    $(".gender-dropdown").val("");
+    let specialty = $(".specialty-dropdown").val();
+    $(".specialty-dropdown").val("");
+    getLatLong(zipCode, specialty, gender);
 }
 
 function getLatLong(zipCode, healthPlan, specialty, gender) {
@@ -495,7 +503,8 @@ $(function() {
   $(".new-search").hide();
   getSpecialtiesFromApi();
   docProfileView();
-  submitForm();
+  submitHeroForm();
+  submitBottomForm();
   logoClickable();
   newDoctorSearch();
 });
