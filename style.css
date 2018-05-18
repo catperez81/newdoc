@@ -1,9 +1,6 @@
-/* Defaults for all elements */
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
+/* Defaults for all elements */\
 * {
+  box-sizing: border-box;
   line-height: 1.7em;
   margin: 0;
   padding: 0;
@@ -13,6 +10,7 @@
 
 html, body, main {
   height: 100%;
+  margin: 0;
 }
 
 a {
@@ -20,7 +18,7 @@ a {
 }
 
 .start-header {
-  margin: 0 auto;
+  margin-left: 100px;
 }
 
 p {
@@ -35,7 +33,6 @@ p {
 
 h1 {
   font-size: 34px;
-  padding-bottom: 10px;
   font-family: 'Asap', sans-serif;
 }
 
@@ -47,8 +44,7 @@ nav {
 }
 
 .logo-section {
-  height: 50px;
-  padding: 10px 0px 40px 20px;
+  padding: 20px 0px 20px 20px;
   display: inline-block;
 }
 
@@ -73,6 +69,10 @@ nav {
   background: #99CBA0;
 }
 
+#findadoc {
+  padding-left: 100px;
+}
+
 #findadoc2 {
   text-align: center;
   padding: 50px 0px 50px 0px;
@@ -84,11 +84,8 @@ nav {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  width: 100%;
   height: 100%;
   padding-top: 50px;
-  padding-left: 50px;
-  margin: 0 auto;
 }
 
 fieldset {
@@ -175,6 +172,7 @@ input {
 /* Value props styling */
 
 .value-section {
+  padding-top: 100px;
   padding-bottom: 300px;
 }
 
@@ -184,15 +182,20 @@ input {
 }
 
 .value-image {
-  margin-left: 100px;
+  margin-left: 300px;
   float: left;
 }
 
 .value-text {
-  width: 60%;
+  width: 50%;
+  line-height: 2em;
   margin-left: 30px;
-  margin-right: 100px;
+  margin-right: 200px;
   float: right;
+}
+
+.value-header {
+  font-family: 'Asap', sans-serif;
 }
 
 
