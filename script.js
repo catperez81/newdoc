@@ -97,9 +97,7 @@ function universalFormSubmission(){
     $(".gender-dropdown").val("");
     let specialty = $(".specialty-dropdown").val();
     $(".specialty-dropdown").val("");
-    let healthPlan = $(".plan-dropdown").val();
-    $(".plan-dropdown").val("");
-    getLatLong(zipCode, specialty, healthPlan, gender);
+    getLatLong(zipCode, specialty, gender);
 }
 
 function getLatLong(zipCode, healthPlan, specialty, gender) {
