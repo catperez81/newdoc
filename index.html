@@ -52,6 +52,63 @@
             </div>
           </fieldset>
         </form>
+        <div class="value-section">
+          <div class="value-prop">
+            <div class="value-image">
+              <img src=http://i64.tinypic.com/mbmmxf.png" border="0" alt="Find Doctors Image">
+            </div>
+            <div class="value-text">
+              <h2 class="value-header"> A no frills doctor search</h2> 
+              <p class="value-para">Forget all the noise, we keep the experience of finding a doctor super simple. Just enter what you're looking for and you'll have a list of doctors in your area in no time.</p>
+            </div>
+          </div>
+          <div class="value-prop">
+            <div class="value-image">
+              <img src="http://i67.tinypic.com/kd2xwk.png" border="0" alt="Fast Results Image"> 
+            </div>
+            <div class="value-text">
+              <h2 class="value-header"> A no frills doctor search</h2> 
+              <p class="value-para">Forget all the noise, we keep the experience of finding a doctor super simple. Just enter what you're looking for and you'll have a list of doctors in your area in no time.</p>
+            </div>
+          </div>
+          <div class="value-prop">
+            <div class="value-image">
+              <img src="http://i66.tinypic.com/j6s7du.png" border="0" alt="Search by Gender Image">
+            </div>
+            <div class="value-text">
+              <h2 class="value-header"> A no frills doctor search</h2> 
+              <p class="value-para">Forget all the noise, we keep the experience of finding a doctor super simple. Just enter what you're looking for and you'll have a list of doctors in your area in no time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-form">
+          <form id="findadoc2">
+            <fieldset>
+              <div class="field">
+                <label>Address or zip code</label><br>
+                <input type="text" name="zip" id="zip" required>
+              </div>
+              <div class="field">
+                <label>Doctor specialty</label><br>
+                <select id="specialty-dropdown" name="Select specialty" required>
+                  <option>Select a specialty</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Preferred doctor gender</label>
+                <select id="gender-dropdown" name="Select gender" required>
+                  <option>Select a gender</option>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                  <option value="">No preference</option>
+                </select>
+                </div>
+              <div class="cta-row">
+                <button class="btn btn-default start-cta" type="submit">Submit</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
       </section>
       <section role="region" id="doc-results">
         <div id="map">
@@ -60,6 +117,8 @@
         <div class="results">
           <img src="images/ajax-loader.gif" id="loader" height="24px" border="0" alt="results loading">
           <p class="total-results"></p>
+          <div class="doctors">
+          </div>
         </div>
         <div class="top-button-container">
           <div class="back-to-top">
