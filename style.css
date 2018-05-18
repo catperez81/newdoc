@@ -182,7 +182,7 @@ input {
 }
 
 .value-image {
-  margin-left: 300px;
+  margin-left: 200px;
   float: left;
 }
 
@@ -197,7 +197,6 @@ input {
 .value-header {
   font-family: 'Asap', sans-serif;
 }
-
 
 /* Results styling */
 
@@ -313,10 +312,22 @@ ul {
 
 @media only screen and (max-width: 768px) {
 
+  #findadoc2 {
+    margin: 500px 30px 0px 30px;
+  }
+
   #doc-search-form {
   background: #E6EFF5;
   padding: 10px;
-}
+  }
+
+  #findadoc {
+    padding: 0px 30px 0px 30px;
+  }
+
+  .start-header {
+    margin: 0px 30px 0px 30px;
+  }
 
   input,
   .dropdown, .doctor-list, .results-overview, .doctor-image {
@@ -345,4 +356,27 @@ ul {
   .specialty-dropdown, .gender-dropdown {
     width: 100%;
   }
+
+  /* Value props styling */
+
+  .value-section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .value-prop {
+    margin-top: 100px;
+    padding-top: 30px;
+  }
+
+  .value-image {
+    display: none;
+  }
+
+  .value-text {
+    width: 80%;
+    line-height: 2em;
+    margin: 0px 30px 0px 30px;
+  }
+
 }
