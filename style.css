@@ -393,6 +393,17 @@ ul {
 
 @media only screen and (max-width: 768px) {
 
+  /* form styling */
+
+  #results-form {
+    padding: 20px;
+  }
+
+  .results-field {
+    width: 100%;
+    padding-top: 30px;
+  }
+
   #doc-search-form {
   background: #E6EFF5;
   padding: 10px;
@@ -406,17 +417,21 @@ ul {
     margin: 0px 30px 0px 30px;
   }
 
-  input,
-  .dropdown, .doctor-list, .results-overview, .doctor-image {
-    width: 100%;
-  }
-
   .start-cta, .field, .input {
     width: 100%;
   }
 
+  .specialty-dropdown, .gender-dropdown {
+    width: 100%;
+  }
+
+  /* card content */
   .card-content, .info-section {
-    width: 85%;
+    width: 90%;
+  }
+
+  .info-section {
+    margin-left: 0px;
   }
 
   .doctor-profile-button {
@@ -429,20 +444,20 @@ ul {
     width: 100%;
     height: auto;
   }
-
-  .specialty-dropdown, .gender-dropdown {
-    width: 100%;
+  
+  .doc-image, .doctor-info, .doctor-profile-button, .new-search {
+    padding-left: 0px;
   }
 
   /* Value props styling */
 
   .value-section {
     padding-top: 30px;
-    padding-bottom: 30px;
+    margin-bottom: 230px;
   }
 
   .value-prop {
-    margin-top: 100px;
+    margin-top: 50px;
     padding-top: 30px;
   }
 
@@ -453,7 +468,7 @@ ul {
   .value-text {
     width: 80%;
     line-height: 2em;
-    margin: 0px 30px 0px 30px;
+    margin: 30px 30px 0px 30px;
   }
 
 }
