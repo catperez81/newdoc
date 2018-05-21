@@ -253,7 +253,7 @@ function showProfile() {
 function showSearchForm() {
   $("#doc-results").hide();
   $("#doctor-profile-container").hide();
-  $(".new-search").show();
+  $(".new-search").hide();
   $("#doc-search-form").show();
   getSpecialtiesFromApi();
 }
@@ -261,7 +261,7 @@ function showSearchForm() {
 function showDoctors() {
   $("#doc-search-form").hide();
   $("#doctor-profile-container").hide();
-  $(".new-search").show();
+  $(".new-search").hide();
   $("#doc-results").show();
   renderResults();
   setPins();
@@ -271,7 +271,7 @@ function backToResults() {
   $(".back-to-results").on("click", function() {
     $("#doctor-profile-container").hide();
     $("#doc-search-form").hide();
-    $(".new-search").show();
+    $(".new-search").hide();
     $("#doc-results").show();
   });
 }
