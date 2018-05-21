@@ -92,8 +92,7 @@ function submitResultsForm() {
   });
 }
 
-function universalFormSubmission() {
-  event.preventDefault();
+function getHeroFormVals() {
   let zipCode = $(".zip").val();
   $(".zip").val("");
   let gender = $(".gender-dropdown").val();
@@ -101,6 +100,11 @@ function universalFormSubmission() {
   let specialty = $(".specialty-dropdown").val();
   $(".specialty-dropdown").val("");
   getLatLong(zipCode, specialty, gender);
+}
+
+function universalFormSubmission() {
+  event.preventDefault();
+  getHeroFormVals();
 }
 
 function getLatLong(zipCode, healthPlan, specialty, gender) {
