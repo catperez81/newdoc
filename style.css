@@ -213,7 +213,7 @@ input {
 }
 
 .value-prop {
-  margin-top: 200px;
+  margin-top: 150px;
   padding-top: 50px;
 }
 
@@ -246,7 +246,6 @@ input {
   color: white;
   text-decoration: none;
   font-family: 'Asap', sans-serif;
-  display: block;
   padding-top: 20px;
 }
 
@@ -255,11 +254,11 @@ input {
 }
 
 .github-link:active {
-  color: black;
+  color: purple;
 }
 
 .github-link:visited {
-  color: purple;
+  color: #08266C;
 }
 
 /* Results styling */
