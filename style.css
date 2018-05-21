@@ -81,14 +81,13 @@ nav {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 100%;
+  height: 80%;
   padding-top: 50px;
 }
 
 .results-fieldset {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
   box-shadow: none;
+  border: none !important;
   border-radius: 0px;
   padding: 0px;
 }
@@ -127,6 +126,7 @@ label {
   color: #14537d;
   font-size: 16px;
   cursor: pointer;
+  display: block;
 }
 
 .row {
@@ -180,7 +180,7 @@ input {
   background: url("http://i65.tinypic.com/1znwo53.png") no-repeat right center;
   font-family: 'Asap', sans-serif;
   font-size: 14px;
-  padding-left: 10px;
+  padding-left: 20px;
   height: 44px;
   width: 100%;
   color: #14537d;

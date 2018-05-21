@@ -86,7 +86,7 @@ function submitHeroForm() {
   });
 }
 
-function submitBottomForm() {
+function submitResultsForm() {
   $("#results-form").submit(function(event) {
     universalFormSubmission();
   });
@@ -519,7 +519,7 @@ $(function() {
   getSpecialtiesFromApi();
   docProfileView();
   submitHeroForm();
-  submitBottomForm();
+  submitResultsForm()
   logoClickable();
   newDoctorSearch();
 });
