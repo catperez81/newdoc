@@ -92,13 +92,15 @@ function submitResultsForm() {
   });
 }
 
+/* use url to store the values */
+
 function getHeroFormVals() {
   let zipCode = $(".zip").val();
-  $(".zip").val("");
+  $(".zip").val(zipCode);
   let gender = $(".gender-dropdown").val();
-  $(".gender-dropdown").val("");
+  $(".gender-dropdown").val(gender);
   let specialty = $(".specialty-dropdown").val();
-  $(".specialty-dropdown").val("");
+  $(".specialty-dropdown").val(specialty);
   getLatLong(zipCode, specialty, gender);
 }
 
