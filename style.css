@@ -24,6 +24,7 @@ a {
 p {
   font-size: 16px;
   font-family: 'Asap', sans-serif;
+  line-height: 1.5em;
   -webkit-margin-before: .3em;
   -webkit-margin-after: .3em;
 }
@@ -97,7 +98,6 @@ nav {
   padding: 0px;
 }
 
-
 fieldset {
   -webkit-box-shadow: 0 8px 6px -8px black;
   -moz-box-shadow: 0 8px 6px -8px black;
@@ -145,7 +145,6 @@ label {
   padding-bottom: 30px;
   text-align: left;
 }
-
 
 input {
   height: 40px;
@@ -365,6 +364,10 @@ ul {
   list-style-type: none;
 }
 
+.insurances {
+  line-height: 1.5em;
+}
+
 #doc-profile {
   display: none;
   text-align: center;
@@ -374,7 +377,10 @@ ul {
 }
 
 .back-to-results {
-  padding-left: 34px;
+  padding: 34px 0px 34px 34px;
+  font-family: 'Asap', sans-serif;
+  text-decoration:  none;
+  font-size: 16px;
 }
 
 #doctor-profile-container {

@@ -49,6 +49,7 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
     }
   };
   $("#loader").show();
+  $(".back-to-top").hide();
   $(".total-results").html("Looking for doctors");
   $.ajax(doctors);
 }
@@ -92,8 +93,6 @@ function submitResultsForm() {
   });
 }
 
-/* use url to store the values */
-
 function getHeroFormVals() {
   let zipCode = $(".zip").val();
   $(".zip").val(zipCode);
@@ -135,9 +134,7 @@ function renderResults() {
     </div>`;
   $(".total-results").html(html);
   if (state.doctors.length === 0) {
-    $(".total-results").html(
-      "Sorry, we could not find any doctors. Try another search."
-    );
+    $(".total-results").html("Sorry, we could not find any doctors. Try another search.");
   }
 }
 
@@ -200,8 +197,7 @@ function renderProfile(index, data) {
   });
 
   let selectedDoctorPractice = selectedDoctor.practices[0];
-  let selectedDoctorName =
-    selectedDoctor.profile.first_name + "" + selectedDoctor.profile.last_name;
+  let selectedDoctorName = selectedDoctor.profile.first_name + "" + selectedDoctor.profile.last_name;
 
   let distance = Math.round(selectedDoctorPractice.distance);
   var html = `
@@ -213,9 +209,7 @@ function renderProfile(index, data) {
         <h3>${selectedDoctorName}</h3>
         <p>${selectedDoctor.profile.gender}</p>
         <p>${distance} miles away</p>
-        <p>${selectedDoctorPractice.visit_address.street}, ${
-    selectedDoctorPractice.visit_address.city
-  }, ${selectedDoctorPractice.visit_address.state_long}</p>
+        <p>${selectedDoctorPractice.visit_address.street}, ${selectedDoctorPractice.visit_address.city}, ${selectedDoctorPractice.visit_address.state_long}</p>
         <p class="specialties">Specialties: ${profileSpecialties.join(", ")}</p>
         <p class="insurances">Insurance taken: ${plansTaken.join(", ")}</p>
       </div>
