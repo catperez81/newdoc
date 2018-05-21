@@ -22,8 +22,10 @@ a {
 }
 
 p {
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Asap', sans-serif;
+  -webkit-margin-before: .5em;
+  -webkit-margin-after: .5em;
 }
 
 .app-description {
@@ -73,11 +75,6 @@ nav {
   padding-left: 100px;
 }
 
-#findadoc2 {
-  text-align: center;
-  padding: 50px 0px 50px 0px;
-}
-
 #doc-search-form {
   background-image: url(http://i63.tinypic.com/2v93f43.jpg);
   -webkit-background-size: cover;
@@ -87,6 +84,15 @@ nav {
   height: 100%;
   padding-top: 50px;
 }
+
+.results-fieldset {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0px;
+  padding: 0px;
+}
+
 
 fieldset {
   -webkit-box-shadow: 0 8px 6px -8px black;
@@ -98,6 +104,14 @@ fieldset {
   border: 1px solid #F6F6F6 !important;
   font-size: 0;
   display: inline-block;
+}
+
+#results-form{
+  box-shadow: none !important;
+  padding: 40px;
+  background-color: white;
+  border-radius: none;
+  border-bottom: 1px solid #EEEDED !important;
 }
 
 label {
@@ -142,6 +156,25 @@ input {
   background-color: #14537d;
   color: white;
 }
+
+.results-submit-cta {
+  padding: 14px 30px;
+  font-family: 'Asap', sans-serif;
+  font-size: 16px;
+  font-weight: bolder;
+  border-radius: 3px;
+  border: none;
+  background-color: #14537d;
+  color: white;
+}
+
+.results-field {
+  width: 30%;
+  display: inline-block;
+  text-align: left;
+  padding-right: 10px;
+}
+
 
 .specialty-dropdown, .gender-dropdown {
   -moz-appearance: none;
@@ -252,6 +285,15 @@ input {
   padding-top: 20px;
   padding-bottom: 20px;
   font-size: 120%;
+}
+
+.top-button-container {
+  padding: 50px;
+}
+
+.back-to-top-link {
+  text-decoration:  none;
+  font-size: 16px;
 }
 
 /* doctor profile styling */

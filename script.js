@@ -37,18 +37,18 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
     success: function(response) {
       console.log(response);
       $("#loader").hide();
-      alert("asd");
+      // alert("asd");
       state.doctors = response.data;
       showDoctors();
-      $(".back-to-top").show();
+      $(".back-to-top-link").show();
     },
     error: function(error) {
       console.log(error);
       $("#loader").hide();
+      $(".back-to-top-link").hide();
     }
   };
   $("#loader").show();
-  $(".back-to-top").hide();
   $(".total-results").html("Looking for doctors");
   $.ajax(doctors);
 }
@@ -87,13 +87,7 @@ function submitHeroForm() {
 }
 
 function submitBottomForm() {
-  $("#findadoc2").submit(function(event) {
-    universalFormSubmission();
-  });
-}
-
-function submitBottomForm() {
-  $("#findadoc3").submit(function(event) {
+  $("#results-form").submit(function(event) {
     universalFormSubmission();
   });
 }

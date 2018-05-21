@@ -94,20 +94,20 @@
         <div id="map">
           <a name="top"></a>
         </div>
-        <div class="results">
-          <form id="findadoc3">
-            <fieldset>
-              <div class="field">
+        <div id="results-form">
+          <form>
+            <fieldset class="results-fieldset">
+              <div class="results-field">
                 <label>Address or zip code</label><br>
                 <input type="text" name="zip" class="zip" required>
               </div>
-              <div class="field">
+              <div class="results-field">
                 <label>Doctor specialty</label><br>
                 <select class="specialty-dropdown" name="Select specialty" required>
                   <option>Select a specialty</option>
                 </select>
               </div>
-              <div class="field">
+              <div class="results-field">
                 <label>Preferred doctor gender</label>
                 <select class="gender-dropdown" name="Select gender" required>
                   <option>Select a gender</option>
@@ -115,12 +115,16 @@
                   <option value="male">Male</option>
                   <option value="">No preference</option>
                 </select>
+              </div>
+              <div class="results-field">
+                <div class="results-submit">
+                  <button class="btn btn-default results-submit-cta" type="submit">Submit</button>
                 </div>
-              <div class="cta-row">
-                <button class="btn btn-default start-cta" type="submit">Submit</button>
               </div>
             </fieldset>
-        </form>
+          </form>
+        </div>
+        <div class="results">
           <img src="images/ajax-loader.gif" id="loader" height="24px" border="0" alt="results loading">
           <p class="total-results"></p>
           <div class="doctors">
@@ -128,7 +132,7 @@
         </div>
         <div class="top-button-container">
           <div class="back-to-top">
-            <a href="#top">Back to top</a>
+            <a href="#top" class="back-to-top-link">Back to top</a>
           </div>
         </div>
       </section>
