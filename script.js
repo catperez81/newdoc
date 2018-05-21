@@ -2,7 +2,8 @@ const BETTERDOCTOR_API_URL = "https://api.betterdoctor.com/2016-03-01";
 
 var state = {
   doctors: [],
-  selectedDoctor: {}
+  selectedDoctor: {},
+  markersArray: []
 };
 
 var lat = "";
@@ -16,8 +17,7 @@ var profileMap;
 var profileMarker;
 
 function getDataFromApi(lat, lng, specialty, gender) {
-  console.log('specialty', specialty);
-  console.log('gender', gender);
+  console.log(specialty);
   var requestData = {
     location: `${lat}, ${lng}, 30`,
     skip: 0,
@@ -72,7 +72,7 @@ function getSpecialtiesFromApi() {
       dropdown.empty();
       response.data.map(function(specialty, index) {
         dropdown.append(
-          $(`<option>${specialty.name}</option>`).attr("val", specialties.uid)
+          $(`<option>${specialty.name}</option>`).attr("value", specialty.uid)
         );
       });
     },
@@ -86,29 +86,33 @@ function getSpecialtiesFromApi() {
 /* submit doctor search form */
 function submitHeroForm() {
   $("#findadoc").submit(function(event) {
-    universalFormSubmission();
+    universalFormSubmission(event, "#findadoc");
   });
 }
 
 function submitResultsForm() {
   $("#results-form").submit(function(event) {
-    universalFormSubmission();
+    universalFormSubmission(event, "#results-form");
   });
 }
-
-function getHeroFormVals() {
-  let zipCode = $(".zip").val();
-  $(".zip").val(zipCode);
-  let specialty = $(".specialty-dropdown").val();
-  $(".specialty-dropdown").val(specialty);
-  let gender = $(".gender-dropdown").val();
-  $(".gender-dropdown").val(gender);
-  getLatLong(zipCode, specialty, gender);
-}
-
-function universalFormSubmission() {
+function universalFormSubmission(event, formName) {
   event.preventDefault();
-  getHeroFormVals();
+
+  let zipCode = $(formName)
+    .find(".zip")
+    .val();
+  let specialty = $(formName)
+    .find(".specialty-dropdown")
+    .val();
+  let gender = $(formName)
+    .find(".gender-dropdown")
+    .val();
+
+  getLatLong(zipCode, specialty, gender);
+
+  $(".specialty-dropdown").val(specialty);
+  $(".zip").val(zipCode);
+  $(".gender-dropdown").val(gender);
 }
 
 function getLatLong(zipCode, specialty, gender) {
@@ -137,7 +141,9 @@ function renderResults() {
     </div>`;
   $(".total-results").html(html);
   if (state.doctors.length === 0) {
-    $(".total-results").html("Sorry, we could not find any doctors. Try another search.");
+    $(".total-results").html(
+      "Sorry, we could not find any doctors. Try another search."
+    );
   }
 }
 
@@ -185,13 +191,21 @@ function renderProfile(index, data) {
     lng: selectedDoctor.practices[0].lon
   };
 
+  if (profileMarker) {
+    profileMarker.setMap(null);
+  }
+
   profileMarker = new google.maps.Marker({
     position: doctorPosition,
     map: profileMap
   });
+  state.markersArray.push(profileMarker);
   profileMap.setCenter(doctorPosition);
 
-  let profileSpecialties = selectedDoctor.specialties.map(function(specialty, index) {
+  let profileSpecialties = selectedDoctor.specialties.map(function(
+    specialty,
+    index
+  ) {
     return `<span>${specialty.name}</span>`;
   });
 
@@ -200,7 +214,8 @@ function renderProfile(index, data) {
   });
 
   let selectedDoctorPractice = selectedDoctor.practices[0];
-  let selectedDoctorName = selectedDoctor.profile.first_name + " " + selectedDoctor.profile.last_name;
+  let selectedDoctorName =
+    selectedDoctor.profile.first_name + " " + selectedDoctor.profile.last_name;
 
   let distance = Math.round(selectedDoctorPractice.distance);
   var html = `
@@ -212,7 +227,9 @@ function renderProfile(index, data) {
         <h3>${selectedDoctorName}</h3>
         <p>${selectedDoctor.profile.gender}</p>
         <p>${distance} miles away</p>
-        <p>${selectedDoctorPractice.visit_address.street}, ${selectedDoctorPractice.visit_address.city}, ${selectedDoctorPractice.visit_address.state_long}</p>
+        <p>${selectedDoctorPractice.visit_address.street}, ${
+    selectedDoctorPractice.visit_address.city
+  }, ${selectedDoctorPractice.visit_address.state_long}</p>
         <p class="specialties">Specialties: ${profileSpecialties.join(", ")}</p>
         <p class="insurances">Insurance taken: ${plansTaken.join(", ")}</p>
       </div>
@@ -288,6 +305,7 @@ function newDoctorSearch() {
 }
 
 function setPins() {
+  clearMarkers();
   state.doctors.forEach((doctor, index) => {
     let distance = Math.round(doctor.practices[0].distance);
     var doctorInfoWindow = `
@@ -313,6 +331,7 @@ function setPins() {
       map: map,
       content: doctorInfoWindow
     });
+    state.markersArray.push(marker);
 
     marker.addListener("click", function() {
       infowindow.open(map, marker);
@@ -507,6 +526,12 @@ function initMap() {
   });
 }
 
+function clearMarkers() {
+  for (var i = 0; i < state.markersArray.length; i++) {
+    state.markersArray[i].setMap(null);
+  }
+  state.markersArray.length = 0;
+}
 function initProfileMap() {
   $("#profile-map").html();
   geocoder = new google.maps.Geocoder();
@@ -522,7 +547,7 @@ $(function() {
   getSpecialtiesFromApi();
   docProfileView();
   submitHeroForm();
-  submitResultsForm()
+  submitResultsForm();
   logoClickable();
   newDoctorSearch();
 });
