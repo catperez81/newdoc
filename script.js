@@ -36,19 +36,20 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
     type: "GET",
     success: function(response) {
       console.log(response);
-      $('#loader').hide();
+      $("#loader").hide();
+      alert("asd");
       state.doctors = response.data;
       showDoctors();
-      $('.back-to-top').show();
+      $(".back-to-top").show();
     },
     error: function(error) {
       console.log(error);
-      $('#loader').hide();
+      $("#loader").hide();
     }
   };
-  $('#loader').show();
-  $('.back-to-top').hide();
-  $(".total-results").html('Looking for doctors');
+  $("#loader").show();
+  $(".back-to-top").hide();
+  $(".total-results").html("Looking for doctors");
   $.ajax(doctors);
 }
 
@@ -66,7 +67,9 @@ function getSpecialtiesFromApi() {
       let dropdown = $(".specialty-dropdown");
       dropdown.empty();
       response.data.map(function(specialty, index) {
-        dropdown.append($(`<option>${specialty.name}</option>`).attr("value", specialty.uid));
+        dropdown.append(
+          $(`<option>${specialty.name}</option>`).attr("value", specialty.uid)
+        );
       });
     },
     error: function(error) {
@@ -95,15 +98,15 @@ function submitBottomForm() {
   });
 }
 
-function universalFormSubmission(){
+function universalFormSubmission() {
   event.preventDefault();
-    let zipCode = $(".zip").val();
-    $(".zip").val("");
-    let gender = $(".gender-dropdown").val();
-    $(".gender-dropdown").val("");
-    let specialty = $(".specialty-dropdown").val();
-    $(".specialty-dropdown").val("");
-    getLatLong(zipCode, specialty, gender);
+  let zipCode = $(".zip").val();
+  $(".zip").val("");
+  let gender = $(".gender-dropdown").val();
+  $(".gender-dropdown").val("");
+  let specialty = $(".specialty-dropdown").val();
+  $(".specialty-dropdown").val("");
+  getLatLong(zipCode, specialty, gender);
 }
 
 function getLatLong(zipCode, healthPlan, specialty, gender) {
@@ -115,7 +118,9 @@ function getLatLong(zipCode, healthPlan, specialty, gender) {
       getDataFromApi(lat, lng, healthPlan, specialty, gender);
       map.setCenter(new google.maps.LatLng(lat, lng));
     } else {
-      alert("Sorry, but that Zip code / address was invalid. Please enter a valid Zip code or address.");
+      alert(
+        "Sorry, but that Zip code / address was invalid. Please enter a valid Zip code or address."
+      );
     }
   });
 }
@@ -129,8 +134,10 @@ function renderResults() {
       <p class="total-results">We've found ${totalResults} doctors</p>
     </div>`;
   $(".total-results").html(html);
-  if(state.doctors.length === 0) {
-    $(".total-results").html('Sorry, we could not find any doctors. Try another search.');
+  if (state.doctors.length === 0) {
+    $(".total-results").html(
+      "Sorry, we could not find any doctors. Try another search."
+    );
   }
 }
 
@@ -149,7 +156,7 @@ function renderDoctor(doctor, index) {
              ${doctor.practices[0].visit_address.city},
              ${doctor.practices[0].visit_address.state_long}</p>
           <p>${distance} miles away</p>
-          <p>${doctor.specialties[0].name}</p>
+          <p>${doctor.specialties[0] ? doctor.specialties[0].name : ""}</p>
         </div>
         <div class="doctor-profile-button">
           <button data-index="${index}" class="doctor-profile type="button">View profile</button>
@@ -181,7 +188,10 @@ function renderProfile(index, data) {
   });
   profileMap.setCenter(doctorPosition);
 
-  let profileSpecialties = selectedDoctor.specialties.map(function(specialty,index) {
+  let profileSpecialties = selectedDoctor.specialties.map(function(
+    specialty,
+    index
+  ) {
     return `<span>${specialty.name}</span>`;
   });
 
@@ -190,7 +200,8 @@ function renderProfile(index, data) {
   });
 
   let selectedDoctorPractice = selectedDoctor.practices[0];
-  let selectedDoctorName = selectedDoctor.profile.first_name + "" + selectedDoctor.profile.last_name;
+  let selectedDoctorName =
+    selectedDoctor.profile.first_name + "" + selectedDoctor.profile.last_name;
 
   let distance = Math.round(selectedDoctorPractice.distance);
   var html = `
@@ -202,13 +213,17 @@ function renderProfile(index, data) {
         <h3>${selectedDoctorName}</h3>
         <p>${selectedDoctor.profile.gender}</p>
         <p>${distance} miles away</p>
-        <p>${selectedDoctorPractice.visit_address.street}, ${selectedDoctorPractice.visit_address.city}, ${selectedDoctorPractice.visit_address.state_long}</p>
+        <p>${selectedDoctorPractice.visit_address.street}, ${
+    selectedDoctorPractice.visit_address.city
+  }, ${selectedDoctorPractice.visit_address.state_long}</p>
         <p class="specialties">Specialties: ${profileSpecialties.join(", ")}</p>
         <p class="insurances">Insurance taken: ${plansTaken.join(", ")}</p>
       </div>
       <div class="info-section">
         <p>About: ${selectedDoctor.profile.bio}</p><br>
-        <p>Accepting new patients: ${selectedDoctorPractice.accepts_new_patients}</p>
+        <p>Accepting new patients: ${
+          selectedDoctorPractice.accepts_new_patients
+        }</p>
         <p>Languages: ${selectedDoctorPractice.languages[0].name}</p>
         <p class="phone">Contact: ${selectedDoctorPractice.phones[0].number}</p>
       </div>
@@ -288,7 +303,7 @@ function setPins() {
              ${doctor.practices[0].visit_address.city},
              ${doctor.practices[0].visit_address.state_long}</p>
           <p>${distance} miles away</p>
-          <p>${doctor.specialties[0].name}</p>
+          <p>${doctor.specialties[0] ? doctor.specialties[0].name : ""}</p>
         </div>
         <div>
           <button data-index="${index}" class="doctor-profile" type="button">View profile</button>
@@ -326,85 +341,85 @@ function initMap() {
     zoom: 10,
     center: uluru,
     styles: [
-            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-            {
-              featureType: 'administrative.locality',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'geometry',
-              stylers: [{color: '#263c3f'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#6b9a76'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{color: '#38414e'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#212a37'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#9ca5b3'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry',
-              stylers: [{color: '#746855'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#1f2835'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#f3d19c'}]
-            },
-            {
-              featureType: 'transit',
-              elementType: 'geometry',
-              stylers: [{color: '#2f3948'}]
-            },
-            {
-              featureType: 'transit.station',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [{color: '#17263c'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#515c6d'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{color: '#17263c'}]
-            }
-          ]
+      { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+      { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+      { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+      {
+        featureType: "administrative.locality",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#d59563" }]
+      },
+      {
+        featureType: "poi",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#d59563" }]
+      },
+      {
+        featureType: "poi.park",
+        elementType: "geometry",
+        stylers: [{ color: "#263c3f" }]
+      },
+      {
+        featureType: "poi.park",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#6b9a76" }]
+      },
+      {
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [{ color: "#38414e" }]
+      },
+      {
+        featureType: "road",
+        elementType: "geometry.stroke",
+        stylers: [{ color: "#212a37" }]
+      },
+      {
+        featureType: "road",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#9ca5b3" }]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "geometry",
+        stylers: [{ color: "#746855" }]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "geometry.stroke",
+        stylers: [{ color: "#1f2835" }]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#f3d19c" }]
+      },
+      {
+        featureType: "transit",
+        elementType: "geometry",
+        stylers: [{ color: "#2f3948" }]
+      },
+      {
+        featureType: "transit.station",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#d59563" }]
+      },
+      {
+        featureType: "water",
+        elementType: "geometry",
+        stylers: [{ color: "#17263c" }]
+      },
+      {
+        featureType: "water",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#515c6d" }]
+      },
+      {
+        featureType: "water",
+        elementType: "labels.text.stroke",
+        stylers: [{ color: "#17263c" }]
+      }
+    ]
   });
   infowindow = new google.maps.InfoWindow({
     content: ""
@@ -413,85 +428,85 @@ function initMap() {
     zoom: 10,
     center: uluru,
     styles: [
-            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-            {
-              featureType: 'administrative.locality',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'geometry',
-              stylers: [{color: '#263c3f'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#6b9a76'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{color: '#38414e'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#212a37'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#9ca5b3'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry',
-              stylers: [{color: '#746855'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#1f2835'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#f3d19c'}]
-            },
-            {
-              featureType: 'transit',
-              elementType: 'geometry',
-              stylers: [{color: '#2f3948'}]
-            },
-            {
-              featureType: 'transit.station',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [{color: '#17263c'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#515c6d'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{color: '#17263c'}]
-            }
-          ]
+      { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+      { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+      { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+      {
+        featureType: "administrative.locality",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#d59563" }]
+      },
+      {
+        featureType: "poi",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#d59563" }]
+      },
+      {
+        featureType: "poi.park",
+        elementType: "geometry",
+        stylers: [{ color: "#263c3f" }]
+      },
+      {
+        featureType: "poi.park",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#6b9a76" }]
+      },
+      {
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [{ color: "#38414e" }]
+      },
+      {
+        featureType: "road",
+        elementType: "geometry.stroke",
+        stylers: [{ color: "#212a37" }]
+      },
+      {
+        featureType: "road",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#9ca5b3" }]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "geometry",
+        stylers: [{ color: "#746855" }]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "geometry.stroke",
+        stylers: [{ color: "#1f2835" }]
+      },
+      {
+        featureType: "road.highway",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#f3d19c" }]
+      },
+      {
+        featureType: "transit",
+        elementType: "geometry",
+        stylers: [{ color: "#2f3948" }]
+      },
+      {
+        featureType: "transit.station",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#d59563" }]
+      },
+      {
+        featureType: "water",
+        elementType: "geometry",
+        stylers: [{ color: "#17263c" }]
+      },
+      {
+        featureType: "water",
+        elementType: "labels.text.fill",
+        stylers: [{ color: "#515c6d" }]
+      },
+      {
+        featureType: "water",
+        elementType: "labels.text.stroke",
+        stylers: [{ color: "#17263c" }]
+      }
+    ]
   });
 }
 
