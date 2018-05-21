@@ -15,7 +15,9 @@ var infowindow;
 var profileMap;
 var profileMarker;
 
-function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
+function getDataFromApi(lat, lng, specialty, gender) {
+  console.log('specialty', specialty);
+  console.log('gender', gender);
   var requestData = {
     location: `${lat}, ${lng}, 30`,
     skip: 0,
@@ -25,7 +27,6 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
   };
 
   if (gender) {
-    console.log(gender);
     requestData.gender = gender;
   }
 
@@ -48,6 +49,7 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
       $(".back-to-top").hide();
     }
   };
+
   $("#loader").show();
   $(".back-to-top").hide();
   $(".total-results").html("Looking for doctors");
@@ -64,12 +66,13 @@ function getSpecialtiesFromApi() {
     },
     dataType: "json",
     type: "GET",
+    // console.log(specialties);
     success: function(response) {
       let dropdown = $(".specialty-dropdown");
       dropdown.empty();
       response.data.map(function(specialty, index) {
         dropdown.append(
-          $(`<option>${specialty.name}</option>`).attr("value", specialty.uid)
+          $(`<option>${specialty.name}</option>`).attr("val", specialties.uid)
         );
       });
     },
@@ -96,10 +99,10 @@ function submitResultsForm() {
 function getHeroFormVals() {
   let zipCode = $(".zip").val();
   $(".zip").val(zipCode);
-  let gender = $(".gender-dropdown").val();
-  $(".gender-dropdown").val(gender);
   let specialty = $(".specialty-dropdown").val();
   $(".specialty-dropdown").val(specialty);
+  let gender = $(".gender-dropdown").val();
+  $(".gender-dropdown").val(gender);
   getLatLong(zipCode, specialty, gender);
 }
 
@@ -108,13 +111,13 @@ function universalFormSubmission() {
   getHeroFormVals();
 }
 
-function getLatLong(zipCode, healthPlan, specialty, gender) {
+function getLatLong(zipCode, specialty, gender) {
   geocoder.geocode({ address: zipCode }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       showDoctors();
       lat = results[0].geometry.location.lat();
       lng = results[0].geometry.location.lng();
-      getDataFromApi(lat, lng, healthPlan, specialty, gender);
+      getDataFromApi(lat, lng, specialty, gender);
       map.setCenter(new google.maps.LatLng(lat, lng));
     } else {
       alert(
@@ -140,6 +143,9 @@ function renderResults() {
 
 function renderDoctor(doctor, index) {
   let distance = Math.round(doctor.practices[0].distance);
+  let doctorSpecialties = doctor.specialties.map(function(specialty, index) {
+    return `<span>${specialty.name}</span>`;
+  });
   return `
     <div class="results">
       <div class="card-content">
@@ -185,10 +191,7 @@ function renderProfile(index, data) {
   });
   profileMap.setCenter(doctorPosition);
 
-  let profileSpecialties = selectedDoctor.specialties.map(function(
-    specialty,
-    index
-  ) {
+  let profileSpecialties = selectedDoctor.specialties.map(function(specialty, index) {
     return `<span>${specialty.name}</span>`;
   });
 
@@ -197,7 +200,7 @@ function renderProfile(index, data) {
   });
 
   let selectedDoctorPractice = selectedDoctor.practices[0];
-  let selectedDoctorName = selectedDoctor.profile.first_name + "" + selectedDoctor.profile.last_name;
+  let selectedDoctorName = selectedDoctor.profile.first_name + " " + selectedDoctor.profile.last_name;
 
   let distance = Math.round(selectedDoctorPractice.distance);
   var html = `
