@@ -108,10 +108,16 @@ fieldset {
 
 #results-form{
   box-shadow: none !important;
-  padding: 40px;
+  padding: 30px;
   background-color: white;
   border-radius: none;
   border-bottom: 1px solid #EEEDED !important;
+}
+
+.results-field {
+  display: inline-block;
+  text-align: left;
+  padding-right: 10px;
 }
 
 label {
@@ -168,14 +174,6 @@ input {
   color: white;
 }
 
-.results-field {
-  width: 30%;
-  display: inline-block;
-  text-align: left;
-  padding-right: 10px;
-}
-
-
 .specialty-dropdown, .gender-dropdown {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -205,7 +203,7 @@ input {
 /* Value props styling */
 
 .value-section {
-  padding-top: 100px;
+  padding-top: 200px;
   padding-bottom: 300px;
 }
 
