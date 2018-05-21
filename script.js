@@ -57,13 +57,14 @@ function getDataFromApi(lat, lng, specialty, gender) {
 }
 
 function getSpecialtiesFromApi() {
+  var requestData = {
+    skip: 0,
+    limit: 100,
+    user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
+  };
   const specialties = {
     url: `${BETTERDOCTOR_API_URL}/specialties`,
-    data: {
-      skip: 0,
-      limit: 100,
-      user_key: "38a5e05a1ba6c75134d6d9a0497c51c0"
-    },
+    data: requestData,
     dataType: "json",
     type: "GET",
     // console.log(specialties);
