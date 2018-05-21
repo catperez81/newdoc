@@ -40,12 +40,12 @@ function getDataFromApi(lat, lng, healthPlan, specialty, gender) {
       // alert("asd");
       state.doctors = response.data;
       showDoctors();
-      $(".back-to-top-link").show();
+      $(".back-to-top").show();
     },
     error: function(error) {
       console.log(error);
       $("#loader").hide();
-      $(".back-to-top-link").hide();
+      $(".back-to-top").hide();
     }
   };
   $("#loader").show();

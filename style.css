@@ -24,8 +24,8 @@ a {
 p {
   font-size: 16px;
   font-family: 'Asap', sans-serif;
-  -webkit-margin-before: .5em;
-  -webkit-margin-after: .5em;
+  -webkit-margin-before: .3em;
+  -webkit-margin-after: .3em;
 }
 
 .app-description {
@@ -35,6 +35,11 @@ p {
 
 h1 {
   font-size: 34px;
+  font-family: 'Asap', sans-serif;
+}
+
+h3 {
+  font-size: 24px;
   font-family: 'Asap', sans-serif;
 }
 
@@ -204,7 +209,7 @@ input {
 /* Value props styling */
 
 .value-section {
-  padding-top: 200px;
+  padding-top: 50px;
   padding-bottom: 300px;
 }
 
@@ -242,6 +247,8 @@ input {
   color: white;
   text-decoration: none;
   font-family: 'Asap', sans-serif;
+  display: block;
+  padding-top: 20px;
 }
 
 .github-link:hover {
@@ -276,7 +283,7 @@ input {
 }
 
 .results {
-  width: 80%;
+  width: 85%;
   margin: 0 auto;
 }
 
@@ -291,6 +298,7 @@ input {
 }
 
 .back-to-top-link {
+  font-family: 'Asap', sans-serif;
   text-decoration:  none;
   font-size: 16px;
 }
