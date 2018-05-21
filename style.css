@@ -198,6 +198,32 @@ input {
   font-family: 'Asap', sans-serif;
 }
 
+/* Footer styling */
+
+.footer {
+  background: #99CBA0;
+  padding: 50px;
+  text-align: center;
+}
+
+.github-link {
+  color: white;
+  text-decoration: none;
+  font-family: 'Asap', sans-serif;
+}
+
+.github-link:hover {
+  text-decoration: underline;
+}
+
+.github-link:active {
+  color: black;
+}
+
+.github-link:visited {
+  color: purple;
+}
+
 /* Results styling */
 
 #loader {
@@ -311,10 +337,6 @@ ul {
 /* Mobile Responsive */
 
 @media only screen and (max-width: 768px) {
-
-  #findadoc2 {
-    margin: 500px 30px 0px 30px;
-  }
 
   #doc-search-form {
   background: #E6EFF5;
